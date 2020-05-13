@@ -1,7 +1,7 @@
 // Player prefab
 class Player extends Phaser.Physics.Arcade.Sprite {
     
-    constructor(scene, x,y,plat) {
+    constructor(scene, x,y,plat,cursor) {
         // call Phaser Physics Sprite constructor
         super(scene,x, y-10, plat); 
         // set up physics sprite
@@ -15,6 +15,20 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+        
+        if(this.cursors.left.isDown) {
+            this.x-= 2;
+
+        } else if(this.cursors.right.isDown) {
+            this.x+= 2;
+
+    } if(this.cursors.up.isDown) {
+           this.y-= 2;
+            
+        }
+        else if(this.cursors.down.isDown) {
+            this.y+= 2; 
+        }
         
     }
 

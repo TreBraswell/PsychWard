@@ -49,9 +49,15 @@ class Level1 extends Phaser.Scene {
       {
         this.prevtime = this.timers;
         this.enemyGroup.getChildren().forEach(element => {
-          element.disableBody( false, h)
-        }
+          element.disableBody( false, true);                  
+        })
       
+      }
+      else
+      {
+        this.enemyGroup.getChildren().forEach(element => {
+          element.disableBody( false, false);                  
+        })
       }
       var i ;
       //disableBody( [disableGameObject] [, hideGameObject])

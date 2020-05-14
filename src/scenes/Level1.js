@@ -6,12 +6,12 @@ class Level1 extends Phaser.Scene {
           
       }
       preload() {
-        this.load.image('char', './assets/or.jpg')
+        this.load.image('char', './assets/or.png')
         this.enemies = 10;
       }
       create() {
         this.prevtime= -1;
-        this.difficultyTimer = this.time.addEvent({
+       this.difficultyTimer = this.time.addEvent({
           delay: 1000,
           callback: this.timerBump,
           callbackScope: this,
@@ -19,7 +19,7 @@ class Level1 extends Phaser.Scene {
     
     
         });
-        this.playerGroup = this.add.group({
+       this.playerGroup = this.add.group({
           runChildUpdate: true    // make sure update runs on group children
       });
       this.enemyGroup = this.add.group({

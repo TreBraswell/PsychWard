@@ -45,6 +45,7 @@ class Level1 extends Phaser.Scene {
   }
 
     update() {
+      console.log("test");
       if(this.timers%5==0&&this.timers!=this.prevtime)
       {
         this.prevtime = this.timers;

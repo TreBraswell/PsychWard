@@ -6,11 +6,13 @@ class Level1 extends Phaser.Scene {
           
       }
       preload() {
-        this.load.image('char', './assets/or.png')
-        this.enemies = 10;
+        this.load.image('char', './assets/or.jpg')
+
       }
       create() {
+        this.enemies = 1;
         this.prevtime= -1;
+        this.timers = 0;
        this.difficultyTimer = this.time.addEvent({
           delay: 1000,
           callback: this.timerBump,
@@ -26,10 +28,7 @@ class Level1 extends Phaser.Scene {
         runChildUpdate: true    // make sure update runs on group children
     });
       this.addPlayer();
-      for(var i = 0; i< this.enemies; i++)
-      {
-        this.addEnemy();
-      }
+      this.addEnemy();
 
     
   }
@@ -45,19 +44,18 @@ class Level1 extends Phaser.Scene {
   }
 
     update() {
-      console.log("test");
       if(this.timers%5==0&&this.timers!=this.prevtime)
       {
         this.prevtime = this.timers;
         this.enemyGroup.getChildren().forEach(element => {
-          element.disableBody( false, true);                  
+          element.blink = true;   
         })
       
       }
       else
       {
         this.enemyGroup.getChildren().forEach(element => {
-          element.disableBody( false, false);                  
+          element.blink = false;                
         })
       }
       var i ;

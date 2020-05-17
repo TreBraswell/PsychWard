@@ -7,6 +7,7 @@ Ixel:Visual Style: Soft and charming theme with a hint of anime style to the cha
 Few sounds were taken from online : jump sound https://freesound.org/people/Lefty_Studios/sounds/369515/, game over sound https://freesound.org/people/themusicalnomad/sounds/253886/, pageflip sound freesound.org
 */let config = {
     type: Phaser.CANVAS,
+    pixelArt: true,
     width: 840,
     height: 480,
     physics: {

@@ -6,19 +6,24 @@ class Level1 extends Phaser.Scene {
           
       }
       preload() {
-        this.load.image('char', './assets/or.jpg');
-        this.load.image('spritemain', './assets/level1.png');
-        this.load.tilemapTiledJSON("map1", './assets/psychward.json');    // Tiled JSON file
-
+        this.load.audio('backsound', './assets/psych2.wav');
+        this.load.image('player', './assets/psych.png');
+        this.load.image('monster', './assets/monster.png');
+        this.load.tilemapTiledJSON('map', './assets/psychward..json');
+        this.load.image('tiles1', './assets/level1.png');
       }
       create() {
-        // add a tilemap
-         this.map = this.make.tilemap("map1");
-        // add a tileset to the map
-         this.tileset = this.map.addTilesetImage('level1','spritemain',212,212,0,0);
-        // create tilemap layers
-        this.backgroundLayer = this.map.createStaticLayer("Background", this.tileset, 0, 0);
-      this.groundLayer = this.map.createStaticLayer("Maze", this.tileset, 0, 0);
+        this.bgm = game.sound.add('backsound');
+        this.bgm.loop = true;
+        this.bgm.play();
+        this.map = this.make.tilemap({ key: 'map' });
+        this.tileset = this.map.addTilesetImage('level1', 'tiles1');
+        this.layer = this.map.createStaticLayer('Background', this.tileset, 0, 0);
+        this.layer2 = this.map.createStaticLayer('Maze', this.tileset, 0, 0);
+        //this.layer2 = this.map.createStaticLayer('Background', this.tileset, 0, 0);
+        //  Un-comment this on to see the collision tiles
+        // layer.debug = true;
+    
         this.enemies = 1;
         this.prevtime= -1;
         this.timers = 0;
@@ -37,19 +42,20 @@ class Level1 extends Phaser.Scene {
         runChildUpdate: true    // make sure update runs on group children
     });
       this.addPlayer();
-      this.addEnemy();/*
+      this.addEnemy();
       //setting collision
-      this.groundLayer.setCollisionByProperty({ collides: true });
-      this.physics.add.collider(this.player,this.groundLayer);*/
+      this.layer.setCollisionByProperty({ collides: true });
+      this.physics.add.collider(this.player,this.layer);
+      this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
     
   }
   addPlayer(){
-    this.player = new Player(this,320, 240, 'char',this.input.keyboard.createCursorKeys());
+    this.player = new Player(this,320, 240, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
   }
   addEnemy(){
 
-    let Ene = new Enemy(this,320, 240, 'char');
+    let Ene = new Enemy(this,320, 240, 'monster');
     this.enemyGroup.add(Ene);
     this.enemies++;
   }

@@ -27,7 +27,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
  fadePicture() {
     console.log("did we go here");
-   this.scene.add.tweens(this.picture).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
+  // this.scene.add.tweens(this.picture).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
     this.blinked = true; 
     this.blink = false;
 }

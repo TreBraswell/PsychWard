@@ -17,7 +17,7 @@ Few sounds were taken from online : jump sound https://freesound.org/people/Left
             
         }
     },
-    scene: [Menu,Level1],
+    scene: [Menu,Intro, Level1,],
 };
 
 let game = new Phaser.Game(config);
@@ -35,6 +35,7 @@ game.settings = {
 let keyF, keyLEFT, keyRIGHT,keyPrev,keyNext,keyB, keySPACE;
 let timer;
 let keyR, keyM
+let dialog_cursor = null
 
 
 game.state = {

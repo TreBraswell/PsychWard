@@ -1,0 +1,49 @@
+[
+	[
+		{
+			"speaker" : "Patient 1",
+			"dialog" : "I don't know why. But I feel like something is crawling under my skin.",
+			"newSpeaker" : "true"
+		},
+		
+        {	
+			"speaker" : "Patient 1",
+            "dialog" : "Everyday, I have nightmares about it. I don't know how to describe it. I don't even want to start describing it."
+            
+        },
+        
+        {	
+			"speaker" : "Patient 1",
+            "dialog" : "Everyone keeps on saying that I'm just over reacting. But they don't know how it feels for me."
+            
+		},
+		{
+			"speaker" : "Patient 1",
+            "dialog" : "The constant pounding in my head. The inconsistency in my sight. The droning ring in the ears."
+		},
+		{	
+			"speaker" : "Patient 1",
+			"dialog" : "Every audible heartbeat I make, it becomes more and more unbearable."
+		},
+		{	
+			"speaker" : "Patient 1",
+			"dialog" : "'Make it stop.'"
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "I see..."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "I know it's tough for you. But I want you to stay calm and just lay down for now. There's nothing to worry about, I'm here to help."
+		}
+	],
+	[
+		{
+			"speaker" : "Psych",
+			"dialog" : "I'll end your suffering. Quick and painless."
+		
+		}
+		
+	]
+]

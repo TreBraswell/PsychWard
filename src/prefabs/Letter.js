@@ -18,6 +18,7 @@ class Letter extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+        //makes the letter bob
         if(this.goup)
         {
             this.y--;

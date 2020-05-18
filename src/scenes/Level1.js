@@ -14,6 +14,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('A', './assets/A.png');
       }
       create() {
+        //text
         let menuConfig = {
           fontFamily: 'Courier',
           fontSize: '18px',
@@ -49,6 +50,7 @@ class Level1 extends Phaser.Scene {
     
     
         });
+        //groups
         this.letterGroup = this.add.group({
           runChildUpdate: true    // make sure update runs on group children
       });
@@ -110,6 +112,7 @@ class Level1 extends Phaser.Scene {
       }
       var i ;
       //disableBody( [disableGameObject] [, hideGameObject])
+      //folow the player using math and x y cordinates
       this.enemyGroup.getChildren().forEach(element => {
 
         if(element.x>this.player.x)

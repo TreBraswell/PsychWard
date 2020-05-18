@@ -2,7 +2,7 @@
 class Level1 extends Phaser.Scene {
   
     constructor() {
-          super("playScene");
+          super("Level1Scene");
           
       }
       preload() {
@@ -11,8 +11,22 @@ class Level1 extends Phaser.Scene {
         this.load.image('monster', './assets/monster.png');
         this.load.tilemapTiledJSON('map', './assets/psychward..json');
         this.load.image('tiles1', './assets/level1.png');
+        this.load.image('A', './assets/A.png');
       }
       create() {
+        let menuConfig = {
+          fontFamily: 'Courier',
+          fontSize: '18px',
+          color: '#FFFFFF',
+          align: 'right',
+          padding: {
+              top: 5,
+              bottom: 5,
+          },
+          fixedWidth: 0
+        }
+        
+        this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.bgm = game.sound.add('backsound');
         this.bgm.loop = true;
         this.bgm.play();
@@ -35,6 +49,9 @@ class Level1 extends Phaser.Scene {
     
     
         });
+        this.letterGroup = this.add.group({
+          runChildUpdate: true    // make sure update runs on group children
+      });
        this.playerGroup = this.add.group({
           runChildUpdate: true    // make sure update runs on group children
       });
@@ -43,15 +60,20 @@ class Level1 extends Phaser.Scene {
     });
       this.addPlayer();
       this.addEnemy();
+      this.addLetter();
       //setting collision
       this.layer.setCollisionByProperty({ collides: true });
       this.physics.add.collider(this.player,this.layer);
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
-    
+      this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
   }
   addPlayer(){
     this.player = new Player(this,320, 240, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
+  }
+  addLetter(){
+    let letter = new Letter(this,400, 480, 'A',this.input.keyboard.createCursorKeys());
+    this.letterGroup.add(letter);
   }
   addEnemy(){
 
@@ -61,6 +83,17 @@ class Level1 extends Phaser.Scene {
   }
 
     update() {
+      this.bcText.x= this.player.x; 
+      this.bcText.y= this.player.y; 
+      if (Phaser.Input.Keyboard.JustDown(this.keySPACE)) {
+        this.scene.start("menuScene");   
+  
+      
+      }
+      this.physics.add.overlap( this.letterGroup,this.playerGroup,function(letter, player){
+        letter.destroy();
+  
+    });
       if(this.timers%5==0&&this.timers!=this.prevtime)
       {
         this.prevtime = this.timers;

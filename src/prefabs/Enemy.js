@@ -10,6 +10,23 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.scene = scene;
         this.blink = false;
         this.blinked = false;
+        this.alpha =0;
+        this.fadeout = scene.tweens.add({
+            targets: this,
+            alpha: {
+                from: 1,
+                to: 0
+            },
+            duration: 6000
+        });
+        this.fadein = scene.tweens.add({
+            targets: this,
+            alpha: {
+                from: 0,
+                to: 1
+            },
+            duration: 6000
+        });
         //taken from phaser example
             
 
@@ -27,13 +44,27 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
  fadePicture() {
     console.log("did we go here");
-  // this.scene.add.tweens(this.picture).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
+    if(this.fadeout.isPlaying())
+    {
+
+    }
+    else
+    {
+        this.fadein.play();
+    }
+
     this.blinked = true; 
     this.blink = false;
 }
 unfadePicture() {
+    if(this.fadein.isPlaying())
+    {
 
-    //this.scene.add.tween(this.picture).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    }
+    else
+    {
+        this.fadeout.play();
+    }
     this.blinked = false;
 }
     

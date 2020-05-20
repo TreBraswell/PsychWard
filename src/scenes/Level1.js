@@ -82,8 +82,17 @@ class Level1 extends Phaser.Scene {
     this.letterGroup.add(letter);
   }
   addEnemy(){
-
-    let Ene = new Enemy(this,320, 240, 'monster');
+    var Ene;
+    if(this.enemies == 1)
+    {
+      Ene = new Enemy(this,320, 240, 'monster',this.layer2,true);
+      
+    }
+    else
+    {
+      Ene = new Enemy(this,320, 240, 'monster',this.layer2,false);
+    }
+    
     this.enemyGroup.add(Ene);
     this.enemies++;
   }
@@ -100,7 +109,7 @@ class Level1 extends Phaser.Scene {
         letter.destroy();
   
     });
-      if(this.timers%5==0&&this.timers!=this.prevtime)
+      if(this.timers%10==0&&this.timers!=this.prevtime)
       {
         this.prevtime = this.timers;
         this.enemyGroup.getChildren().forEach(element => {

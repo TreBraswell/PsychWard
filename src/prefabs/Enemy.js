@@ -1,7 +1,7 @@
 // Player prefab
 class Enemy extends Phaser.Physics.Arcade.Sprite {
     
-    constructor(scene, x,y,plat) {
+    constructor(scene, x,y,plat,layer,bool) {
         // call Phaser Physics Sprite constructor
         super(scene,x, y-10, plat); 
         // set up physics sprite
@@ -11,22 +11,47 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.blink = false;
         this.blinked = false;
         this.alpha =0;
-        this.fadeout = scene.tweens.add({
-            targets: this,
-            alpha: {
-                from: 1,
-                to: 0
-            },
-            duration: 6000
-        });
-        this.fadein = scene.tweens.add({
-            targets: this,
-            alpha: {
-                from: 0,
-                to: 1
-            },
-            duration: 6000
-        });
+        this.blinkwait = false;
+        this.layer = layer;
+        if(bool)
+        {
+            this.fadeout = scene.tweens.add({
+                targets: [this, this.layer ],
+                alpha: {
+                    from: 1,
+                    to: 0
+                },
+                duration: 6000
+            });
+            this.fadein = scene.tweens.add({
+                targets:[ this,this.layer],
+                alpha: {
+                    from: 0,
+                    to: 1
+                },
+                duration: 6000
+            });
+        }
+        else
+        {
+            this.fadeout = scene.tweens.add({
+                targets: this,
+                alpha: {
+                    from: 1,
+                    to: 0
+                },
+                duration: 6000
+            });
+            this.fadein = scene.tweens.add({
+                targets: this,
+                alpha: {
+                    from: 0,
+                    to: 1
+                },
+                duration: 6000
+            });
+        }
+        
         //taken from phaser example
             
 
@@ -37,13 +62,29 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
         {
             this.fadePicture();
         }
-        if(this.blink == false && this.blinked ==true )
+        else if(this.blink == false && this.blinked ==true&&this.blinkwait==true )
         {
             this.unfadePicture();
         }
     }
  fadePicture() {
     console.log("did we go here");
+    if(this.fadein.isPlaying())
+    {
+
+    }
+    else
+    {
+        this.alpha = 0;
+        this.fadeout.play();
+        this.blinked = true; 
+        this.blink = false;
+    }
+
+
+}
+unfadePicture() {
+    console.log("did we go here2");
     if(this.fadeout.isPlaying())
     {
 
@@ -51,21 +92,10 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
     else
     {
         this.fadein.play();
+        this.blinked = false;
+        this.blinkwait = false;
     }
-
-    this.blinked = true; 
-    this.blink = false;
-}
-unfadePicture() {
-    if(this.fadein.isPlaying())
-    {
-
-    }
-    else
-    {
-        this.fadeout.play();
-    }
-    this.blinked = false;
+    
 }
     
 }

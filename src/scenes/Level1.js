@@ -14,6 +14,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('A', './assets/A.png');
       }
       create() {
+        this.tilediff= 32;
         //text
         let menuConfig = {
           fontFamily: 'Courier',
@@ -25,8 +26,9 @@ class Level1 extends Phaser.Scene {
               bottom: 5,
           },
           fixedWidth: 0
-        }
-        
+        } 
+       this.cursors =  this.input.keyboard.createCursorKeys();
+        this.difftimer = false; 
         this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.bgm = game.sound.add('backsound');
         this.bgm.loop = true;
@@ -36,7 +38,7 @@ class Level1 extends Phaser.Scene {
         this.map = this.make.tilemap({ key: 'map' });
         this.tileset = this.map.addTilesetImage('level1', 'tiles1');
         this.layer = this.map.createStaticLayer('Background', this.tileset, 0, 0);
-        this.layer2 = this.map.createStaticLayer('Maze', this.tileset, 0, 0);
+        this.layer2 = this.map.createDynamicLayer('Maze', this.tileset, 0, 0);
         //this.layer2 = this.map.createStaticLayer('Background', this.tileset, 0, 0);
         //  Un-comment this on to see the collision tiles
         // layer.debug = true;
@@ -62,19 +64,21 @@ class Level1 extends Phaser.Scene {
       this.enemyGroup = this.add.group({
         runChildUpdate: true    // make sure update runs on group children
     });
+    this.layer2.setCollisionByProperty({ collide: true });
       this.addPlayer();
       this.addEnemy();
       this.addLetter();
       //setting collision
-      //this.layer2.setCollision([4, 5, 6, 8])
-      this.layer2.setCollisionByProperty({ collide: true });
+     
+      //
+
       this.physics.add.collider(this.player, this.layer2);
 
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
   }
   addPlayer(){
-    this.player = new Player(this,320, 240, 'player',this.input.keyboard.createCursorKeys());
+    this.player = new Player(this,380, 280, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
   }
   addLetter(){
@@ -98,6 +102,52 @@ class Level1 extends Phaser.Scene {
   }
 
     update() {
+     
+      if(this.cursors.left.isDown) {
+        var tile = this.layer2.getTileAtWorldXY(this.player.x -this.tilediff, this.player.y, true);
+        if(tile.index == 4 || tile.index == 5)
+        {
+
+        }
+        else
+        { 
+        this.player.x-= 2;
+        }
+
+    } else if(this.cursors.right.isDown) {
+      var tile = this.layer2.getTileAtWorldXY(this.player.x +this.tilediff, this.player.y, true);
+        if(tile.index == 4 || tile.index == 5)
+        {
+
+        }
+        else
+        {
+        this.player.x+= 2;
+        }
+
+} if(this.cursors.up.isDown) {
+  var tile = this.layer2.getTileAtWorldXY(this.player.x, this.player.y-this.tilediff, true);
+    if(tile.index == 4 || tile.index == 5)
+    {
+
+    }
+    else
+    {
+       this.player.y-= 2;
+    }
+        
+    }
+    else if(this.cursors.down.isDown) {
+      var tile = this.layer2.getTileAtWorldXY(this.player.x , this.player.y+this.tilediff, true);
+        if(tile.index == 4 || tile.index == 5)
+        {
+
+        }
+        else
+        {
+        this.player.y+= 2;
+        } 
+    }
       this.bcText.x= this.player.x; 
       this.bcText.y= this.player.y; 
       if (Phaser.Input.Keyboard.JustDown(this.keySPACE)) {
@@ -109,7 +159,14 @@ class Level1 extends Phaser.Scene {
         letter.destroy();
   
     });
-      if(this.timers%10==0&&this.timers!=this.prevtime)
+      if( this.prevtime<this.timers-3)
+      {
+        this.enemyGroup.getChildren().forEach(element => {
+          element.blinkwait = true;   
+        })
+
+      }
+      if(this.timers%5==0&&this.timers!=this.prevtime)
       {
         this.prevtime = this.timers;
         this.enemyGroup.getChildren().forEach(element => {

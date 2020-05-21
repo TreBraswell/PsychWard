@@ -74,7 +74,7 @@ class Level1 extends Phaser.Scene {
     this.layer2.setCollisionByProperty({ collide: true });
       this.addPlayer();
       this.addEnemy();
-      this.addLetter();
+      this.addLetter('A',1);
       this.addGoal();
       //setting collision
      
@@ -89,8 +89,8 @@ class Level1 extends Phaser.Scene {
     this.player = new Player(this,380, 280, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
   }
-  addLetter(){
-    let letter = new Letter(this,400, 480, 'A',this.input.keyboard.createCursorKeys());
+  addLetter(string, num){
+    let letter = new Letter(this,400, 480, string,num);
     this.letterGroup.add(letter);
   }
   addEnemy(){

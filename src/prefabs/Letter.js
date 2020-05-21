@@ -1,7 +1,7 @@
 // Player prefab
 class Letter extends Phaser.Physics.Arcade.Sprite {
     
-    constructor(scene, x,y,plat,letterorder) {
+    constructor(scene, x,y,plat,num) {
         // call Phaser Physics Sprite constructor
         super(scene,x, y, plat); 
         // set up physics sprite
@@ -9,6 +9,7 @@ class Letter extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);       // add physics body
         this.scene = scene;
         this.goup =true;
+        this.num = num;
         this.godown = false; 
         this.ogposy = y;
         this.diff = 20;

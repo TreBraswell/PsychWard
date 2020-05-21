@@ -14,6 +14,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('A', './assets/A.png');
       }
       create() {
+        this.goalletters = 10;
+        this.letters = 0;
         this.tilediff= 32;
         //text
         let menuConfig = {
@@ -156,6 +158,7 @@ class Level1 extends Phaser.Scene {
       
       }
       this.physics.add.overlap( this.letterGroup,this.playerGroup,function(letter, player){
+        this.letters++;
         letter.destroy();
   
     });

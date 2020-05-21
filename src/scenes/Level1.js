@@ -9,12 +9,14 @@ class Level1 extends Phaser.Scene {
         this.load.audio('backsound', './assets/psych2.wav');
         this.load.image('player', './assets/psychright.png');
         this.load.image('monster', './assets/monster.png');
-        this.load.tilemapTiledJSON('map', './assets/psychward.json');
-        this.load.image('tiles1', './assets/level1.png');
+        this.load.image('door', './assets/door.png');
+        this.load.tilemapTiledJSON('map', './assets/psychward..json');
+        this.load.image('tiles1', './assets/lvl1.png');
         this.load.image('A', './assets/A.png');
       }
       create() {
-        this.goalletters = 10;
+        this.spawndoor = false;
+        this.goalletters = 10;//number of letters if they are equal to letter ie letters collected the door will fade in and then progress to the next level
         this.letters = 0;
         this.tilediff= 32;
         //text
@@ -60,6 +62,9 @@ class Level1 extends Phaser.Scene {
         this.letterGroup = this.add.group({
           runChildUpdate: true    // make sure update runs on group children
       });
+      this.goalGroup = this.add.group({
+        runChildUpdate: true    // make sure update runs on group children
+    });
        this.playerGroup = this.add.group({
           runChildUpdate: true    // make sure update runs on group children
       });
@@ -70,6 +75,7 @@ class Level1 extends Phaser.Scene {
       this.addPlayer();
       this.addEnemy();
       this.addLetter();
+      this.addGoal();
       //setting collision
      
       //
@@ -102,7 +108,10 @@ class Level1 extends Phaser.Scene {
     this.enemyGroup.add(Ene);
     this.enemies++;
   }
-
+  addGoal(){
+    this.goal = new Goal(this,400,480,'door');
+    this.goalGroup.add(this.goal);
+  }
     update() {
      
       if(this.cursors.left.isDown) {
@@ -162,6 +171,18 @@ class Level1 extends Phaser.Scene {
         letter.destroy();
   
     });
+    if(this.letters== this.goalletters)
+    {
+      this.goal.fadein = true;
+      this.spawndoor = true;
+    }
+    this.physics.add.overlap( this.goalGroup,this.playerGroup,function(goal, player){
+      if(this.spawndoor&& !this.goal.fadeintween.isPlaying())
+      {
+        //go to next scene
+      }
+
+  });
       if( this.prevtime<this.timers-3)
       {
         this.enemyGroup.getChildren().forEach(element => {

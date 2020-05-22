@@ -10,8 +10,8 @@ class Level2 extends Phaser.Scene {
         this.load.image('player', './assets/psychright.png');
         this.load.image('monster', './assets/monster.png');
         this.load.image('door', './assets/door.png');
-        this.load.tilemapTiledJSON('map', './assets/psychward..json');
-        this.load.image('tiles1', './assets/lvl1.png');
+        this.load.tilemapTiledJSON('map', './assets/psychward2.json');
+        this.load.image('tiles1', './assets/lvl2.png');
         this.load.image('A', './assets/A.png');
       }
       create() {
@@ -27,7 +27,7 @@ class Level2 extends Phaser.Scene {
         this.map = this.make.tilemap({ key: 'map' });
         this.tileset = this.map.addTilesetImage('level1', 'tiles1');
         this.layer = this.map.createStaticLayer('Background', this.tileset, 0, 0);
-        this.layer2 = this.map.createDynamicLayer('Maze', this.tileset, 0, 0);
+        this.layer2 = this.map.createDynamicLayer('House', this.tileset, 0, 0);
         //this.layer2 = this.map.createStaticLayer('Background', this.tileset, 0, 0);
         //  Un-comment this on to see the collision tiles
         // layer.debug = true;

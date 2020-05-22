@@ -26,7 +26,7 @@ class Letter extends Phaser.Physics.Arcade.Sprite {
             console.log("we here");
                 if(this.y<this.ogposy-this.diff)
                 {
-                    console.log("switch");
+                    
                     this.goup = false; 
                     this.godown = true; 
                 }
@@ -36,7 +36,7 @@ class Letter extends Phaser.Physics.Arcade.Sprite {
             this.y++;
                 if(this.y>this.ogposy+this.diff)
                 {
-                    console.log("switch2");
+                    
                     this.godown = false; 
                     this.goup = true; 
                 }

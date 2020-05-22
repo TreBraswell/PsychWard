@@ -1,8 +1,8 @@
 
-class Level1 extends Phaser.Scene {
+class Level2 extends Phaser.Scene {
   
     constructor() {
-          super("Level1Scene");
+          super("Level2Scene");
           
       }
       preload() {
@@ -15,28 +15,13 @@ class Level1 extends Phaser.Scene {
         this.load.image('A', './assets/A.png');
       }
       create() {
-        this.spawndoor = false;
-        this.goalletters = 10;//number of letters if they are equal to letter ie letters collected the door will fade in and then progress to the next level
-        this.letters = 0;
-        this.tilediff= 32;
         //text
-        let menuConfig = {
-          fontFamily: 'Courier',
-          fontSize: '18px',
-          color: '#FFFFFF',
-          align: 'right',
-          padding: {
-              top: 5,
-              bottom: 5,
-          },
-          fixedWidth: 0
-        } 
        this.cursors =  this.input.keyboard.createCursorKeys();
-        this.difftimer = false; 
         this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        /*
         this.bgm = game.sound.add('backsound');
         this.bgm.loop = true;
-        this.bgm.play();
+        this.bgm.play();*/
 
 
         this.map = this.make.tilemap({ key: 'map' });
@@ -47,9 +32,6 @@ class Level1 extends Phaser.Scene {
         //  Un-comment this on to see the collision tiles
         // layer.debug = true;
     
-        this.enemies = 1;
-        this.prevtime= -1;
-        this.timers = 0;
        this.difficultyTimer = this.time.addEvent({
           delay: 1000,
           callback: this.timerBump,
@@ -73,7 +55,7 @@ class Level1 extends Phaser.Scene {
     });
     this.layer2.setCollisionByProperty({ collide: true });
       this.addPlayer();
-      this.addEnemy();
+     // this.addEnemy();
       this.addLetter('A',1);
       this.addGoal();
       //setting collision
@@ -83,7 +65,6 @@ class Level1 extends Phaser.Scene {
       this.physics.add.collider(this.player, this.layer2);
 
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
-      this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
   }
   addPlayer(){
     this.player = new Player(this,380, 280, 'player',this.input.keyboard.createCursorKeys());
@@ -159,74 +140,6 @@ class Level1 extends Phaser.Scene {
         this.player.y+= 2;
         } 
     }
-      this.bcText.x= this.player.x; 
-      this.bcText.y= this.player.y; 
-      if (Phaser.Input.Keyboard.JustDown(this.keySPACE)) {
-        this.scene.start("menuScene");   
-  
-      
-      }
-      this.physics.add.overlap( this.letterGroup,this.playerGroup,function(letter, player){
-        this.letters++;
-        letter.destroy();
-  
-    });
-    if(this.letters== this.goalletters)
-    {
-      this.goal.fadein = true;
-      this.spawndoor = true;
-    }
-    this.physics.add.overlap( this.goalGroup,this.playerGroup,function(goal, player){
-      if(this.spawndoor&& !this.goal.fadeintween.isPlaying())
-      {
-        //go to next scene
-      }
-
-  });
-      if( this.prevtime<this.timers-3)
-      {
-        this.enemyGroup.getChildren().forEach(element => {
-          element.blinkwait = true;   
-        })
-
-      }
-      if(this.timers%5==0&&this.timers!=this.prevtime)
-      {
-        this.prevtime = this.timers;
-        this.enemyGroup.getChildren().forEach(element => {
-          element.blink = true;   
-        })
-      
-      }
-      else
-      {
-        this.enemyGroup.getChildren().forEach(element => {
-          element.blink = false;                
-        })
-      }
-      var i ;
-      //disableBody( [disableGameObject] [, hideGameObject])
-      //folow the player using math and x y cordinates
-      this.enemyGroup.getChildren().forEach(element => {
-
-        if(element.x>this.player.x)
-        {
-          element.x--;
-        }
-        else
-        {
-          element.x++;
-        }
-        if(element.y>this.player.y)
-        {
-          element.y--;
-        }
-        else
-        {
-          element.y++;
-        }
-        // do something with element
-    })
       
   }
   timerBump()

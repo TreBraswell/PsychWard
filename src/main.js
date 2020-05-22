@@ -56,6 +56,32 @@ game.persist = {
 
 }
 
+
+
+game.wordIndex = 
+{
+    i0: false,
+    i1: false,
+    i2: false,
+    i3: false,
+    i4: false,
+    i5: false,
+    i6: false,
+    i7: false,
+    i8: false,
+    i9: false,
+    i10: false,
+
+
+    collected: false
+}
+
+game.playerCoord = 
+{
+    x:0,
+    y:0
+}
+
 var controlpage
 function update()
 {

@@ -17,6 +17,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+
+
+        game.playerCoord.x = this.x;
+        game.playerCoord.y = this.y;
 /*        var tile = this.layer2.getTileAtWorldXY(this.x - 32, this.y, true);
 
         if(this.cursors.left.isDown) {

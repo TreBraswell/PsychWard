@@ -113,6 +113,7 @@ class Level1 extends Phaser.Scene {
       this.physics.add.collider(this.player, this.layer2);
 
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+      this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
       this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
 
 
@@ -276,7 +277,7 @@ class Level1 extends Phaser.Scene {
      
       if(this.cursors.left.isDown) {
         var tile = this.layer2.getTileAtWorldXY(this.player.x -this.tilediff, this.player.y, true);
-        if(tile.index == 4 || tile.index == 5)
+        if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
         {
 
         }
@@ -287,7 +288,7 @@ class Level1 extends Phaser.Scene {
 
     } else if(this.cursors.right.isDown) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x +this.tilediff, this.player.y, true);
-        if(tile.index == 4 || tile.index == 5)
+      if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
         {
 
         }
@@ -298,7 +299,7 @@ class Level1 extends Phaser.Scene {
 
 } if(this.cursors.up.isDown) {
   var tile = this.layer2.getTileAtWorldXY(this.player.x, this.player.y-this.tilediff, true);
-    if(tile.index == 4 || tile.index == 5)
+  if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
     {
 
     }
@@ -310,7 +311,7 @@ class Level1 extends Phaser.Scene {
     }
     else if(this.cursors.down.isDown) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x , this.player.y+this.tilediff, true);
-        if(tile.index == 4 || tile.index == 5)
+      if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
         {
 
         }

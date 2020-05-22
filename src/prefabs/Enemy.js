@@ -68,7 +68,6 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
         }
     }
  fadePicture() {
-    console.log("did we go here");
     if(this.fadein.isPlaying())
     {
 
@@ -84,7 +83,6 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 }
 unfadePicture() {
-    console.log("did we go here2");
     if(this.fadeout.isPlaying())
     {
 

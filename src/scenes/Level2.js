@@ -16,6 +16,7 @@ class Level2 extends Phaser.Scene {
       }
       create() {
         //text
+        this.tilediff = 32;
        this.cursors =  this.input.keyboard.createCursorKeys();
         this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         /*
@@ -25,7 +26,7 @@ class Level2 extends Phaser.Scene {
 
 
         this.map = this.make.tilemap({ key: 'map' });
-        this.tileset = this.map.addTilesetImage('level1', 'tiles1');
+        this.tileset = this.map.addTilesetImage('level2', 'tiles1');
         this.layer = this.map.createStaticLayer('Background', this.tileset, 0, 0);
         this.layer2 = this.map.createDynamicLayer('House', this.tileset, 0, 0);
         //this.layer2 = this.map.createStaticLayer('Background', this.tileset, 0, 0);
@@ -65,6 +66,7 @@ class Level2 extends Phaser.Scene {
       this.physics.add.collider(this.player, this.layer2);
 
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+      this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
   }
   addPlayer(){
     this.player = new Player(this,380, 280, 'player',this.input.keyboard.createCursorKeys());
@@ -97,18 +99,18 @@ class Level2 extends Phaser.Scene {
      
       if(this.cursors.left.isDown) {
         var tile = this.layer2.getTileAtWorldXY(this.player.x -this.tilediff, this.player.y, true);
-        if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
+        if(tile == null ||tile.index == -1||tile.index == 11 )
         {
 
         }
         else
         { 
         this.player.x-= 2;
-        }
+       }
 
     } else if(this.cursors.right.isDown) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x +this.tilediff, this.player.y, true);
-      if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
+     if(tile == null ||tile.index == -1||tile.index == 11 )
         {
 
         }
@@ -119,7 +121,7 @@ class Level2 extends Phaser.Scene {
 
 } if(this.cursors.up.isDown) {
   var tile = this.layer2.getTileAtWorldXY(this.player.x, this.player.y-this.tilediff, true);
-  if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
+  if(tile == null || tile.index == -1||tile.index == 11 )
     {
 
     }
@@ -131,7 +133,7 @@ class Level2 extends Phaser.Scene {
     }
     else if(this.cursors.down.isDown) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x , this.player.y+this.tilediff, true);
-      if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
+      if(tile == null||tile.index == -1||tile.index == 11 )
         {
 
         }

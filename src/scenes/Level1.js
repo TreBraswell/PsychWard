@@ -83,6 +83,7 @@ class Level1 extends Phaser.Scene {
       this.physics.add.collider(this.player, this.layer2);
 
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+      this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
       this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
   }
   addPlayer(){

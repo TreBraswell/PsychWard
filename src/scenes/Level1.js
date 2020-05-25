@@ -106,6 +106,8 @@ class Level1 extends Phaser.Scene {
       this.addLetter('I', 300,230,9);
       this.addLetter('A', 100,60,10);
       this.addGoal();
+      this.diffchar = 50;
+      this.intialdiff  = 25;
       //setting collision
      
       //
@@ -117,36 +119,38 @@ class Level1 extends Phaser.Scene {
       this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
       this.test = this.add.sprite(0 ,0 , 'G');
       //first spell out the phobia now, then make it invisible, and then when player collects, change alpha back to 1
-      this.a1 = this.add.sprite(game.playerCoord.x ,game.playerCoord.y , 'A')
+      this.a1 = this.add.sprite( this.cameras.main.scrollX  + this.intialdiff +this.diffchar*1,this.cameras.main.scrollY +10, 'A')
       this.a1.alpha = 0;
-      
-      this.g = this.add.sprite(game.playerCoord.x + 20 ,game.playerCoord.y , 'G')
+      this.test.x = this.cameras.main.scrollX+20;
+      this.test.y = this.cameras.main.scrollY+20;
+
+      this.g = this.add.sprite(this.cameras.main.scrollX + this.intialdiff +this.diffchar*2 ,this.cameras.main.scrollY +15, 'G')
       this.g.alpha = 0;
 
-      this.o1 = this.add.sprite(game.playerCoord.x + 40 ,game.playerCoord.y , 'O')
+      this.o1 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*3,this.cameras.main.scrollY +15, 'O')
       this.o1.alpha = 0;
-      this.r = this.add.sprite(game.playerCoord.x + 60 ,game.playerCoord.y , 'R')
+      this.r = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*4,this.cameras.main.scrollY+15 , 'R')
       this.r.alpha = 0;
 
-      this.a2 = this.add.sprite(game.playerCoord.x + 80 ,game.playerCoord.y , 'A')
+      this.a2 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*5,this.cameras.main.scrollY +15, 'A')
       this.a2.alpha = 0;
 
-      this.p = this.add.sprite(game.playerCoord.x + 100 ,game.playerCoord.y , 'P')
+      this.p = this.add.sprite(this.cameras.main.scrollX + this.intialdiff +this.diffchar*6,this.cameras.main.scrollY +15, 'P')
       this.p.alpha = 0;
 
-      this.h = this.add.sprite(game.playerCoord.x + 120 ,game.playerCoord.y , 'H')
+      this.h = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*7 ,this.cameras.main.scrollY+15, 'H')
       this.h.alpha = 0;
 
-      this.o2 = this.add.sprite(game.playerCoord.x + 140 ,game.playerCoord.y , 'O')
+      this.o2 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*8 ,this.cameras.main.scrollY+15, 'O')
       this.o2.alpha = 0;
 
-      this.b = this.add.sprite(game.playerCoord.x + 160 ,game.playerCoord.y , 'B')
+      this.b = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*9 ,this.cameras.main.scrollY+15, 'B')
       this.b.alpha = 0;
 
-      this.i = this.add.sprite(game.playerCoord.x + 180 ,game.playerCoord.y , 'I')
+      this.i = this.add.sprite(this.cameras.main.scrollX + this.intialdiff +this.diffchar*10,this.cameras.main.scrollY+15 , 'I')
       this.i.alpha = 0;
 
-      this.a3 = this.add.sprite(game.playerCoord.x + 200 ,game.playerCoord.y , 'A')
+      this.a3 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*11 ,this.cameras.main.scrollY+15, 'A')
       this.a3.alpha = 0;
 
   }
@@ -181,9 +185,7 @@ class Level1 extends Phaser.Scene {
   }
     update() {
       
-      this.test.x = this.cameras.main.scrollX+20;
-      this.test.y = this.cameras.main.scrollY+20;
-     
+      
       if(game.wordIndex.collected)
       {
         if(game.wordIndex.i0)
@@ -235,40 +237,51 @@ class Level1 extends Phaser.Scene {
 
         game.wordIndex.collected = false
       }
-
-      this.a1.x = game.playerCoord.x - 300
+      this.a1.setScrollFactor(0);
+      /*this.a1.x = game.playerCoord.x - 300
       this.a1.y = game.playerCoord.y - 200
-
-      this.g.x = game.playerCoord.x - 250
+*/
+    this.g.setScrollFactor(0);
+      /*this.g.x = game.playerCoord.x - 250
       this.g.y = game.playerCoord.y - 200
-      
-      this.o1.x = game.playerCoord.x - 200
+      */
+     this.o1.setScrollFactor(0);
+     /* this.o1.x = game.playerCoord.x - 200
       this.o1.y = game.playerCoord.y - 200
-
+      */
+     this.r.setScrollFactor(0);/*
       this.r.x = game.playerCoord.x - 150
-      this.r.y = game.playerCoord.y - 200
-
+      this.r.y = game.playerCoord.y - 200*/
+      this.a2.setScrollFactor(0);/*
       this.a2.x = game.playerCoord.x - 100
-      this.a2.y = game.playerCoord.y - 200
-
+      this.a2.y = game.playerCoord.y - 200*/
+      this.p.setScrollFactor(0);
+      /*
       this.p.x = game.playerCoord.x - 50
       this.p.y = game.playerCoord.y - 200
-
+*/
+      this.h.setScrollFactor(0);
+      /*
       this.h.x = game.playerCoord.x 
       this.h.y = game.playerCoord.y - 200
-
+      */
+      this.o2.setScrollFactor(0);/*
       this.o2.x = game.playerCoord.x + 50
       this.o2.y = game.playerCoord.y - 200
-
+      */
+      this.b.setScrollFactor(0);/*
       this.b.x = game.playerCoord.x + 100
       this.b.y = game.playerCoord.y - 200
-
+      */
+      this.i.setScrollFactor(0);/*
       this.i.x = game.playerCoord.x + 150
       this.i.y = game.playerCoord.y - 200
-
+      */
+      this.a3.setScrollFactor(0);
+      /*
       this.a3.x = game.playerCoord.x + 200
       this.a3.y = game.playerCoord.y - 200
-
+      */
 
 
 

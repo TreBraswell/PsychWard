@@ -51,7 +51,7 @@ class Level1 extends Phaser.Scene {
           },
           fixedWidth: 0
         } 
-       this.cursors =  this.input.keyboard.createCursorKeys();
+        this.cursors =  this.input.keyboard.createCursorKeys();
         this.difftimer = false; 
         this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.bgm = game.sound.add('backsound');
@@ -115,10 +115,7 @@ class Level1 extends Phaser.Scene {
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
       this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
-
-
-
-
+      this.test = this.add.sprite(0 ,0 , 'G');
       //first spell out the phobia now, then make it invisible, and then when player collects, change alpha back to 1
       this.a1 = this.add.sprite(game.playerCoord.x ,game.playerCoord.y , 'A')
       this.a1.alpha = 0;
@@ -128,7 +125,6 @@ class Level1 extends Phaser.Scene {
 
       this.o1 = this.add.sprite(game.playerCoord.x + 40 ,game.playerCoord.y , 'O')
       this.o1.alpha = 0;
-
       this.r = this.add.sprite(game.playerCoord.x + 60 ,game.playerCoord.y , 'R')
       this.r.alpha = 0;
 
@@ -184,7 +180,10 @@ class Level1 extends Phaser.Scene {
     this.goalGroup.add(this.goal);
   }
     update() {
-
+      
+      this.test.x = this.cameras.main.scrollX+20;
+      this.test.y = this.cameras.main.scrollY+20;
+     
       if(game.wordIndex.collected)
       {
         if(game.wordIndex.i0)
@@ -231,7 +230,7 @@ class Level1 extends Phaser.Scene {
         {
           this.a3.alpha = 1;
         }
-        console.log("Hello, in collected")
+        //console.log("Hello, in collected")
 
 
         game.wordIndex.collected = false

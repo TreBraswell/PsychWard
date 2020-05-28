@@ -94,17 +94,6 @@ class Level1 extends Phaser.Scene {
     this.layer2.setCollisionByProperty({ collide: true });
       this.addPlayer();
       this.addEnemy();
-      this.addLetter('A', 500,600,0);
-      this.addLetter('G', 600,780,1);
-      this.addLetter('O', 300,480,2);
-      this.addLetter('R', 200,580,3);
-      this.addLetter('A', 700,780,4);
-      this.addLetter('P', 700,280,5);
-      this.addLetter('H', 400,780,6);
-      this.addLetter('O', 800,580,7);
-      this.addLetter('B', 300,680,8);
-      this.addLetter('I', 300,230,9);
-      this.addLetter('A', 100,60,10);
       this.addGoal();
       this.diffchar = 50;
       this.intialdiff  = 25;
@@ -153,6 +142,19 @@ class Level1 extends Phaser.Scene {
       this.a3 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*11 ,this.cameras.main.scrollY+15, 'A')
       this.a3.alpha = 0;
 
+
+      this.addLetter('A', 500,600,this.a1);
+      this.addLetter('G', 600,780,this.g);
+      this.addLetter('O', 300,480,this.o1);
+      this.addLetter('R', 200,580,this.r);
+      this.addLetter('A', 700,780,this.a2);
+      this.addLetter('P', 700,280,this.p);
+      this.addLetter('H', 400,780,this.h);
+      this.addLetter('O', 800,580,this.o2);
+      this.addLetter('B', 300,680,this.b);
+      this.addLetter('I', 300,230,this.i);
+      this.addLetter('A', 100,60,this.a3);
+
   }
   addPlayer(){
     this.player = new Player(this,380, 280, 'player',this.input.keyboard.createCursorKeys());
@@ -186,57 +188,7 @@ class Level1 extends Phaser.Scene {
     update() {
       
       
-      if(game.wordIndex.collected)
-      {
-        if(game.wordIndex.i0)
-        {
-          this.a1.alpha = 1;
-        }
-        if(game.wordIndex.i1)
-        {
-          this.g.alpha = 1;
-        }
-        if(game.wordIndex.i2)
-        {
-          this.o1.alpha = 1;
-        }
-        if(game.wordIndex.i3)
-        {
-          this.r.alpha = 1;
-        }
-        if(game.wordIndex.i4)
-        {
-          this.a2.alpha = 1;
-        }
-        if(game.wordIndex.i5)
-        {
-          this.p.alpha = 1;
-        }
-        if(game.wordIndex.i6)
-        {
-          this.h.alpha = 1;
-        }
-        if(game.wordIndex.i7)
-        {
-          this.o2.alpha = 1;
-        }
-        if(game.wordIndex.i8)
-        {
-          this.b.alpha = 1;
-        }
-        if(game.wordIndex.i9)
-        {
-          this.i.alpha = 1;
-        }
-        if(game.wordIndex.i10)
-        {
-          this.a3.alpha = 1;
-        }
-        //console.log("Hello, in collected")
-
-
-        game.wordIndex.collected = false
-      }
+      
       this.a1.setScrollFactor(0);
       /*this.a1.x = game.playerCoord.x - 300
       this.a1.y = game.playerCoord.y - 200
@@ -340,55 +292,10 @@ class Level1 extends Phaser.Scene {
       
       }
       this.physics.add.overlap( this.letterGroup,this.playerGroup,function(letter, player){
-
-        if(letter.num  == 0)
-        {
-          game.wordIndex.i0 = true;
-        }
-        else if(letter.num == 1)
-        {
-          game.wordIndex.i1 = true;
-        }
-        else if(letter.num == 2)
-        {
-          game.wordIndex.i2 = true;
-        }
-        else if(letter.num  == 3)
-        {
-          game.wordIndex.i3 = true;
-        }
-        else if(letter.num == 4)
-        {
-          game.wordIndex.i4 = true;
-        }
-        else if(letter.num == 5)
-        {
-          game.wordIndex.i5 = true;
-        }
-        else if(letter.num == 6)
-        {
-          game.wordIndex.i6 = true;
-        }
-        else if(letter.num == 7)
-        {
-          game.wordIndex.i7 = true;
-        }
-        else if(letter.num == 8)
-        {
-          game.wordIndex.i8 = true;
-        }
-        else if(letter.num == 9)
-        {
-          game.wordIndex.i9 = true;
-        }
-        else if(letter.num == 10)
-        {
-          game.wordIndex.i10 = true;
-        }
-
-
+        letter.collected = true
         game.wordIndex.collected = true;
-        letter.destroy();
+        letter.alpha = 0
+
   
     });
     if(this.letters== this.goalletters)

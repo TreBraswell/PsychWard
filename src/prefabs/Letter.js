@@ -1,7 +1,8 @@
 // Player prefab
 class Letter extends Phaser.Physics.Arcade.Sprite {
     
-    constructor(scene, x,y,plat,num,camera,endx,endy) {
+    
+    constructor(scene, x,y,plat,im,camera,endx,endy) {
         // call Phaser Physics Sprite constructor
         super(scene,x, y, plat); 
         // set up physics sprite
@@ -9,25 +10,44 @@ class Letter extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);       // add physics body
         this.scene = scene;
         this.goup =true;
-        this.num = num;
+        this.im = im;
         this.godown = false; 
         this.ogposy = y;
         this.diff = 20;
         this.collected = false;
+
+
+        this.playOnce = true;
+
         this.nowui = false;
         //taken from phaser example
-        this.fadein = scene.tweens.add({
-            targets: this,
-            alpha: {
-                from: 0,
-                to: 1
-            },
-            duration: 6000
-        });
+      
+        
 
     }
 
     update() {
+
+        if(this.collected)
+        {
+            if(this.playOnce)
+            {
+                this.fadein = this.scene.tweens.add({
+                    targets: this.im,
+                    alpha: {
+                        from: 0,
+                        to: 1
+                    },
+                    duration: 6000
+                });
+               
+                this.playOnce = false;
+            }
+            console.log("in collected")
+
+        }
+else{
+
 
         //makes the letter bob
         if(this.goup)
@@ -53,6 +73,7 @@ class Letter extends Phaser.Physics.Arcade.Sprite {
 
          
     }
+}
 
     
 }

@@ -10,6 +10,11 @@ class Menu extends Phaser.Scene {
         this.load.image('psych', './assets/psych.png');
 
         this.load.json('introDialog', './assets/introDialog.json');
+        this.load.json('level2-1Dialog', './assets/level2-1Dialog.json');
+        this.load.json('level2-2Dialog', './assets/level2-2Dialog.json');
+        this.load.json('level2-3Dialog', './assets/level2-3Dialog.json');
+        this.load.json('level2-4Dialog', './assets/level2-4Dialog.json');
+        this.load.json('level2-5Dialog', './assets/level2-5Dialog.json');
         this.load.bitmapFont('basic_font', './assets/font.png', './assets/font.xml')
       }
       create() {

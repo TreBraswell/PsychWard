@@ -1,0 +1,45 @@
+[
+	[
+		{
+			"speaker" : "Patient 2's Mother",
+			"dialog" : "dialog 4",
+			"newSpeaker" : "true"
+		},
+		
+        {	
+			"speaker" : "Patient 2's Mother",
+            "dialog" : "dialog 4"
+            
+        },
+        
+        {	
+			"speaker" : "Patient 2's Mother",
+            "dialog" : "Everyone wants him to stop, which mentally breaks him."
+            
+		},
+		{
+			"speaker" : "Patient 2's Mother",
+            "dialog" : "I just want him to be happy, but I didn't think it would come to this."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "Hmm, a note from the patient's mother, huh? It looks like no matter what the patient does, his mother will always be with him."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "But, this is the patient's house. It's up in flames, yet there is no one around."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "Am I already too late?"
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "Whatever the case is, I should keep this note to bring back to the patient. Maybe it will help cure him."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "I wonder if there are more notes around here. I need to retrieve them fast before they burn up into ashes."
+		}
+	]
+]

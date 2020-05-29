@@ -76,6 +76,12 @@ game.wordIndex =
     collected: false
 }
 
+
+game.level2 = 
+{
+    currentDialog: null
+}
+
 game.playerCoord = 
 {
     x:0,

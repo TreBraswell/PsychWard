@@ -74,6 +74,14 @@ class Menu extends Phaser.Scene {
     this.time.delayedCall(600, () => { this.scene.start('instructionsScene'); }); 
 
   }
+  if(this.cursors.left.isDown) {
+    this.scene.start("Level1Scene"); 
+
+}
+if(this.cursors.up.isDown) {
+  this.scene.start("Level3Scene"); 
+
+}
       
   }
 

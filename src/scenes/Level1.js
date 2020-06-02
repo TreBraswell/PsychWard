@@ -40,7 +40,7 @@ class Level1 extends Phaser.Scene {
       this.zoomdiff = .01;
       this.cursors =  this.input.keyboard.createCursorKeys();
       this.scrollfac = 10;
-      
+
       this.spawndoor = false;
       this.goalletters = 10;//number of letters if they are equal to letter ie letters collected the door will fade in and then progress to the next level
       this.letters = 0;

@@ -6,8 +6,8 @@ class Level2 extends Phaser.Scene {
 
 
 
-
-
+          //debug
+          
 
                 //////////////////////////////////
 
@@ -78,6 +78,13 @@ class Level2 extends Phaser.Scene {
         
       }
       create() {
+        this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+          this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+          this.follow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+          this.following = false;
+          this.zoomdiff = .01;
+          //this.cursors =  this.input.keyboard.createCursorKeys();
+          this.scrollfac = 10;
         //text
         this.typing = game.sound.add('typing')
         this.typing.loop = true;
@@ -186,7 +193,41 @@ class Level2 extends Phaser.Scene {
     this.goalGroup.add(this.goal);
   }
     update() {
-
+      if(config.physics.arcade.debug)
+      {
+       
+       if(this.follow.isDown ||this.following)
+       {var point =  this.cameras.main.getWorldPoint(this.input.mousePointer.x,this.input.mousePointer.y)
+        console.log( "this is cursor position : ("+point.x+","+point.y+")");
+         this.following = true;
+        this.cameras.main.stopFollow();
+        if (this.cursors.up.isDown)
+        {
+          this.cameras.main.scrollY -= this.scrollfac;
+        }
+        else if (this.cursors.down.isDown)
+        {
+          this.cameras.main.scrollY += this.scrollfac;
+        }
+    
+        if (this.cursors.left.isDown)
+        {
+          this.cameras.main.scrollX -= this.scrollfac;
+        }
+        else if (this.cursors.right.isDown)
+        {
+          this.cameras.main.scrollX += this.scrollfac;
+        }
+       }
+        if(this.zoomin.isDown)
+        {
+          this.cameras.main.setZoom(this.cameras.main.zoom +this.zoomdiff);
+        }
+        else if(this.zoomout.isDown)
+        {
+          this.cameras.main.setZoom(this.cameras.main.zoom -this.zoomdiff);
+        }
+      }
       this.TEXT_X = game.playerCoord.x - 400
       this.TEXT_Y = game.playerCoord.y +100
       this.DBOX_X = game.playerCoord.x - 400

@@ -32,8 +32,15 @@ class Level1 extends Phaser.Scene {
     
 
 
-
-
+      //debug stuff
+      this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+      this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+      this.follow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+      this.following = false;
+      this.zoomdiff = .01;
+      this.cursors =  this.input.keyboard.createCursorKeys();
+      this.scrollfac = 10;
+      
       this.spawndoor = false;
       this.goalletters = 10;//number of letters if they are equal to letter ie letters collected the door will fade in and then progress to the next level
       this.letters = 0;
@@ -186,7 +193,41 @@ addGoal(){
 }
   update() {
     
-    
+    if(config.physics.arcade.debug)
+    {
+     
+     if(this.follow.isDown ||this.following)
+     {var point =  this.cameras.main.getWorldPoint(this.input.mousePointer.x,this.input.mousePointer.y)
+      console.log( "this is cursor position : ("+point.x+","+point.y+")");
+       this.following = true;
+      this.cameras.main.stopFollow();
+      if (this.cursors.up.isDown)
+      {
+        this.cameras.main.scrollY -= this.scrollfac;
+      }
+      else if (this.cursors.down.isDown)
+      {
+        this.cameras.main.scrollY += this.scrollfac;
+      }
+  
+      if (this.cursors.left.isDown)
+      {
+        this.cameras.main.scrollX -= this.scrollfac;
+      }
+      else if (this.cursors.right.isDown)
+      {
+        this.cameras.main.scrollX += this.scrollfac;
+      }
+     }
+      if(this.zoomin.isDown)
+      {
+        this.cameras.main.setZoom(this.cameras.main.zoom +this.zoomdiff);
+      }
+      else if(this.zoomout.isDown)
+      {
+        this.cameras.main.setZoom(this.cameras.main.zoom -this.zoomdiff);
+      }
+    }
     
     this.a1.setScrollFactor(0);
     /*this.a1.x = game.playerCoord.x - 300

@@ -16,10 +16,17 @@ class Level3 extends Phaser.Scene {
         this.load.image('tilesobj', './assets/lvl3objects.png');
       }
       create() {
+        //debug stuff
+        this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+        this.follow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        this.following = false;
+        this.zoomdiff = .01;
         //text
+        this.prevscroll =0;
         this.tilediff = 32;
        this.cursors =  this.input.keyboard.createCursorKeys();
-        this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+       this.scrollfac = 10;
         /*
         this.bgm = game.sound.add('backsound');
         this.bgm.loop = true;
@@ -92,10 +99,44 @@ class Level3 extends Phaser.Scene {
     this.goalGroup.add(this.goal);
   }
     update() {
-
+     // this.cameras.main.setZoom(.3);
+    //checks if we are in debug
+    if(config.physics.arcade.debug)
+    {
+     if(this.follow.isDown ||this.following)
+     {var point =  this.cameras.main.getWorldPoint(this.input.mousePointer.x,this.input.mousePointer.y)
+      console.log( "this is cursor position : ("+point.x+","+point.y+")");
+       this.following = true;
+      this.cameras.main.stopFollow();
+      if (this.cursors.up.isDown)
+      {
+        this.cameras.main.scrollY -= this.scrollfac;
+      }
+      else if (this.cursors.down.isDown)
+      {
+        this.cameras.main.scrollY += this.scrollfac;
+      }
+  
+      if (this.cursors.left.isDown)
+      {
+        this.cameras.main.scrollX -= this.scrollfac;
+      }
+      else if (this.cursors.right.isDown)
+      {
+        this.cameras.main.scrollX += this.scrollfac;
+      }
+     }
+      if(this.zoomin.isDown)
+      {
+        this.cameras.main.setZoom(this.cameras.main.zoom +this.zoomdiff);
+      }
+      else if(this.zoomout.isDown)
+      {
+        this.cameras.main.setZoom(this.cameras.main.zoom -this.zoomdiff);
+      }
+    }
     
-
-      if(this.cursors.left.isDown) {
+      if(this.cursors.left.isDown && !this.following) {
         var tile = this.layer2.getTileAtWorldXY(this.player.x -this.tilediff, this.player.y, true);
         //console.log(tile.index);
         //||tile.index == -1||tile.index == 11||tile.index==4||tile.index==2
@@ -109,7 +150,7 @@ class Level3 extends Phaser.Scene {
         this.player.x-= 2;
        }
 
-    } else if(this.cursors.right.isDown) {
+    } else if(this.cursors.right.isDown&& !this.following) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x +this.tilediff, this.player.y, true);
       //console.log(tile.index);
       if(tile == null||tile.index == 6||tile.index == 8||tile.index==5||tile.index==7||tile.index==3  )
@@ -122,7 +163,7 @@ class Level3 extends Phaser.Scene {
         this.player.x+= 2;
         }
 
-} if(this.cursors.up.isDown) {
+} if(this.cursors.up.isDown&& !this.following) {
   var tile = this.layer2.getTileAtWorldXY(this.player.x, this.player.y-this.tilediff, true);
   //console.log(tile.index);
   if(tile == null ||tile.index == 6||tile.index == 8||tile.index==5||tile.index==7||tile.index==3 )
@@ -136,7 +177,7 @@ class Level3 extends Phaser.Scene {
     }
         
     }
-    else if(this.cursors.down.isDown) {
+    else if(this.cursors.down.isDown&& !this.following) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x , this.player.y+this.tilediff, true);
       //console.log(tile.index);
       if(tile == null||tile.index == 6||tile.index == 8||tile.index==5||tile.index==7||tile.index==3 )

@@ -1,6 +1,6 @@
-class Intro extends Phaser.Scene {
+class Intro2 extends Phaser.Scene {
     constructor() {
-        super("intro1Scene");
+        super("intro2Scene");
 
         // dialog constants
         this.DBOX_X = 0;			    // dialog box x-position
@@ -35,7 +35,7 @@ class Intro extends Phaser.Scene {
 
     create() {
         // parse dialog from JSON file
-        this.dialog = this.cache.json.get('introDialog');
+        this.dialog = this.cache.json.get('intro2Dialog');
         //console.log(this.dialog);
 
         // add dialog box sprite
@@ -103,7 +103,7 @@ class Intro extends Phaser.Scene {
             // }
             // make text box invisible
             //this.dialogbox.visible = false;
-            this.scene.start("Level1Scene");
+            this.scene.start("Level2Scene");
 
         } else {
             // if not, set current speaker

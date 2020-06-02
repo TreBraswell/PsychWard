@@ -1,0 +1,48 @@
+[
+	[
+		{
+			"speaker" : "Patient 2",
+			"dialog" : "They call it an addiction. But I feel like it's just a lifestyle.",
+			"newSpeaker" : "true"
+		},
+		
+        {	
+			"speaker" : "Patient 2",
+            "dialog" : "Everyone seem to hate me for it."
+            
+        },
+        
+        {	
+			"speaker" : "Patient 2",
+            "dialog" : "They just think that the only thing I'm good at is destroying everything."
+            
+		},
+		{
+			"speaker" : "Patient 2",
+            "dialog" : "At this point, I don't know what to do. I love doing it but no one else will look at me like a human if I continue."
+		},
+		{	
+			"speaker" : "Patient 2",
+			"dialog" : "It's not like I can simply stop. It's not that easy for me. I would just go insane. More insane than how I am right now."
+		},
+
+		{	
+			"speaker" : "Patient 2",
+			"dialog" : "A fiery red is just such a beautiful color to me."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "Addiction is something everyone in their lifetime has tried to fight against. It's like a parasite in your mind that seem to knaws on your thoughts and feelings."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "It's a mental battle more than anything. But there are ways I can help."
+		},
+		{
+			"speaker" : "Psych",
+			"dialog" : "I need to identify the actual problem first though. But I'm certain I'll be able to find the cure."
+		
+		}
+		
+	]
+]

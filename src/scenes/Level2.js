@@ -37,6 +37,8 @@ class Level2 extends Phaser.Scene {
       this.dialogText = null;			// the actual dialog text
       this.nextText = null;			// player prompt text to continue typing
 
+      this.dialogbox = null
+
       // character variables
       this.psych = null;
       this.psych2 = null;
@@ -63,6 +65,7 @@ class Level2 extends Phaser.Scene {
         this.load.tilemapTiledJSON('map', './assets/psychward2.json');
         this.load.image('tiles1', './assets/lvl2.png');
         this.load.image('A', './assets/A.png');
+        this.load.image('dialogbox', './assets/grad.png');
 
 
 
@@ -132,7 +135,7 @@ class Level2 extends Phaser.Scene {
       this.TEXT_X = 	this.cameras.main.scrollX
       this.TEXT_Y = this.cameras.main.scrollY
 
-
+      
 
 
 
@@ -145,7 +148,6 @@ class Level2 extends Phaser.Scene {
       //console.log(this.dialog);
 
       // add dialog box sprite
-      //this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0);
 
       // initialize dialog text objects (with no text)
 
@@ -183,6 +185,8 @@ class Level2 extends Phaser.Scene {
 
       this.TEXT_X = game.playerCoord.x - 400
       this.TEXT_Y = game.playerCoord.y +100
+      this.DBOX_X = game.playerCoord.x - 400
+      this.DBOX_Y = game.playerCoord.y +100
 
       if(!this.isTalking)
       
@@ -256,6 +260,8 @@ class Level2 extends Phaser.Scene {
   {
     if(this.firstType)
     {
+      this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0);
+      this.dialogbox.visible = true;
       this.dialog = game.level2.currDialog;
       this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
       this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
@@ -282,6 +288,7 @@ class Level2 extends Phaser.Scene {
 }
 
 typeText() {
+
   // lock input while typing
   this.dialogTyping = true;
 
@@ -320,7 +327,7 @@ typeText() {
       //     });
       // }
       // make text box invisible
-      //this.dialogbox.visible = false;
+      this.dialogbox.visible = false;
       this.isTalking = false
       this.firstType = true
 

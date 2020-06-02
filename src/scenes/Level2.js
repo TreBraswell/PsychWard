@@ -51,10 +51,10 @@ class Level2 extends Phaser.Scene {
 
 
       this.noteGroup = null
-    this.goalGroup =null
+      this.goalGroup =null
 
-     this.playerGroup =  null
-    this.enemyGroup = null
+      this.playerGroup =  null
+      this.enemyGroup = null
           
       }
       preload() {
@@ -67,6 +67,8 @@ class Level2 extends Phaser.Scene {
         this.load.image('A', './assets/A.png');
         this.load.image('dialogbox', './assets/grad.png');
 
+        this.load.audio('typing', './assets/Typing.mp3')
+
 
 
 
@@ -77,6 +79,8 @@ class Level2 extends Phaser.Scene {
       }
       create() {
         //text
+        this.typing = game.sound.add('typing')
+        this.typing.loop = true;
         this.tilediff = 32;
        this.cursors =  this.input.keyboard.createCursorKeys();
         this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -267,6 +271,7 @@ class Level2 extends Phaser.Scene {
       this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
     this.typeText()
     this.firstType = false;
+    this.typing.play();
   }
 
     
@@ -276,6 +281,7 @@ class Level2 extends Phaser.Scene {
     this.enemyGroup.runChildUpdate = false;
     if(Phaser.Input.Keyboard.JustDown(dialog_cursor.space) && !this.dialogTyping) {
       // trigger dialog
+      this.typing.play();
       this.typeText();
   }
 
@@ -375,6 +381,8 @@ typeText() {
       this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'].toUpperCase() + ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
 
       // create a timer to iterate through each letter in the dialog text
+
+      
       let currentChar = 0; 
       this.textTimer = this.time.addEvent({
           delay: this.LETTER_TIMER,
@@ -393,9 +401,12 @@ typeText() {
                   this.dialogTyping = false;
                   // destroy timer
                   this.textTimer.destroy();
+                 this.typing.stop()
+                  
               }
           },
           callbackScope: this // keep Scene context
+
       });
       
       // set bounds on dialog

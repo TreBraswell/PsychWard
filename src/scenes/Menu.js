@@ -37,6 +37,10 @@ class Menu extends Phaser.Scene {
     this.scene.start("Level1Scene"); 
 
 }
+if(this.cursors.up.isDown) {
+  this.scene.start("Level3Scene"); 
+
+}
       
   }
 

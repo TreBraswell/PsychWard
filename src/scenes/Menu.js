@@ -19,7 +19,7 @@ class Menu extends Phaser.Scene {
         this.load.json('level2-3Dialog', './assets/level2-3Dialog.json');
         this.load.json('level2-4Dialog', './assets/level2-4Dialog.json');
         this.load.json('level2-5Dialog', './assets/level2-5Dialog.json');
-        this.load.bitmapFont('basic_font', './assets/font.png', './assets/font.xml')
+        this.load.bitmapFont('basic_font', './assets/font1.png', './assets/font.fnt')
 
 
 

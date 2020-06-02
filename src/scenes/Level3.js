@@ -105,7 +105,7 @@ class Level3 extends Phaser.Scene {
         }
         else
         { 
-          console.log(tile.index);
+        //  console.log(tile.index);
         this.player.x-= 2;
        }
 
@@ -118,7 +118,7 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
-          console.log(tile.index);
+          //console.log(tile.index);
         this.player.x+= 2;
         }
 
@@ -131,7 +131,7 @@ class Level3 extends Phaser.Scene {
     }
     else
     {
-      console.log(tile.index);
+      //console.log(tile.index);
        this.player.y-= 2;
     }
         
@@ -145,7 +145,7 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
-          console.log(tile.index);
+        //  console.log(tile.index);
         this.player.y+= 2;
         } 
     }

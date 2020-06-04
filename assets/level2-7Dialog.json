@@ -1,0 +1,25 @@
+[
+	[
+		{
+			"speaker" : "Patient 2's Dad",
+			"dialog" : "dialog 7",
+			"newSpeaker" : "true"
+		},
+		
+        {	
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "I just wish things were different"
+            
+        },
+        
+        {	
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "I dont want this... He doesnt deserve this.."
+            
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "things can be different. things will be different"
+		}
+	]
+]

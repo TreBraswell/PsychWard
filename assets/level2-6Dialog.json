@@ -1,0 +1,33 @@
+[
+	[
+		{
+			"speaker" : "Patient 2's Dad",
+			"dialog" : "dialog 6",
+			"newSpeaker" : "true"
+		},
+		
+        {	
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "Ah son I remeber when you were young"
+            
+        },
+        
+        {	
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "you love to play. You just had so much energy."
+            
+		},
+		{
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "if only i hadnt given that lighter maybe things would have been different"
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "Hmm, a note from the patient's mother, huh? It looks like no matter what the patient does, his mother will always be with him."
+		},
+		{	
+			"speaker" : "Psych",
+			"dialog" : "its not your fault. blame hurts more than it solves."
+		}
+	]
+]

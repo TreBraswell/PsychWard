@@ -14,7 +14,7 @@ class Note extends Phaser.Physics.Arcade.Sprite {
         this.ogposy = y;
         this.diff = 20;
         this.collected = false;
-        this.dialog = dialog
+        this.dialog = dialog;
 
 
         this.playOnce = true;

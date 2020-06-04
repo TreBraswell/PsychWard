@@ -78,8 +78,15 @@ class Level2 extends Phaser.Scene {
         
       }
       create() {
-       let dialog1 = this.cache.json.get('level2-1Dialog')
-       let dialog2 = this.cache.json.get('level2-2Dialog')
+       var dialog1 = this.cache.json.get('level2-1Dialog')
+       var dialog2 = this.cache.json.get('level2-2Dialog')
+       var dialog3 = this.cache.json.get('level2-3Dialog')
+       var dialog4 = this.cache.json.get('level2-4Dialog')
+       var dialog5 = this.cache.json.get('level2-5Dialog')
+       var dialog6 = this.cache.json.get('level2-6Dialog')
+       var dialog7 = this.cache.json.get('level2-7Dialog')
+       var dialog8 = this.cache.json.get('level2-8Dialog')
+       var dialog9 = this.cache.json.get('level2-9Dialog')
         this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
           this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
           this.follow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -133,13 +140,13 @@ class Level2 extends Phaser.Scene {
      // this.addEnemy();
       this.addNote(1850, 174,'A', dialog1);
       this.addNote(268, 2400,'O', dialog2);
-      this.addNote(1768, 2408,'O', dialog2);
-      this.addNote(312, 1668,'O', dialog2);
-      this.addNote(1413, 1842,'O', dialog2);
-      this.addNote(1916, 955,'O', dialog2);
-      this.addNote(264, 735,'O', dialog2);
-      this.addNote(286, 178,'O', dialog2);
-      this.addNote(1005, 2630,'O', dialog2);
+      this.addNote(1768, 2408,'O', dialog3);
+      this.addNote(312, 1668,'O', dialog4);
+      this.addNote(1413, 1842,'O', dialog5);
+      this.addNote(1916, 955,'O', dialog6);
+      this.addNote(264, 735,'O', dialog7);
+      this.addNote(286, 178,'O', dialog8);
+      this.addNote(1005, 2400,'O', dialog9);
       this.addGoal();
       //setting collision
      this.addEnemy(877,2354,100,false,10);

@@ -149,17 +149,17 @@ class Level1 extends Phaser.Scene {
     this.a3.alpha = 0;
 
 
-    this.addLetter('A', 500,600,this.a1);
-    this.addLetter('G', 600,780,this.g);
-    this.addLetter('O', 300,480,this.o1);
-    this.addLetter('R', 200,580,this.r);
-    this.addLetter('A', 700,780,this.a2);
-    this.addLetter('P', 700,280,this.p);
-    this.addLetter('H', 400,780,this.h);
-    this.addLetter('O', 800,580,this.o2);
-    this.addLetter('B', 300,680,this.b);
-    this.addLetter('I', 300,230,this.i);
-    this.addLetter('A', 100,60,this.a3);
+    this.addLetter('A', 178,2702,this.a1);
+    this.addLetter('G', 1748,2693,this.g);
+    this.addLetter('O', 616,2072,this.o1);
+    this.addLetter('R', 1639,1946,this.r);
+    this.addLetter('A', 692,606,this.a2);
+    this.addLetter('P', 1004,1130,this.p);
+    this.addLetter('H', 383,1413,this.h);
+    this.addLetter('O', 841,142,this.o2);
+    this.addLetter('B', 1123,1453,this.b);
+    this.addLetter('I', 1445,1068,this.i);
+    this.addLetter('A', 1070,1982,this.a3);
 
 }
 addPlayer(){

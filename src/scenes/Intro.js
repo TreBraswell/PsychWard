@@ -138,7 +138,14 @@ class Intro extends Phaser.Scene {
             }
 
             // build dialog (concatenate speaker + line of text)
+            if(this.dialog[this.dialogConvo][this.dialogLine]['speaker'] == 'patient')
+            {
+            this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'] + ' one : \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+        }
+        else
+    {
             this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'] + ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+        }
 
             // create a timer to iterate through each letter in the dialog text
             let currentChar = 0; 

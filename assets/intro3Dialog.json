@@ -1,46 +1,43 @@
 [
 	[
 		{
-			"speaker" : "Patient 3",
-			"dialog" : "This is patient 3, copied and pasted dialog from 2.",
+			"speaker" : "patient",
+			"dialog" : "i feel insignificant and small and that idea has always haunted me even when i was young.",
 			"newSpeaker" : "true"
 		},
 		
         {	
-			"speaker" : "Patient 2",
-            "dialog" : "Everyone seem to hate me for it."
+			"speaker" : "patient",
+            "dialog" : "this warped perception and inconceivable disconnect from this world has always consumed me whole."
             
         },
         
         {	
-			"speaker" : "Patient 2",
-            "dialog" : "They just think that the only thing I'm good at is destroying everything."
+			"speaker" : "patient",
+            "dialog" : "everything and everyone seems to be out of arm's reach and it feel so lonely. so cruel."
             
 		},
 		{
-			"speaker" : "Patient 2",
-            "dialog" : "At this point, I don't know what to do. I love doing it but no one else will look at me like a human if I continue."
+			"speaker" : "patient",
+            "dialog" : "it always makes me wonder, why me... what have i done wrong to deserve something like this?"
 		},
 		{	
-			"speaker" : "Patient 2",
-			"dialog" : "It's not like I can simply stop. It's not that easy for me. I would just go insane. More insane than how I am right now."
+			"speaker" : "patient",
+			"dialog" : "it's a feeling that suffocated me for far too long. all i want to do is breathe."
 		},
 
 		{	
-			"speaker" : "Patient 2",
-			"dialog" : "A fiery red is just such a beautiful color to me."
+			"speaker" : "psychiatrist",
+			"dialog" : "breathe in and breathe out. you're going to get through this and i'll be here to help you. it's my job after all",
+			"newSpeaker" : "true"
 		},
 		{	
-			"speaker" : "Psych",
-			"dialog" : "Addiction is something everyone in their lifetime has tried to fight against. It's like a parasite in your mind that seem to knaws on your thoughts and feelings."
-		},
-		{	
-			"speaker" : "Psych",
-			"dialog" : "It's a mental battle more than anything. But there are ways I can help."
+			"speaker" : "psychiatrist",
+			"dialog" : "it's not easy to live in a world that looks like illusions."
 		},
 		{
-			"speaker" : "Psych",
-			"dialog" : "I need to identify the actual problem first though. But I'm certain I'll be able to find the cure."
+			"speaker" : "psychiatrist",
+			"dialog" : "i need to identify the actual problem first though. but i'm certain i'll be able to find the cure."
 		
 		}
 		

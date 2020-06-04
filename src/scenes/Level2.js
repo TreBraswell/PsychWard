@@ -428,7 +428,7 @@ typeText() {
       // }
 
       // build dialog (concatenate speaker + line of text)
-      this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker']+ ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+      this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker']+ ' two: \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
 
       // create a timer to iterate through each letter in the dialog text
 

@@ -28,8 +28,8 @@ class Intro2 extends Phaser.Scene {
         this.nextText = null;			// player prompt text to continue typing
 
         // character variables
-        this.psych = null;
-        this.psych2 = null;
+        this.psychiatrist = null;
+        this.psychiatrist2 = null;
 
         this.tweenDuration = 500;
 
@@ -50,7 +50,7 @@ class Intro2 extends Phaser.Scene {
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
 
         // ready the character dialog images offscreen
-        this.psych = this.add.sprite(this.OFFSCREEN_X, this.OFFSCREEN_Y, 'psych').setOrigin(0, 1);
+        this.psychiatrist = this.add.sprite(this.OFFSCREEN_X, this.OFFSCREEN_Y, 'psych').setOrigin(0, 1);
         this.patient = this.add.sprite(this.OFFSCREEN_X, this.OFFSCREEN_Y, 'patient').setOrigin(0, 1);
 
 
@@ -138,7 +138,14 @@ class Intro2 extends Phaser.Scene {
             }
 
             // build dialog (concatenate speaker + line of text)
+            if(this.dialog[this.dialogConvo][this.dialogLine]['speaker'] == 'patient')
+            {
+            this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'] + ' two : \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+        }
+        else
+    {
             this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'] + ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+        }
 
             // create a timer to iterate through each letter in the dialog text
             let currentChar = 0; 

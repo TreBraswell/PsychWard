@@ -65,8 +65,8 @@ class Level2 extends Phaser.Scene {
         this.load.tilemapTiledJSON('map', './assets/psychward2.json');
         this.load.image('tiles1', './assets/lvl2.png');
         this.load.image('A', './assets/A.png');
-        
-
+        this.load.image('notes', './assets/papers.png');
+        this.load.image('firedown', './assets/fireball.png');
         this.load.audio('typing', './assets/Typing.mp3')
 
 
@@ -78,6 +78,8 @@ class Level2 extends Phaser.Scene {
         
       }
       create() {
+       let dialog1 = this.cache.json.get('level2-1Dialog')
+       let dialog2 = this.cache.json.get('level2-2Dialog')
         this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
           this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
           this.follow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -129,13 +131,29 @@ class Level2 extends Phaser.Scene {
     this.layer2.setCollisionByProperty({ collide: true });
       this.addPlayer();
      // this.addEnemy();
-      let tempdialog = this.cache.json.get('level2-1Dialog')
-      this.addNote(480, 300,'A', tempdialog);
-      tempdialog = this.cache.json.get('level2-2Dialog')
-      this.addNote(580, 300,'O', tempdialog);
+      this.addNote(1850, 174,'A', dialog1);
+      this.addNote(268, 2400,'O', dialog2);
+      this.addNote(1768, 2408,'O', dialog2);
+      this.addNote(312, 1668,'O', dialog2);
+      this.addNote(1413, 1842,'O', dialog2);
+      this.addNote(1916, 955,'O', dialog2);
+      this.addNote(264, 735,'O', dialog2);
+      this.addNote(286, 178,'O', dialog2);
+      this.addNote(1005, 2630,'O', dialog2);
       this.addGoal();
       //setting collision
-     
+     this.addEnemy(877,2354,100,false,10);
+     this.addEnemy(1213,2354,100,false,10);
+     this.addEnemy(1007,2546,100,true,10);
+     this.addEnemy(1007,2195,100,true,10);
+     this.addEnemy(1155,1860,100,false,10);
+     this.addEnemy(908,1680,100,false,10);
+     this.addEnemy(1792,1800,100,false,10);
+     this.addEnemy(1960,1655,100,true,10);
+     this.addEnemy(1153,1116,100,false,10);
+     this.addEnemy(756,902,100,false,10);
+     this.addEnemy(1079,342,100,false,10);
+     this.addEnemy(849,265,100,true,10);
       //
 
       this.physics.add.collider(this.player, this.layer2);
@@ -166,27 +184,18 @@ class Level2 extends Phaser.Scene {
 
   }
   addPlayer(){
-    this.player = new Player(this,380, 280, 'player',this.input.keyboard.createCursorKeys());
+    this.player = new Player(this,1000, 2775, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
   }
   addNote(x, y,string, dialog){
-    let note = new Note(this,x, y, string, dialog);
+    let note = new Note(this,x, y,'notes' ,dialog);
     this.noteGroup.add(note);
   }
-  addEnemy(){
+  addEnemy(x,y,diff,side,speed){
     var Ene;
-    if(this.enemies == 1)
-    {
-      Ene = new Enemy(this,320, 240, 'monster',this.layer2,true);
-      
-    }
-    else
-    {
-      Ene = new Enemy(this,320, 240, 'monster',this.layer2,false);
-    }
+    Ene = new Fireball(this,x, y, 'firedown',diff,side,speed);
     
     this.enemyGroup.add(Ene);
-    this.enemies++;
   }
   addGoal(){
     this.goal = new Goal(this,400,480,'door');

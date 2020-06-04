@@ -46,33 +46,6 @@ class Note extends Phaser.Physics.Arcade.Sprite {
             console.log("in collected")
 
         }
-else{
-
-
-        //makes the letter bob
-        if(this.goup)
-        {
-            this.y--;
-                if(this.y<this.ogposy-this.diff)
-                {
-                    
-                    this.goup = false; 
-                    this.godown = true; 
-                }
-        }
-        if(this.godown)
-        {
-            this.y++;
-                if(this.y>this.ogposy+this.diff)
-                {
-                    
-                    this.godown = false; 
-                    this.goup = true; 
-                }
-        }
-
-         
-    }
 }
 
     

@@ -5,7 +5,7 @@ class Intro3 extends Phaser.Scene {
         // dialog constants
         this.DBOX_X = 0;			    // dialog box x-position
         this.DBOX_Y = 400;			    // dialog box y-position
-        this.DBOX_FONT = 'basic_font';	// dialog box font key
+        this.DBOX_FONT = 'basic_font';	;	// dialog box font key
 
         this.TEXT_X = 50;			// text w/in dialog box x-position
         this.TEXT_Y = 360;			// text w/in dialog box y-position
@@ -31,6 +31,10 @@ class Intro3 extends Phaser.Scene {
         this.psych = null;
         this.psych2 = null;
 
+        this.tweenDuration = 500;
+
+        this.OFFSCREEN_X = -100;        // x,y values to place characters offscreen
+        this.OFFSCREEN_Y = 350;
     }
 
     create() {
@@ -39,16 +43,18 @@ class Intro3 extends Phaser.Scene {
         //console.log(this.dialog);
 
         // add dialog box sprite
-        //this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0);
+        this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0);
 
         // initialize dialog text objects (with no text)
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
 
         // ready the character dialog images offscreen
-        this.psych = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y-40, 'psych').setOrigin(0, 1);
-        this.psych2 = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y-40, 'psych').setOrigin(0, 1);
+        this.psych = this.add.sprite(this.OFFSCREEN_X, this.OFFSCREEN_Y, 'psych').setOrigin(0, 1);
+        this.patient = this.add.sprite(this.OFFSCREEN_X, this.OFFSCREEN_Y, 'patient').setOrigin(0, 1);
 
+
+        // input
         dialog_cursor = this.input.keyboard.createCursorKeys();
 
         // start dialog
@@ -93,43 +99,44 @@ class Intro3 extends Phaser.Scene {
             // but you could build other logic to change game states here
             console.log('End of Conversations');
             // tween out prior speaker's image
-            // if(this.dialogLastSpeaker) {
-            //     this.tweens.add({
-            //         targets: this[this.dialogLastSpeaker],
-            //         x: this.OFFSCREEN_X,
-            //         duration: this.tweenDuration,
-            //         ease: 'Linear'
-            //     });
-            // }
+            if(this.dialogLastSpeaker) {
+                this.tweens.add({
+                    targets: this[this.dialogLastSpeaker],
+                    x: this.OFFSCREEN_X,
+                    duration: this.tweenDuration,
+                    ease: 'Linear'
+                });
+            }
+            this.scene.start("Level3Scene");
             // make text box invisible
-            //this.dialogbox.visible = false;
-            //this.scene.start("Level3Scene");
+            this.dialogbox.visible = false;
 
         } else {
             // if not, set current speaker
             this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker'];
             // check if there's a new speaker (for exit/enter animations)
-            // if(this.dialog[this.dialogConvo][this.dialogLine]['newSpeaker']) {
-            //     // tween out prior speaker's image
-            //     if(this.dialogLastSpeaker) {
-            //         this.tweens.add({
-            //             targets: this[this.dialogLastSpeaker],
-            //             x: this.OFFSCREEN_X,
-            //             duration: this.tweenDuration,
-            //             ease: 'Linear'
-            //         });
-            //     }
-            //     // tween in new speaker's image
-            //     this.tweens.add({
-            //         targets: this[this.dialogSpeaker],
-            //         x: this.DBOX_X + 50,
-            //         duration: this.tweenDuration,
-            //         ease: 'Linear'
-            //     });
-            // }
+            if(this.dialog[this.dialogConvo][this.dialogLine]['newSpeaker']) {
+                // tween out prior speaker's image
+                if(this.dialogLastSpeaker) {
+                    this.tweens.add({
+                        targets: this[this.dialogLastSpeaker],
+                        x: this.OFFSCREEN_X,
+                        duration: this.tweenDuration,
+                        ease: 'Linear'
+                    });
+                }
+                // tween in new speaker's image
+
+                this.tweens.add({
+                    targets: this[this.dialogSpeaker],
+                    x: this.DBOX_X + 50,
+                    duration: this.tweenDuration,
+                    ease: 'Linear'
+                });
+            }
 
             // build dialog (concatenate speaker + line of text)
-            this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'].toUpperCase() + ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+            this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'] + ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
 
             // create a timer to iterate through each letter in the dialog text
             let currentChar = 0; 

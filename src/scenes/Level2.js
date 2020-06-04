@@ -14,7 +14,7 @@ class Level2 extends Phaser.Scene {
       //DIALOG//////////////////////////
 
       this.DBOX_X = 0;			    // dialog box x-position
-      this.DBOX_Y = 400;			    // dialog box y-position
+      this.DBOX_Y = 10;			    // dialog box y-position
       this.DBOX_FONT = 'basic_font';	// dialog box font key
 
       this.TEXT_X = 50;			// text w/in dialog box x-position
@@ -65,7 +65,7 @@ class Level2 extends Phaser.Scene {
         this.load.tilemapTiledJSON('map', './assets/psychward2.json');
         this.load.image('tiles1', './assets/lvl2.png');
         this.load.image('A', './assets/A.png');
-        this.load.image('dialogbox', './assets/grad.png');
+        
 
         this.load.audio('typing', './assets/Typing.mp3')
 
@@ -230,8 +230,8 @@ class Level2 extends Phaser.Scene {
       }
       this.TEXT_X = game.playerCoord.x - 400
       this.TEXT_Y = game.playerCoord.y +100
-      this.DBOX_X = game.playerCoord.x - 400
-      this.DBOX_Y = game.playerCoord.y +100
+      this.DBOX_X = game.playerCoord.x -420
+      this.DBOX_Y = game.playerCoord.y -250
 
       if(!this.isTalking)
       
@@ -377,7 +377,7 @@ typeText() {
       this.dialogbox.visible = false;
       this.isTalking = false
       this.firstType = true
-
+      this.typing.stop();
 
 
       this.noteGroup.runChildUpdate = true;
@@ -419,7 +419,7 @@ typeText() {
       // }
 
       // build dialog (concatenate speaker + line of text)
-      this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker'].toUpperCase() + ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
+      this.dialogLines = this.dialog[this.dialogConvo][this.dialogLine]['speaker']+ ': \n' + this.dialog[this.dialogConvo][this.dialogLine]['dialog'];
 
       // create a timer to iterate through each letter in the dialog text
 

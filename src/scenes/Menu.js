@@ -30,6 +30,10 @@ class Menu extends Phaser.Scene {
         this.load.image('case2','./assets/pyronetic.png')
         this.load.image('case3','./assets/dysmetropsia.png')
         this.load.image('success','./assets/successscreen.png')
+
+
+        this.load.image('dialogbox', './assets/grad.png');
+        this.load.image('patient','./assets/patient.png')
       }
       create() {
         this.playOnce= false;

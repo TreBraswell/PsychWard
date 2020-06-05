@@ -81,43 +81,43 @@ class Level3 extends Phaser.Scene {
      // this.addEnemy();
       this.addGoal();
       //campfires
-      this.addScenery(327,593,'campfire');
-      this.addScenery(966,1016,'campfire');
-      this.addScenery(2047,1670,'campfire');
-      this.addScenery(99,2658,'campfire');
+      this.addScenery(327,593,'campfire',0);
+      this.addScenery(966,1016,'campfire',0);
+      this.addScenery(2047,1670,'campfire',0);
+      this.addScenery(99,2658,'campfire',0);
       //bushes
-      this.addScenery(72,1113,'bush');
-      this.addScenery(256,1274,'bush');
-      this.addScenery(100,1465,'bush');
-      this.addScenery(1276,1212,'bush');
-      this.addScenery(1276,1156,'bush');
+      this.addScenery(72,1113,'bush',0);
+      this.addScenery(256,1274,'bush',0);
+      this.addScenery(100,1465,'bush',0);
+      this.addScenery(1276,1212,'bush',0);
+      this.addScenery(1276,1156,'bush',0);
       //lightposts
-      this.addScenery(551,753,'lightpost');
-      this.addScenery(551,1318,'lightpost');
-      this.addScenery(1429,753,'lightpost');
-      this.addScenery(1429,1318,'lightpost');
-      this.addScenery(2057,36,'lightpost');
-      this.addScenery(1982,2223,'lightpost');
-      this.addScenery(194,2376,'lightpost');
-      this.addScenery(552,2705,'lightpost');
+      this.addScenery(551,753,'lightpost',0);
+      this.addScenery(551,1318,'lightpost',0);
+      this.addScenery(1429,753,'lightpost',0);
+      this.addScenery(1429,1318,'lightpost',0);
+      this.addScenery(2057,36,'lightpost',0);
+      this.addScenery(1982,2223,'lightpost',0);
+      this.addScenery(194,2376,'lightpost',0);
+      this.addScenery(552,2705,'lightpost',0);
       //cabin
-      this.addScenery(1923,1694,'cabin');
-      this.addScenery(570,2323,'cabin');
-      this.addScenery(111,2364,'cabin');
-      this.addScenery(247,2705,'cabin');
+      this.addScenery(1923,1694,'cabin',0);
+      this.addScenery(570,2323,'cabin',0);
+      this.addScenery(111,2364,'cabin',0);
+      this.addScenery(247,2705,'cabin',0);
       //bench
-      this.addScenery(979,941,'bench');
-      this.addScenery(979,1070,'bench');
-      this.addScenery(862,1020,'bench');
-      this.addScenery(1079,1020,'bench');
-      this.addScenery(1158,887,'bench');
+      this.addScenery(979,941,'bench',0);
+      this.addScenery(979,1070,'bench',0);
+      this.addScenery(862,1020,'bench',1,1000,10,10);
+      this.addScenery(1079,1020,'bench',2,1000,10,10);
+      this.addScenery(1158,887,'bench',3,1000,10,10);
 
       //chairs
       this.addScenery(1417,152,'chair');
       this.addScenery(1988,611,'chair');
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-
+      this.physics.add.collider(this.player,this.sceneryGroup);
   }
   addPlayer(){
     this.player = new Player(this,380, 480, 'player',this.input.keyboard.createCursorKeys());
@@ -138,9 +138,9 @@ class Level3 extends Phaser.Scene {
     this.enemyGroup.add(Ene);
     this.enemies++;
   }
-  addScenery(x,y,plat)
+  addScenery(x,y,plat,grow,speed,sizex,sizey)
   {
-    let back = new Scenery(this,x,y,plat);
+    let back = new Scenery(this,x,y,plat,grow,speed,sizex,sizey);
     this.sceneryGroup.add(back);
   }
   addGoal(){

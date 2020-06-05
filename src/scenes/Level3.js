@@ -89,6 +89,8 @@ class Level3 extends Phaser.Scene {
       this.addScenery(72,1113,'bush');
       this.addScenery(256,1274,'bush');
       this.addScenery(100,1465,'bush');
+      this.addScenery(1276,1212,'bush');
+      this.addScenery(1276,1156,'bush');
       //lightposts
       this.addScenery(551,753,'lightpost');
       this.addScenery(551,1318,'lightpost');
@@ -109,8 +111,8 @@ class Level3 extends Phaser.Scene {
       this.addScenery(862,1020,'bench');
       this.addScenery(1079,1020,'bench');
       this.addScenery(1158,887,'bench');
-      this.addScenery(1276,1212,'bench');
-      this.addScenery(1276,1156,'bench');
+
+      //chairs
       this.addScenery(1417,152,'chair');
       this.addScenery(1988,611,'chair');
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);

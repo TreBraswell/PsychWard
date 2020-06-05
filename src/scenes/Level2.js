@@ -149,6 +149,7 @@ class Level2 extends Phaser.Scene {
       this.addNote(1005, 2400,'O', dialog9);
       this.addGoal();
       //setting collision
+      //first value=x, second value=y, third value=distance, fourth value=whether it goes horizontal or not, fifth value=speed
      this.addEnemy(877,2354,100,false,10);
      this.addEnemy(1213,2354,100,false,10);
      this.addEnemy(1007,2546,100,true,10);

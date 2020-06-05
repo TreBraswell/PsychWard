@@ -80,6 +80,7 @@ class Level3 extends Phaser.Scene {
       this.addPlayer();
      // this.addEnemy();
       this.addGoal();
+      // 0 = does nothing, 1 = expand horiz, 2 = expand vert, 3 = expand both ways
       //campfires
       this.addScenery(327,593,'campfire',0);
       this.addScenery(966,1016,'campfire',0);

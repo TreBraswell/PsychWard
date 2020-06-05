@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Testing TextGeo</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="../three.js-master/build/three.js"></script>
+  <script>
+    THREE.Cache.enabled = true;
+    var loaded = false;
+    var camera, scene, renderer;
+    var material = new THREE.MeshNormalMaterial();
+    var amountc = 4;
+    var amountr = 4;
+    var r;
+    
+    
+    //var gone = ["boy", "what", "are", "you", "doing", "with", "that", "head", "look", "at", "the", "top", "of", "his", "head"]
+    var group = [];
+    var loadertext =new THREE.FileLoader();
+    var sizediff = 10;
+    var filetxt;
+    var i =0;
+    var doonce = true;
+    var loaded2 =false;
+    //-20 -15
+    //20 10
+    var startx = -7;
+    var starty = -5;
+    var endx = 4;
+    var endy = 5;
+    var cdiff = (Math.abs(startx)+endx)/amountc;
+    var rdiff = (Math.abs(starty)+endy)/amountr;
+    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 50);
+    
+      camera.position.z = 0;
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(840, 480);
+      document.body.appendChild(renderer.domElement);
+      scene = new THREE.Scene();
+     loadertext.load(
+	// resource URL
+	'example.txt',
+    
+	// onLoad callback
+	function ( data ) {
+		// output the text to the console
+
+	  filetxt = data;
+    loaded2 = true;
+    init();
+	},
+
+	// onProgress callback
+	function ( xhr ) {
+		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+	},
+
+	// onError callback
+	function ( err ) {
+		console.error( 'An error happened' );
+	}
+);
+    init();
+    animate();
+    
+    
+    function init() {
+
+      
+      
+  if(loaded2)
+  {
+    filetxt = filetxt.toLowerCase()
+    var final= filetxt.trim().split(" ");
+    var b ;
+    /*for( b = 0; b< final.length; b++)
+    {
+      final[b].replace( /[^a-z]/g, '' );
+    }*/
+   
+    final.sort(() => Math.random() - 0.5);
+  }
+     
+      var loader = new THREE.FontLoader();
+     // console.log(loaded2);
+      if(loaded2)
+       { 
+      loader.load('Myfont_Regular1.json', function (font) {
+        //r= -20 && c= -40
+        //console.log("test");
+
+        for (r = starty; r <= endy; r+=rdiff) {
+          for (c = startx; c <= endx; c+=cdiff ) {
+            if(i>=final.length)
+            {
+              i = 0;
+              final.sort(() => Math.random() - 0.5);
+            }
+            var geometry = new THREE.TextGeometry(final[i], {
+              font: font,
+              size: 2.5,
+              height: .4,
+              curveSegments: 4,
+              bevelEnabled: true,
+              bevelThickness: 0.02,
+              bevelSize: 0.05,
+              bevelSegments: 3
+            });
+            
+            var mesh = new THREE.Mesh(geometry, material);
+            var child = mesh.clone();
+            child.position.z =-10;
+            child.position.y = r;
+            child.position.x =c;
+            //child.position.z = -10;
+            child.lookAt(scene.position.x,scene.position.y,-10);
+            group.push(child);
+            scene.add(child);
+            i++;
+          }
+        }
+        loaded = true;
+        //console.log(group); 
+      });
+      }
+      //console.log(group.length);
+      //console.log(group.length);
+      
+      //
+
+     
+
+    }
+
+    function animate() {
+     
+
+
+
+      var i;
+
+      if(loaded)
+      {
+        camera.rotation.z = camera.rotation.z +.003;
+       // group.position.z++
+      for (i = 0; i <  group.length; i++) {
+        
+
+         group[i].position.z= group[i].position.z+.02;
+         
+
+
+// Your 3d point to check
+var pos = group[i].position;
+
+        if (group[i].position.z > 5) {
+          group[i].position.z = -10;
+        }
+        }
+      
+      }
+
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+
+    }
+
+    animate();
+
+
+
+
+  </script>
+</body>
+
+</html>

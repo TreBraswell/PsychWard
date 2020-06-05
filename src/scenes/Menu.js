@@ -34,6 +34,7 @@ class Menu extends Phaser.Scene {
         this.load.image('case2','./assets/pyronetic.png')
         this.load.image('case3','./assets/dysmetropsia.png')
         this.load.image('success','./assets/successscreen.png')
+        this.load.image('fail','./assets/deadscreen.png')
 
 
         this.load.image('dialogbox', './assets/grad.png');
@@ -87,7 +88,7 @@ class Menu extends Phaser.Scene {
 
 }
 if(this.cursors.up.isDown) {
-  this.scene.start("Level3Scene"); 
+  this.scene.start("transition1sScene"); 
 
 }
       

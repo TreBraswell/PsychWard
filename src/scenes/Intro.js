@@ -107,7 +107,7 @@ class Intro extends Phaser.Scene {
                     ease: 'Linear'
                 });
             }
-            this.scene.start("Level1Scene");
+            game.scene.start("Level1Scene");
             // make text box invisible
             this.dialogbox.visible = false;
 

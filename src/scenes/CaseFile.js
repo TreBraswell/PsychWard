@@ -15,6 +15,14 @@ class CaseFile extends Phaser.Scene {
 
 
       create() {
+        this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+        this.follow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        this.following = false;
+        this.zoomdiff = .01;
+        this.cursors =  this.input.keyboard.createCursorKeys();
+        this.scrollfac = 10; 
+        
         this.transition = false
         this.playOnce = false
         one = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
@@ -22,6 +30,9 @@ class CaseFile extends Phaser.Scene {
         three  = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
 
         this.click = game.sound.add('flip');
+       
+
+
 
 
         this.files = this.add.tileSprite(0, 0, 1000, 1000, 'files').setOrigin(0,0)
@@ -44,14 +55,71 @@ class CaseFile extends Phaser.Scene {
         this.case3Screen = this.add.tileSprite(0, 0, 1000, 1000, 'case3').setOrigin(0,0)
         this.case3Screen.alpha = 0
         this.click = game.sound.add('flip');
-
+         //casefile 1
+         this.casea1 = this.add.bitmapText(104, 86, 'basic_font', 'dislikes open spaces\nsuch as parking lots');this.casea1.alpha=0;
+         this.casea2 = this.add.bitmapText(104, 152, 'basic_font', 'panic,trapped,helpless,\nembarresed');this.casea2.alpha=0;
+         this.casea3 = this.add.bitmapText(104, 187, 'basic_font', "doesn't feel safe alone \nor in a crowd");this.casea3.alpha=0;
+         this.casea4 = this.add.bitmapText(104, 235, 'basic_font', '"it"  pushes me to mal \n(connection?)');this.casea4.alpha=0;
+         this.casea5 = this.add.bitmapText(112, 336, 'basic_font', '"like something is\n always telling me to mal, to\n take my existence out of every place or situation"');this.casea5.alpha=0;
+         this.casea6 = this.add.bitmapText(511, 275, 'basic_font', 'something in their\n way of moving forward');this.casea6.alpha=0;
+         this.casea7 = this.add.bitmapText(501, 378, 'basic_font', 'occurence of panic attacks');this.casea7.alpha=0;
+         //casefile 2
+ 
+         this.caseb1 = this.add.bitmapText(104, 113, 'basic_font', 'dazzled, in awe of fire'); this.caseb1.alpha=0;
+         this.caseb2 = this.add.bitmapText(104, 152, 'basic_font', 'feels the need to carry matches or lighters');this.caseb2.alpha=0;
+         this.caseb3 = this.add.bitmapText(104, 187, 'basic_font', 'leaves burnt holes on house rugs');this.caseb3.alpha=0;
+         this.caseb4 = this.add.bitmapText(104, 235, 'basic_font', 'needs sense of relief from tension or anxiety');this.caseb4.alpha=0;
+         this.caseb5 = this.add.bitmapText(135, 304, 'basic_font', 'needs to see physical fire everywhere');this.caseb5.alpha=0;
+         this.caseb6 = this.add.bitmapText(517, 62, 'basic_font', 'as a child would burn ants with magnfying glass,then smallbirds');this.caseb6.alpha=0;
+         this.caseb7 = this.add.bitmapText(517, 140, 'basic_font', 'fire was a way when no one else was');this.caseb7.alpha=0;
+         //casefile 3
+         this.casec1 = this.add.bitmapText(104, 113, 'basic_font', 'See things altering in size'); this.casec1.alpha=0;
+         this.casec2 = this.add.bitmapText(104, 152, 'basic_font', 'when variable to concentrate on an object gains migraines and dizziness');this.casec2.alpha=0;
+         this.casec3 = this.add.bitmapText(104, 187, 'basic_font', 'objects also apearing to be closer or farther than they actually are');this.casec3.alpha=0;
+         this.casec4 = this.add.bitmapText(104, 235, 'basic_font', 'too many changes or distortions for the eyes to handle');this.casec4.alpha=0;
+         this.casec5 = this.add.bitmapText(478, 238, 'basic_font', '"To me, an orange can seem tall as a building"');this.casec5.alpha=0;
+         this.casec6 = this.add.bitmapText(478, 310, 'basic_font', '"Everything seems to be changing everywhere"');this.casec6.alpha=0;
 
     
   }
   
 
     update() {
-
+        if(config.physics.arcade.debug)
+        {
+         
+         if(this.follow.isDown ||this.following)
+         {var point =  this.cameras.main.getWorldPoint(this.input.mousePointer.x,this.input.mousePointer.y)
+          console.log( "this is cursor position : ("+point.x+","+point.y+")");
+           this.following = true;
+          this.cameras.main.stopFollow();
+          if (this.cursors.up.isDown)
+          {
+            this.cameras.main.scrollY -= this.scrollfac;
+          }
+          else if (this.cursors.down.isDown)
+          {
+            this.cameras.main.scrollY += this.scrollfac;
+          }
+      
+          if (this.cursors.left.isDown)
+          {
+            this.cameras.main.scrollX -= this.scrollfac;
+          }
+          else if (this.cursors.right.isDown)
+          {
+            this.cameras.main.scrollX += this.scrollfac;
+          }
+         }
+          if(this.zoomin.isDown)
+          {
+            this.cameras.main.setZoom(this.cameras.main.zoom +this.zoomdiff);
+          }
+          else if(this.zoomout.isDown)
+          {
+            this.cameras.main.setZoom(this.cameras.main.zoom -this.zoomdiff);
+          }
+        }
         if(!this.caseSelected)
         {
             
@@ -62,7 +130,13 @@ class CaseFile extends Phaser.Scene {
           this.caseSelected = true;
           this.playOnce = false
         this.fadein1 = this.tweens.add({
-            targets: this.case1Screen,
+            targets: [this.case1Screen,        
+                this.casea1,
+                this.casea2, 
+                this.casea3, 
+                this.casea4, 
+                this.casea5, 
+                this.casea6], 
             alpha: {
                 from: 0,
                 to: 1
@@ -77,7 +151,14 @@ class CaseFile extends Phaser.Scene {
         this.caseSelected = true;
         this.playOnce = false
         this.fadein2 = this.tweens.add({
-            targets: this.case2Screen,
+            targets: [this.case2Screen,
+                this.caseb1,
+                this.caseb2, 
+                this.caseb3, 
+                this.caseb4, 
+                this.caseb5, 
+                this.caseb6,
+                this.caseb7,], 
             alpha: {
                 from: 0,
                 to: 1
@@ -92,7 +173,14 @@ class CaseFile extends Phaser.Scene {
     this.caseSelected = true;
     this.playOnce = false
     this.fadein3 = this.tweens.add({
-        targets: this.case3Screen,
+        targets: [this.case3Screen,
+            this.casea1,
+                this.casec2, 
+                this.casec3, 
+                this.casec4, 
+                this.casec5, 
+                this.casec6,
+                this.casec7,], 
         alpha: {
             from: 0,
             to: 1
@@ -121,7 +209,13 @@ else{
         {
 
             this.fadeout1 = this.tweens.add({
-                targets: this.case1Screen,
+                targets: [this.case1Screen,        
+                    this.casea1,
+                    this.casea2, 
+                    this.casea3, 
+                    this.casea4, 
+                    this.casea5, 
+                    this.casea6], 
                 alpha: {
                     from: 1,
                     to: 0
@@ -133,7 +227,14 @@ else{
         else if(this.case2Selected)
         {
             this.fadeout2 = this.tweens.add({
-                targets: this.case2Screen,
+                targets: [this.case2Screen,
+                    this.caseb1,
+                    this.caseb2, 
+                    this.caseb3, 
+                    this.caseb4, 
+                    this.caseb5, 
+                    this.caseb6,
+                    this.caseb7,], 
                 alpha: {
                     from: 1,
                     to: 0
@@ -145,7 +246,14 @@ else{
         {
 
             this.fadeout3 = this.tweens.add({
-                targets: this.case3Screen,
+                targets: [this.case3Screen,
+                    this.casea1,
+                        this.casec2, 
+                        this.casec3, 
+                        this.casec4, 
+                        this.casec5, 
+                        this.casec6,
+                        this.casec7,], 
                 alpha: {
                     from: 1,
                     to: 0

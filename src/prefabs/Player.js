@@ -15,55 +15,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             
 
     }
+    preload() {
 
+        
+    }
     update() {
 
-
-        game.playerCoord.x = this.x;
-        game.playerCoord.y = this.y;
-/*        var tile = this.layer2.getTileAtWorldXY(this.x - 32, this.y, true);
-
-        if(this.cursors.left.isDown) {
-            if(tile.index == 4 || tile.index == 5)
-            {
-
-            }
-            else
-            { 
-            this.x-= 2;
-            }
-
-        } else if(this.cursors.right.isDown) {
-            if(tile.index == 4 || tile.index == 5)
-            {
-
-            }
-            else
-            {
-            this.x+= 2;
-            }
-
-    } if(this.cursors.up.isDown) {
-        if(tile.index == 4 || tile.index == 5)
-        {
-
-        }
-        else
-        {
-           this.y-= 2;
-        }
-            
-        }
-        else if(this.cursors.down.isDown) {
-            if(tile.index == 4 || tile.index == 5)
-            {
-
-            }
-            else
-            {
-            this.y+= 2;
-            } 
-        }*/
         
     }
 

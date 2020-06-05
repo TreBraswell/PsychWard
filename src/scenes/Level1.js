@@ -5,13 +5,17 @@ class Level1 extends Phaser.Scene {
         
     }
     preload() {
+      
+      //note to future self use a spritesheet to make up down left right
       this.load.audio('backsound', './assets/psych2.wav');
-      this.load.image('player', './assets/psychright.png');
+      this.load.image('right', './assets/psychright.png');
       this.load.image('monster', './assets/monster.png');
       this.load.image('door', './assets/door.png');
       this.load.tilemapTiledJSON('map', './assets/psychward..json');
       this.load.image('tiles1', './assets/lvl1.png');
-
+      this.load.image('down', './assets/psychdown.png');
+      this.load.image('left', './assets/psychleft.png');
+      this.load.image('up', './assets/psychup.png');
 
 
       this.load.image('A', './assets/A.png');
@@ -27,6 +31,7 @@ class Level1 extends Phaser.Scene {
       //this.load.image('A', './assets/A.png');
     }
     create() {
+    
 
 
     
@@ -111,7 +116,7 @@ class Level1 extends Phaser.Scene {
 
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-    this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
+    //this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
     this.test = this.add.sprite(0 ,0 , 'G');
     //first spell out the phobia now, then make it invisible, and then when player collects, change alpha back to 1
     this.a1 = this.add.sprite( this.cameras.main.scrollX  + this.intialdiff +this.diffchar*1,this.cameras.main.scrollY +10, 'A')
@@ -163,7 +168,7 @@ class Level1 extends Phaser.Scene {
 
 }
 addPlayer(){
-  this.player = new Player(this,380, 280, 'player',this.input.keyboard.createCursorKeys());
+  this.player = new Player(this,380, 280, 'down',this.input.keyboard.createCursorKeys());
   this.playerGroup.add(this.player);
 }
 addLetter(string, x, y, i){
@@ -281,28 +286,33 @@ addGoal(){
    
     if(this.cursors.left.isDown) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x -this.tilediff, this.player.y, true);
+     //console.log(tile.index);
       if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       {
 
       }
       else
       { 
-      this.player.x-= 2;
+        this.player.play('left');
+        this.player.x-= 2;
       }
 
   } else if(this.cursors.right.isDown) {
     var tile = this.layer2.getTileAtWorldXY(this.player.x +this.tilediff, this.player.y, true);
+   // console.log(tile.index);
     if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       {
 
       }
       else
       {
+
       this.player.x+= 2;
       }
 
 } if(this.cursors.up.isDown) {
 var tile = this.layer2.getTileAtWorldXY(this.player.x, this.player.y-this.tilediff, true);
+   // console.log(tile.index);
 if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
   {
 
@@ -315,17 +325,19 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
   }
   else if(this.cursors.down.isDown) {
     var tile = this.layer2.getTileAtWorldXY(this.player.x , this.player.y+this.tilediff, true);
+       // console.log(tile.index);
     if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       {
 
       }
       else
       {
+
       this.player.y+= 2;
       } 
   }
-    this.bcText.x= this.player.x; 
-    this.bcText.y= this.player.y; 
+    //this.bcText.x= this.player.x; 
+    //this.bcText.y= this.player.y; 
     if (Phaser.Input.Keyboard.JustDown(this.keySPACE)) {
       this.scene.start("menuScene");   
 

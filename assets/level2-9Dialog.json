@@ -1,7 +1,7 @@
 [
 	[
 		{
-			"speaker" : "Patient 2's Mother",
+			"speaker" : "patient 2's Mother",
 			"dialog" : "dialog 9",
 			"newSpeaker" : "true"
 		},

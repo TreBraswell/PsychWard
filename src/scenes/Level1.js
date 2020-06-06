@@ -194,7 +194,7 @@ addEnemy(x, y){
   this.enemies++;
 }
 addGoal(){
-  this.goal = new Goal(this,400,480,'door');
+  this.goal = new Goal(this,945,46,'door');
   this.goalGroup.add(this.goal);
 }
   update() {

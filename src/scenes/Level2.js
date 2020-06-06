@@ -61,7 +61,7 @@ class Level2 extends Phaser.Scene {
         this.load.audio('backsound', './assets/psych2.wav');
         this.load.image('player', './assets/psychright.png');
         this.load.image('monster', './assets/monster.png');
-        this.load.image('door', './assets/door.png');
+        this.load.image('lvl2door', './assets/lvl2door.png');
         this.load.tilemapTiledJSON('map', './assets/psychward2.json');
         this.load.image('tiles1', './assets/lvl2.png');
         this.load.image('A', './assets/A.png');
@@ -204,7 +204,7 @@ class Level2 extends Phaser.Scene {
     this.enemyGroup.add(Ene);
   }
   addGoal(){
-    this.goal = new Goal(this,400,480,'door');
+    this.goal = new Goal(this,1715,46,'lvl2door');
     this.goalGroup.add(this.goal);
   }
     update() {

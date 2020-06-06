@@ -9,7 +9,7 @@ class Level3 extends Phaser.Scene {
         this.load.audio('backsound', './assets/psych2.wav');
         this.load.image('player', './assets/psychright.png');
         this.load.image('monster', './assets/monster.png');
-        this.load.image('door', './assets/door.png');
+        this.load.image('lvl3door', './assets/lvl3door.png');
         this.load.tilemapTiledJSON('map', './assets/psychward3.json');
         this.load.image('tiles1', './assets/lvl3.png');
         this.load.tilemapTiledJSON('mapobj', './assets/lvl3objects.json');
@@ -149,7 +149,7 @@ class Level3 extends Phaser.Scene {
     this.sceneryGroup.add(back);
   }
   addGoal(){
-    this.goal = new Goal(this,400,480,'door');
+    this.goal = new Goal(this,1573,1095,'lvl3door');
     this.goalGroup.add(this.goal);
   }
     update() {

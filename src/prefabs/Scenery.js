@@ -12,7 +12,8 @@ class Scenery extends Phaser.Physics.Arcade.Sprite {
         this.sizex = sizex;
         this.sizey = sizey;
         this.speed = speed;
-        if(grow1 == 1)
+        this.grow1 = grow1;
+        if(this.grow1 == 1)
         {
             this.grow =  scene.tweens.add({
                 targets     : [ this ],
@@ -24,7 +25,7 @@ class Scenery extends Phaser.Physics.Arcade.Sprite {
                 callbackScope   : this
               });
         }
-        else if(grow1 == 2)
+        else if(this.grow1 == 2)
         {
             this.grow =  scene.tweens.add({
                 targets     : [ this ],
@@ -36,7 +37,7 @@ class Scenery extends Phaser.Physics.Arcade.Sprite {
                 callbackScope   : this
               });
         }
-        else if(grow1==3)
+        else if(this.grow1==3)
         {
             this.grow =  scene.tweens.add({
                 targets     : [ this ],

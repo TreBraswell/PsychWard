@@ -12,6 +12,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.cursors = cursor;
         //taken from phaser example
         this.layer2 = layer;
+        this.prev = 0;
 
     }
     preload() {

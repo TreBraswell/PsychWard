@@ -160,27 +160,7 @@ class Level3 extends Phaser.Scene {
 
      // this.cameras.main.setZoom(.3);
     //checks if we are in debug
-    this.physics.add.overlap( this.sceneryGroup,this.playerGroup,function(s, player){
-      //console.log(this.right+this.left+this.up+this.down);
-      if(player.right)
-      {
-        player.x -=4
-      }
-      else if(player.left)
-      {
-        player.x +=4
-      }
-      if(player.up)
-      {
-        player.y+= 4
-      }
-      else if(player.down)
-      {
-        player.y-= 4
-      }
-      
 
-  });
     if(config.physics.arcade.debug)
     {
      if(this.follow.isDown ||this.following)
@@ -226,20 +206,13 @@ class Level3 extends Phaser.Scene {
         }
         else
         { 
-          this.temp =false;
-          var t;
-          var temp2;
-          for(t=0; t<this.sceneryGroup.getLength();t++)
-          {
-            temp2 = this.sceneryGroup.getChildren([t]);
-            if(temp2.x>=this.player.x-2&&temp2.y == this.player.y)
-            {
-              this.temp =true;
-              break;
-            }
-          }
-          if(!this.temp)
+
           this.player.x-= 2;
+          if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
+          {
+            this.player.x+=10;
+   
+          }
        }
 
     } else if(this.cursors.right.isDown&& !this.following) {
@@ -251,20 +224,13 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
-          this.temp =false;
-          var t;
-          var temp2;
-          for(t=0; t<this.sceneryGroup.getLength();t++)
-          {
-            temp2 = this.sceneryGroup.getChildren([t]);
-            if(temp2.x<=this.player.x+2&&temp2.y == this.player.y)
-            {
-              this.temp =true;
-              break;
-            }
-          }
-          if(!this.temp)
+
            this.player.x+= 2;
+           if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
+           {
+             this.player.x-=10;
+    
+           }
         }
 
 } if(this.cursors.up.isDown&& !this.following) {
@@ -276,20 +242,13 @@ class Level3 extends Phaser.Scene {
     }
     else
     {
-      this.temp =false;
-      var t;
-      var temp2;
-      for(t=0; t<this.sceneryGroup.getLength();t++)
-      {
-        temp2 = this.sceneryGroup.getChildren([t]);
-        if(temp2.y>=this.player.y-2&&temp2.x == this.player.x)
-        {
-          this.temp =true;
-          break;
-        }
-      }
-      if(!this.temp)
+
        this.player.y-= 2;
+       if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
+       {
+         this.player.y+=10;
+
+       }
     }
         
     }
@@ -302,23 +261,46 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
-          this.temp =false;
-          var t;
-          var temp2;
-          for(t=0; t<this.sceneryGroup.getLength();t++)
-          {
-            temp2 = this.sceneryGroup.getChildren([t]);
-            if(temp2.y<=this.player.y+2&&temp2.x == this.player.x)
-            {
-              this.temp =true;
-              break;
-            }
-          }
-          if(!this.temp)
+          var tempbefore = this.player.y;
         this.player.y+= 2;
+          this.temp = false;
+        if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
+        {
+          this.player.y-=10;
+
+        }
+          
         } 
     }
-
+    if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
+           {
+            this.physics.overlap( this.sceneryGroup,this.playerGroup,function(s, player){
+              if(s.grow1==1||s.grow1==3)
+              {
+                if(s.x>player.x)
+                {
+                  player.x-=10;
+                }
+                else
+                {
+                  player.x+=10;
+                }
+              }
+              if(s.grow1==2||s.grow1==3)
+              {
+                if(s.y>player.y)
+                {
+                  player.y-=10;
+                }
+                else
+                {
+                  player.y+=10;
+                }
+              }
+              
+        
+          });
+           }
 
       
 
@@ -339,7 +321,11 @@ class Level3 extends Phaser.Scene {
   this.timers++;
 }
 
-
+checkthis()
+{
+  console.log("ckeck");
+  this.temp = true;
+}
 
 
 }

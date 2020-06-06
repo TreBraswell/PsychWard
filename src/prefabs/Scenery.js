@@ -5,8 +5,9 @@ class Scenery extends Phaser.Physics.Arcade.Sprite {
         // call Phaser Physics Sprite constructor
         super(scene,x, y, plat); 
         // set up physics sprite
-        this.picture = scene.add.existing(this);               // add to existing scene, displayList, updateList
-        scene.physics.add.existing(this);       // add physics body
+        scene.sys.displayList.add(this);
+        scene.sys.updateList.add(this);
+        scene.sys.arcadePhysics.world.enableBody(this, 0);
        this.growth = grow1;
         this.sizex = sizex;
         this.sizey = sizey;

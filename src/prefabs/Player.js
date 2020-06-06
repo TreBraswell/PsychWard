@@ -12,7 +12,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.cursors = cursor;
         //taken from phaser example
         this.layer2 = layer;
-            
 
     }
     preload() {
@@ -20,8 +19,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         
     }
     update() {
-        game.playerCoord.x = this.x;
-        game.playerCoord.y = this.y;
+       
         
     }
 

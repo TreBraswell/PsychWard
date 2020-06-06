@@ -79,7 +79,7 @@ class Level3 extends Phaser.Scene {
         runChildUpdate: true    // make sure update runs on group children
     });
     
-      this.addPlayer();
+    this.addPlayer();
      // this.addEnemy();
       this.addGoal();
       // 0 = does nothing, 1 = expand horiz, 2 = expand vert, 3 = expand both ways
@@ -114,19 +114,16 @@ class Level3 extends Phaser.Scene {
       this.addScenery(862,1020,'bench',1,1000,10,10);
       this.addScenery(1079,1020,'bench',2,1000,10,10);
       this.addScenery(1158,887,'bench',3,1000,10,10);
-    
+
       //chairs
       this.addScenery(1417,152,'chair');
       this.addScenery(1988,611,'chair');
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    
+      this.temp =false;
 
 
-
-      this.left = false;
-      this.right = false;
-      this.up = false;
-      this.down = false;
       
   }
   addPlayer(){
@@ -164,22 +161,22 @@ class Level3 extends Phaser.Scene {
      // this.cameras.main.setZoom(.3);
     //checks if we are in debug
     this.physics.add.overlap( this.sceneryGroup,this.playerGroup,function(s, player){
-      console.log(this.right+this.left+this.up+this.down);
-      if(this.right)
+      //console.log(this.right+this.left+this.up+this.down);
+      if(player.right)
       {
-        this.player.x -=4
+        player.x -=4
       }
-      else if(this.left)
+      else if(player.left)
       {
-        this.player.x +=4
+        player.x +=4
       }
-      if(this.up)
+      if(player.up)
       {
-        this.player.y+= 4
+        player.y+= 4
       }
-      else if(this.down)
+      else if(player.down)
       {
-        this.player.y-= 4
+        player.y-= 4
       }
       
 
@@ -229,10 +226,20 @@ class Level3 extends Phaser.Scene {
         }
         else
         { 
-        //  console.log(tile.index);
-        this.left = true;
-        this.right = false;
-        this.player.x-= 2;
+          this.temp =false;
+          var t;
+          var temp2;
+          for(t=0; t<this.sceneryGroup.getLength();t++)
+          {
+            temp2 = this.sceneryGroup.getChildren([t]);
+            if(temp2.x>=this.player.x-2&&temp2.y == this.player.y)
+            {
+              this.temp =true;
+              break;
+            }
+          }
+          if(!this.temp)
+          this.player.x-= 2;
        }
 
     } else if(this.cursors.right.isDown&& !this.following) {
@@ -244,10 +251,20 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
-          this.left = false;
-        this.right = true;
-          //console.log(tile.index);
-        this.player.x+= 2;
+          this.temp =false;
+          var t;
+          var temp2;
+          for(t=0; t<this.sceneryGroup.getLength();t++)
+          {
+            temp2 = this.sceneryGroup.getChildren([t]);
+            if(temp2.x<=this.player.x+2&&temp2.y == this.player.y)
+            {
+              this.temp =true;
+              break;
+            }
+          }
+          if(!this.temp)
+           this.player.x+= 2;
         }
 
 } if(this.cursors.up.isDown&& !this.following) {
@@ -259,9 +276,19 @@ class Level3 extends Phaser.Scene {
     }
     else
     {
-      this.up = true;
-      this.down = false;
-      //console.log(tile.index);
+      this.temp =false;
+      var t;
+      var temp2;
+      for(t=0; t<this.sceneryGroup.getLength();t++)
+      {
+        temp2 = this.sceneryGroup.getChildren([t]);
+        if(temp2.y>=this.player.y-2&&temp2.x == this.player.x)
+        {
+          this.temp =true;
+          break;
+        }
+      }
+      if(!this.temp)
        this.player.y-= 2;
     }
         
@@ -275,9 +302,19 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
-          this.up = false;
-      this.down = true;
-        //  console.log(tile.index);
+          this.temp =false;
+          var t;
+          var temp2;
+          for(t=0; t<this.sceneryGroup.getLength();t++)
+          {
+            temp2 = this.sceneryGroup.getChildren([t]);
+            if(temp2.y<=this.player.y+2&&temp2.x == this.player.x)
+            {
+              this.temp =true;
+              break;
+            }
+          }
+          if(!this.temp)
         this.player.y+= 2;
         } 
     }

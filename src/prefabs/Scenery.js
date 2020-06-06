@@ -50,15 +50,7 @@ class Scenery extends Phaser.Physics.Arcade.Sprite {
         } 
         else
         {
-            this.grow =  scene.tweens.add({
-                targets     : [ this ],
-                scaleX: 10,
-                ease        : 'Linear',
-                duration    :1000,
-                yoyo        : true,
-                repeat      : -1,
-                callbackScope   : this
-              });
+            
         }
         
         //taken from phaser example

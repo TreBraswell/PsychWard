@@ -168,7 +168,7 @@ class Level1 extends Phaser.Scene {
 
 }
 addPlayer(){
-  this.player = new Player(this,380, 280, 'down',this.input.keyboard.createCursorKeys());
+  this.player = new Player(this,95, 2723, 'down',this.input.keyboard.createCursorKeys());
   this.playerGroup.add(this.player);
 }
 addLetter(string, x, y, i){

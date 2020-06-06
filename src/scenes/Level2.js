@@ -192,7 +192,7 @@ class Level2 extends Phaser.Scene {
 
   }
   addPlayer(){
-    this.player = new Player(this,1000, 2775, 'player',this.input.keyboard.createCursorKeys());
+    this.player = new Player(this,1014, 2765, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
   }
   addNote(x, y,string, dialog){

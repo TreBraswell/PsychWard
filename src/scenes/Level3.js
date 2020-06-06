@@ -121,7 +121,7 @@ class Level3 extends Phaser.Scene {
       this.physics.add.collider(this.player,this.sceneryGroup);
   }
   addPlayer(){
-    this.player = new Player(this,380, 480, 'player',this.input.keyboard.createCursorKeys());
+    this.player = new Player(this,873, 2773, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
   }
   addEnemy(){

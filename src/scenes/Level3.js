@@ -6,21 +6,8 @@ class Level3 extends Phaser.Scene {
           
       }
       preload() {
-        this.load.audio('backsound', './assets/psych2.wav');
-        this.load.image('player', './assets/psychright.png');
-        this.load.image('monster', './assets/monster.png');
-        this.load.image('lvl3door', './assets/lvl3door.png');
-        this.load.tilemapTiledJSON('map', './assets/psychward3.json');
-        this.load.image('tiles1', './assets/lvl3.png');
-        this.load.tilemapTiledJSON('mapobj', './assets/lvl3objects.json');
-        this.load.image('tilesobj', './assets/lvl3objects.png');
-        this.load.image('campfire', './assets/campfire.png');
-        this.load.image('cabin', './assets/cabin.png');
-        this.load.image('bush', './assets/shrub.png');
-        this.load.image('cabin', './assets/cabin.png');
-        this.load.image('lightpost', './assets/lightpost.png');
-        this.load.image('bench', './assets/bench2.png');
-        this.load.image('chair', './assets/bench.png');
+
+
       }
       create() {
         //debug stuff
@@ -40,9 +27,9 @@ class Level3 extends Phaser.Scene {
         this.bgm.play();*/
 
 
-        this.map = this.make.tilemap({ key: 'map' });
-        this.tileset = this.map.addTilesetImage('level3', 'tiles1');
-        this.tileobj = this.map.addTilesetImage('tilesobj', 'tiles1');
+        this.map = this.make.tilemap({ key: 'map3' });
+        this.tileset = this.map.addTilesetImage('level3', 'tiles3');
+        this.tileobj = this.map.addTilesetImage('tilesobj', 'tiles3');
         //this.map.ObjectLayer = new ('objects', this.tileobj, 0, 0);
         this.layer = this.map.createStaticLayer('Background', this.tileset, 0, 0);
         this.layer2 = this.map.createDynamicLayer('Forest', this.tileset, 0, 0);

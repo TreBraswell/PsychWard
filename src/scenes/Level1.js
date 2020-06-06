@@ -5,30 +5,9 @@ class Level1 extends Phaser.Scene {
         
     }
     preload() {
-      
+ 
       //note to future self use a spritesheet to make up down left right
-      this.load.audio('backsound', './assets/psych2.wav');
-      this.load.image('right', './assets/psychright.png');
-      this.load.image('monster', './assets/monster.png');
-      this.load.image('door', './assets/door.png');
-      this.load.tilemapTiledJSON('map', './assets/psychward..json');
-      this.load.image('tiles1', './assets/lvl1.png');
-      this.load.image('down', './assets/psychdown.png');
-      this.load.image('left', './assets/psychleft.png');
-      this.load.image('up', './assets/psychup.png');
-
-
-      this.load.image('A', './assets/A.png');
-      this.load.image('G', './assets/g.png');
-      this.load.image('O', './assets/o.png');
-      this.load.image('R', './assets/r.png');
-      //  this.load.image('A', './assets/smalla.png');
-      this.load.image('P', './assets/p.png');
-      this.load.image('H', './assets/h.png');
-      //this.load.image('O', './assets/o.png');
-      this.load.image('B', './assets/b.png');
-      this.load.image('I', './assets/i.png');
-      //this.load.image('A', './assets/smalla.png');
+     
     }
     create() {
     
@@ -169,7 +148,7 @@ class Level1 extends Phaser.Scene {
 
 }
 addPlayer(){
-  this.player = new Player(this,95, 2723, 'down',this.input.keyboard.createCursorKeys());
+  this.player = new Player(this,95, 2723, 'player',this.input.keyboard.createCursorKeys());
   this.playerGroup.add(this.player);
 }
 addLetter(string, x, y, i){

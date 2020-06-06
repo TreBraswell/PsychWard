@@ -8,12 +8,44 @@ class Menu extends Phaser.Scene {
       preload() {
         this.load.image('titleScreen', './assets/main2.png');
         this.load.image('psych', './assets/psych.png');
-https://www.youtube.com/watch?v=tG35R8F2j8k
+        //level 1
+        this.load.tilemapTiledJSON('map', './assets/psychward..json');
+        this.load.image('tiles1', './assets/lvl1.png');
+        this.load.tilemapTiledJSON('map2', './assets/psychward2.json');
+        this.load.image('tiles2', './assets/lvl2.png');
+        
+        this.load.tilemapTiledJSON('map3', './assets/psychward3.json');
+        this.load.image('tiles3', './assets/lvl3.png');
+        this.load.image('p12','./assets/p3.png');
+        this.load.script('threejs', './assets/three.js');
+        this.load.json('fonttest', './assets/Myfont_Regular1.json');
+        
         this.load.json('introDialog', './assets/introDialog.json');
         this.load.json('intro2Dialog', './assets/intro2Dialog.json');
         this.load.json('intro3Dialog', './assets/intro3Dialog.json');
-
-
+        
+        this.load.audio('backsound', './assets/psych2.wav');
+        
+        this.load.image('monster', './assets/monster.png');
+        this.load.image('door', './assets/door.png');
+        this.load.image('player','./assets/p3.png');
+        this.load.image('down', './assets/psychdown.png');
+        this.load.image('left', './assets/psychleft.png');
+        this.load.image('right', './assets/psychright.png');
+        this.load.image('up', './assets/psychup.png');
+  
+  
+        this.load.image('A', './assets/A.png');
+        this.load.image('G', './assets/g.png');
+        this.load.image('O', './assets/o.png');
+        this.load.image('R', './assets/r.png');
+        //  this.load.image('A', './assets/smalla.png');
+        this.load.image('P', './assets/p.png');
+        this.load.image('H', './assets/h.png');
+        //this.load.image('O', './assets/o.png');
+        this.load.image('B', './assets/b.png');
+        this.load.image('I', './assets/i.png');
+        //this.load.image('A', './assets/smalla.png');
         this.load.json('level2-1Dialog', './assets/level2-1Dialog.json');
         this.load.json('level2-2Dialog', './assets/level2-2Dialog.json');
         this.load.json('level2-3Dialog', './assets/level2-3Dialog.json');
@@ -39,6 +71,28 @@ https://www.youtube.com/watch?v=tG35R8F2j8k
 
         this.load.image('dialogbox', './assets/grad.png');
         this.load.image('patient','./assets/patient.png')
+
+
+
+
+        this.load.image('lvl2door', './assets/lvl2door.png');
+
+        this.load.image('notes', './assets/papers.png');
+        this.load.image('firedown', './assets/fireball.png');
+        this.load.audio('typing', './assets/Typing.mp3')
+        
+
+ 
+        this.load.image('lvl3door', './assets/lvl3door.png');
+
+
+        this.load.image('campfire', './assets/campfire.png');
+        this.load.image('cabin', './assets/cabin.png');
+        this.load.image('bush', './assets/shrub.png');
+        this.load.image('cabin', './assets/cabin.png');
+        this.load.image('lightpost', './assets/lightpost.png');
+        this.load.image('bench', './assets/bench2.png');
+        this.load.image('chair', './assets/bench.png');
       }
       create() {
         this.playOnce= false;

@@ -58,16 +58,10 @@ class Level2 extends Phaser.Scene {
           
       }
       preload() {
-        this.load.audio('backsound', './assets/psych2.wav');
-        this.load.image('player', './assets/psychright.png');
-        this.load.image('monster', './assets/monster.png');
-        this.load.image('lvl2door', './assets/lvl2door.png');
-        this.load.tilemapTiledJSON('map', './assets/psychward2.json');
-        this.load.image('tiles1', './assets/lvl2.png');
-        this.load.image('A', './assets/A.png');
-        this.load.image('notes', './assets/papers.png');
-        this.load.image('firedown', './assets/fireball.png');
-        this.load.audio('typing', './assets/Typing.mp3')
+        
+        
+
+       
 
 
 
@@ -106,8 +100,8 @@ class Level2 extends Phaser.Scene {
         this.bgm.play();*/
 
 
-        this.map = this.make.tilemap({ key: 'map' });
-        this.tileset = this.map.addTilesetImage('level2', 'tiles1');
+        this.map = this.make.tilemap({ key: 'map2' });
+        this.tileset = this.map.addTilesetImage('level2', 'tiles2');
         this.layer = this.map.createStaticLayer('Background', this.tileset, 0, 0);
         this.layer2 = this.map.createDynamicLayer('House', this.tileset, 0, 0);
         //this.layer2 = this.map.createStaticLayer('Background', this.tileset, 0, 0);

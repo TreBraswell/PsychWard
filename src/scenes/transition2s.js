@@ -1,5 +1,6 @@
 var camera;
 var group=[];
+var scene;
 class transition2s extends Phaser.Scene {
     
   constructor() {
@@ -11,14 +12,14 @@ class transition2s extends Phaser.Scene {
 
      preload ()
 {
-  this.load.json('fonttest', './assets/Myfont_Regular1.json');
+
    this.load.text('data', './assets/t2s.txt');
-    this.load.script('threejs', './assets/three.js');
+
 }
 create ()
 {
     // this.add.text(10, 10, 'Extern Test 1');
-    var scene;
+
     var mesh;
     var renderer;
     var e = this.add.extern();
@@ -143,6 +144,7 @@ create ()
 var pos = group[i].position;
 
       if (group[i].position.z > 5) {
+        this.Remove();
         this.scene.start("Level2Scene");
       }
       }
@@ -151,5 +153,9 @@ var pos = group[i].position;
     
     // renderer.render( scene, camera );
 }
-
+Remove(){
+  while(scene.children.length > 0){ 
+  scene.remove(scene.children[0]); 
+}
+}
 }

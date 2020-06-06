@@ -1,5 +1,7 @@
 var camera;
 var group=[];
+var material;
+var scene;
 class transition1s extends Phaser.Scene {
     
   constructor() {
@@ -11,14 +13,12 @@ class transition1s extends Phaser.Scene {
 
      preload ()
 {
-  this.load.json('fonttest', './assets/Myfont_Regular1.json');
+
    this.load.text('data', './assets/t1s.txt');
-    this.load.script('threejs', './assets/three.js');
 }
 create ()
 {
     // this.add.text(10, 10, 'Extern Test 1');
-    var scene;
     var mesh;
     var renderer;
     var e = this.add.extern();
@@ -29,7 +29,7 @@ create ()
 
     scene = new THREE.Scene();
     this.loaded = false;
-    var material = new THREE.MeshNormalMaterial();
+     material = new THREE.MeshNormalMaterial();
     var amountc = 4;
     var amountr = 4;
     var r;
@@ -127,7 +127,7 @@ create ()
  update ()
 {
   var i;
-
+  var ii;
 
 
       camera.rotation.z = camera.rotation.z +.003;
@@ -143,6 +143,8 @@ create ()
 var pos = group[i].position;
 
       if (group[i].position.z > 5) {
+       
+       this.Remove();
         this.scene.start("Level1Scene");
       }
       }
@@ -151,5 +153,9 @@ var pos = group[i].position;
     
     // renderer.render( scene, camera );
 }
-
+ Remove(){
+  while(scene.children.length > 0){ 
+  scene.remove(scene.children[0]); 
+}
+}
 }

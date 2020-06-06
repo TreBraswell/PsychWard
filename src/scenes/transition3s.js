@@ -1,9 +1,9 @@
 var camera;
 var group=[];
-class transition1s extends Phaser.Scene {
+class transition3s extends Phaser.Scene {
     
   constructor() {
-        super("transition1sScene");
+        super("transition3sScene");
 
 
          
@@ -12,7 +12,7 @@ class transition1s extends Phaser.Scene {
      preload ()
 {
   this.load.json('fonttest', './assets/Myfont_Regular1.json');
-   this.load.text('data', './assets/t1s.txt');
+   this.load.text('data', './assets/t3s.txt');
     this.load.script('threejs', './assets/three.js');
 }
 create ()
@@ -127,7 +127,7 @@ create ()
  update ()
 {
   var i;
-
+ // console.log(group);
 
 
       camera.rotation.z = camera.rotation.z +.003;
@@ -143,7 +143,7 @@ create ()
 var pos = group[i].position;
 
       if (group[i].position.z > 5) {
-        this.scene.start("Level1Scene");
+        this.scene.start("Level3Scene");
       }
       }
     

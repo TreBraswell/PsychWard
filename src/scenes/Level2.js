@@ -46,7 +46,7 @@ class Level2 extends Phaser.Scene {
       this.isTalking = false;
       this.firstType = true;
 
-
+      this.collectedCounter = 0;
 
 
 
@@ -65,13 +65,31 @@ class Level2 extends Phaser.Scene {
 
 
 
+        this.load.image('P', './assets/p.png')
+        this.load.image('Y', './assets/y.png')
+        this.load.image('R', './assets/r.png')
+        this.load.image('O', './assets/o.png')
+        this.load.image('N', './assets/n.png')
+        this.load.image('E', './assets/e.png')
+        this.load.image('T', './assets/t.png')
+        this.load.image('I', './assets/i.png')
+        this.load.image('C', './assets/c.png')
 
+        this.load.audio('clearedSound','./assets/cleared.wav')
 
-
+        this.load.audio('lvl2', './assets/lvl2.wav')
 
         
       }
       create() {
+
+        this.pick = game.sound.add('pick');
+
+        this.bgm = game.sound.add('lvl2');
+        this.bgm.loop = true;
+        this.bgm.play();
+
+        this.done = false
        var dialog1 = this.cache.json.get('level2-1Dialog')
        var dialog2 = this.cache.json.get('level2-2Dialog')
        var dialog3 = this.cache.json.get('level2-3Dialog')
@@ -129,18 +147,82 @@ class Level2 extends Phaser.Scene {
       this.enemyGroup = this.add.group({
         runChildUpdate: true    // make sure update runs on group children
     });
+
+
+
+
+
+
+
+
+
     this.layer2.setCollisionByProperty({ collide: true });
       this.addPlayer();
+
+
+
+
+
+      this.p = this.add.sprite( 130, 100, 'P')
+      this.p.alpha = 0;
+  
+      this.y = this.add.sprite(180,100, 'Y')
+      this.y.alpha = 0;
+  
+      this.r = this.add.sprite(230,100, 'R')
+      this.r.alpha = 0;
+      this.o = this.add.sprite(280,100, 'O')
+      this.o.alpha = 0;
+  
+      this.n = this.add.sprite(330,100, 'N')
+      this.n.alpha = 0;
+  
+      this.e = this.add.sprite(380,100, 'E')
+      this.e.alpha = 0;
+  
+      this.t = this.add.sprite(430,100, 'T')
+      this.t.alpha = 0;
+  
+      this.i = this.add.sprite(480,100, 'I')
+      this.i.alpha = 0;
+  
+      this.c = this.add.sprite(530,100, 'C')
+      this.c.alpha = 0;
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      // this.addEnemy();
-      this.addNote(1850, 174,'A', dialog1);
-      this.addNote(268, 2400,'O', dialog2);
-      this.addNote(1768, 2408,'O', dialog3);
-      this.addNote(312, 1668,'O', dialog4);
-      this.addNote(1413, 1842,'O', dialog5);
-      this.addNote(1916, 955,'O', dialog6);
-      this.addNote(264, 735,'O', dialog7);
-      this.addNote(286, 178,'O', dialog8);
-      this.addNote(1005, 2400,'O', dialog9);
+      this.addNote(1850, 174,'A', dialog1,this.p);
+      this.addNote(268, 2400,'O', dialog2,this.y);
+      this.addNote(1768, 2408,'O', dialog3,this.r);
+      this.addNote(312, 1668,'O', dialog4,this.o);
+      this.addNote(1413, 1842,'O', dialog5,this.n);
+      this.addNote(1916, 955,'O', dialog6,this.e);
+      this.addNote(264, 735,'O', dialog7,this.t);
+      this.addNote(286, 178,'O', dialog8,this.i);
+      this.addNote(1005, 2400,'O', dialog9,this.c);
+
       this.addGoal();
       //setting collision
       //first value=x, second value=y, third value=distance, fourth value=whether it goes horizontal or not, fifth value=speed
@@ -187,8 +269,8 @@ class Level2 extends Phaser.Scene {
     this.player = new Player(this,1014, 2765, 'player',this.input.keyboard.createCursorKeys());
     this.playerGroup.add(this.player);
   }
-  addNote(x, y,string, dialog){
-    let note = new Note(this,x, y,'notes' ,dialog);
+  addNote(x, y,string, dialog, im){
+    let note = new Note(this,x, y,'notes' ,dialog, im);
     this.noteGroup.add(note);
   }
   addEnemy(x,y,diff,side,speed){
@@ -241,6 +323,26 @@ class Level2 extends Phaser.Scene {
       this.TEXT_Y = game.playerCoord.y +100
       this.DBOX_X = game.playerCoord.x -420
       this.DBOX_Y = game.playerCoord.y -250
+
+
+
+
+
+      this.p.setScrollFactor(0);
+      this.y.setScrollFactor(0);
+      this.r.setScrollFactor(0);
+      this.o.setScrollFactor(0);
+      this.n.setScrollFactor(0);
+      this.e.setScrollFactor(0);
+      this.t.setScrollFactor(0);
+      this.i.setScrollFactor(0);
+      this.c.setScrollFactor(0);
+
+      if(this.gameOver)
+      {
+        this.time.delayedCall(3000, () => { this.scene.start('gameoverScene'); });
+
+      }
 
       if(!this.isTalking)
       
@@ -300,24 +402,65 @@ class Level2 extends Phaser.Scene {
     this.physics.add.overlap( this.noteGroup,this.playerGroup,function(note, player){
 
       game.level2.currDialog = note.dialog
+      if(!note.collected)
+      {
       note.scene.isTalking = true;
-
+    }
+      note.collected = true
       game.wordIndex.collected = true;
-      note.destroy();
+      note.alpha = 0
+      note.scene.collectedCounter--;
+      note.scene.pickup.play()
 
   });
+
+
+  this.physics.add.overlap( this.goalGroup,this.playerGroup,function(goal, player){
+
+    if(goal.scene.collectedCounter <= 0)
+    {
+      if(!goal.scene.done)
+      {
+
+      game.cleared.L2 = true;
+      if(game.cleared.L1 && game.cleared.L2 && game.cleared.L3 )
+      {
+        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('completeScene'); }); 
+      }
+      else{
+       goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('clearedScene'); }); 
+      }
+
+      goal.scene.done = true;
+      this.clearedSFX = game.sound.add('clearedSound')
+      this.clearedSFX.play()
+
+      this.bgm.stop();
+
+    }
+      goal.scene.noteGroup.runChildUpdate = false;
+      goal.scene.playerGroup.runChildUpdate = false;
+      goal.scene.enemyGroup.runChildUpdate = false;
+      goal.scene.goalGroup.runChildUpdate = false;
+
+    }
+
+});
       
   }
 
 
   else
   {
+    
     if(this.firstType)
     {
-      this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0);
+      this.dialogbox = this.add.sprite(0,0, 'dialogbox').setOrigin(0);
+      this.dialogbox.setScrollFactor(0);
       this.dialogbox.visible = true;
       this.dialog = game.level2.currDialog;
-      this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
+      this.dialogText = this.add.bitmapText(80, 330, this.DBOX_FONT, '', this.TEXT_SIZE);
+      this.dialogText.setScrollFactor(0);
       this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE);
     this.typeText()
     this.firstType = false;
@@ -391,7 +534,7 @@ typeText() {
 
       this.noteGroup.runChildUpdate = true;
       this.goalGroup.runChildUpdate = true;
-       this.playerGroup.runChildUpdate = true;
+      this.playerGroup.runChildUpdate = true;
       this.enemyGroup.runChildUpdate = true;
 
 

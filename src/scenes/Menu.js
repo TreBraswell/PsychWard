@@ -73,10 +73,10 @@ class Menu extends Phaser.Scene {
         this.load.image('patient','./assets/patient.png')
 
 
-
-
+        this.load.audio('clearedSound','./assets/cleared.wav')
+        this.load.audio('lvl3', './assets/lvl3.wav')
         this.load.image('lvl2door', './assets/lvl2door.png');
-
+        this.load.audio('pickup','./assets/pickup.wav')
         this.load.image('notes', './assets/papers.png');
         this.load.image('firedown', './assets/fireball.png');
         this.load.audio('typing', './assets/Typing.mp3')
@@ -115,7 +115,7 @@ class Menu extends Phaser.Scene {
 
     update() {
       if(this.cursors.space.isDown) {
-        this.scene.start("Level2Scene"); 
+        this.scene.start("Level3Scene"); 
 
     }
     if(this.cursors.right.isDown) {

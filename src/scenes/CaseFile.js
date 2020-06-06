@@ -12,6 +12,12 @@ class CaseFile extends Phaser.Scene {
 
           
       }
+      preload()
+      {
+          this.load.image('done1', './assets/files_onec.png')
+          this.load.image('done2', './assets/files_twoc.png')
+          this.load.image('done3', './assets/files_threec.png')
+      }
 
 
       create() {
@@ -44,6 +50,45 @@ class CaseFile extends Phaser.Scene {
             },
             duration: 600
         });
+        
+        if(game.cleared.L1)
+        {
+            this.d1 = this.add.tileSprite(0, 0, 1000, 1000, 'done1').setOrigin(0,0)
+            this.fadein = this.tweens.add({
+                targets: this.d1,
+                alpha: {
+                    from: 0,
+                    to: 1
+                },
+                duration: 600
+            });
+        }
+        if(game.cleared.L2)
+        {
+            this.d2 = this.add.tileSprite(0, 0, 1000, 1000, 'done2').setOrigin(0,0)
+            this.fadein = this.tweens.add({
+                targets: this.d2,
+                alpha: {
+                    from: 0,
+                    to: 1
+                },
+                duration: 600
+            });
+        }
+        if(game.cleared.L3)
+        {
+            this.d3 = this.add.tileSprite(0, 0, 1000, 1000, 'done3').setOrigin(0,0)
+            this.fadein = this.tweens.add({
+                targets: this.d3,
+                alpha: {
+                    from: 0,
+                    to: 1
+                },
+                duration: 600
+            });
+        }
+
+
         this.cursors = this.input.keyboard.createCursorKeys();
 
         this.case1Screen = this.add.tileSprite(0, 0, 1000, 1000, 'case1').setOrigin(0,0)

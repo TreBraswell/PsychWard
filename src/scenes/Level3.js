@@ -7,9 +7,12 @@ class Level3 extends Phaser.Scene {
       }
       preload() {
 
-
       }
       create() {
+
+        this.bgm = game.sound.add('lvl3');
+      this.bgm.loop = true;
+      this.bgm.play();
         //debug stuff
         this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
@@ -39,6 +42,17 @@ class Level3 extends Phaser.Scene {
         //this.layer2 = this.map.createStaticLayer('Background', this.tileset, 0, 0);
         //  Un-comment this on to see the collision tiles
         // layer.debug = true;
+
+
+
+
+
+
+
+
+
+
+
     
        this.difficultyTimer = this.time.addEvent({
           delay: 1000,

@@ -2,7 +2,7 @@
 class Note extends Phaser.Physics.Arcade.Sprite {
     
     
-    constructor(scene, x,y,plat,dialog) {
+    constructor(scene, x,y,plat,dialog, image) {
         // call Phaser Physics Sprite constructor
         super(scene,x, y, plat); 
         // set up physics sprite
@@ -16,6 +16,7 @@ class Note extends Phaser.Physics.Arcade.Sprite {
         this.collected = false;
         this.dialog = dialog;
 
+        this.im = image
 
         this.playOnce = true;
 

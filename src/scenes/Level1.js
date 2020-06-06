@@ -7,12 +7,16 @@ class Level1 extends Phaser.Scene {
     preload() {
  
       //note to future self use a spritesheet to make up down left right
-     
+      this.load.audio('clearedSound','./assets/cleared.wav')
     }
     create() {
+
+      this.pickup = game.sound.add('pickup');
+        
     
 
-
+      this.done = true
+      this.collectedCounter = 11
     
 
 
@@ -99,38 +103,37 @@ class Level1 extends Phaser.Scene {
     //this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
     this.test = this.add.sprite(0 ,0 , 'G');
     //first spell out the phobia now, then make it invisible, and then when player collects, change alpha back to 1
-    this.a1 = this.add.sprite( this.cameras.main.scrollX  + this.intialdiff +this.diffchar*1,this.cameras.main.scrollY +10, 'A')
+    this.a1 = this.add.sprite( 130, 100, 'A')
     this.a1.alpha = 0;
-    this.test.x = this.cameras.main.scrollX+20;
-    this.test.y = this.cameras.main.scrollY+20;
 
-    this.g = this.add.sprite(this.cameras.main.scrollX + this.intialdiff +this.diffchar*2 ,this.cameras.main.scrollY +15, 'G')
+
+    this.g = this.add.sprite(130, 100, 'G')
     this.g.alpha = 0;
 
-    this.o1 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*3,this.cameras.main.scrollY +15, 'O')
+    this.o1 = this.add.sprite(180, 100, 'O')
     this.o1.alpha = 0;
-    this.r = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*4,this.cameras.main.scrollY+15 , 'R')
+    this.r = this.add.sprite(230, 100, 'R')
     this.r.alpha = 0;
 
-    this.a2 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*5,this.cameras.main.scrollY +15, 'A')
+    this.a2 = this.add.sprite(280, 100, 'A')
     this.a2.alpha = 0;
 
-    this.p = this.add.sprite(this.cameras.main.scrollX + this.intialdiff +this.diffchar*6,this.cameras.main.scrollY +15, 'P')
+    this.p = this.add.sprite(330, 100, 'P')
     this.p.alpha = 0;
 
-    this.h = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*7 ,this.cameras.main.scrollY+15, 'H')
+    this.h = this.add.sprite(380, 100, 'H')
     this.h.alpha = 0;
 
-    this.o2 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*8 ,this.cameras.main.scrollY+15, 'O')
+    this.o2 = this.add.sprite(430, 100, 'O')
     this.o2.alpha = 0;
 
-    this.b = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*9 ,this.cameras.main.scrollY+15, 'B')
+    this.b = this.add.sprite(480, 100, 'B')
     this.b.alpha = 0;
 
-    this.i = this.add.sprite(this.cameras.main.scrollX + this.intialdiff +this.diffchar*10,this.cameras.main.scrollY+15 , 'I')
+    this.i = this.add.sprite(530, 100, 'I')
     this.i.alpha = 0;
 
-    this.a3 = this.add.sprite(this.cameras.main.scrollX  + this.intialdiff +this.diffchar*11 ,this.cameras.main.scrollY+15, 'A')
+    this.a3 = this.add.sprite(580, 100, 'A')
     this.a3.alpha = 0;
 
 
@@ -319,17 +322,54 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
     //this.bcText.x= this.player.x; 
     //this.bcText.y= this.player.y; 
     if (Phaser.Input.Keyboard.JustDown(this.keySPACE)) {
+      this.bgm.stop()
       this.scene.start("menuScene");   
 
     
     }
     this.physics.add.overlap( this.letterGroup,this.playerGroup,function(letter, player){
+      if(!letter.collected)
+      {
+        letter.scene.pickup.play()
+      }
       letter.collected = true
       game.wordIndex.collected = true;
       letter.alpha = 0
+      letter.scene.collectedCounter--;
 
 
   });
+
+
+  this.physics.add.overlap( this.goalGroup,this.playerGroup,function(goal, player){
+
+    if(goal.scene.collectedCounter <= 0)
+    {
+      if(!goal.scene.done)
+      {
+
+      game.cleared.L2 = true;
+      if(game.cleared.L1 && game.cleared.L2 && game.cleared.L3 )
+      {
+        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('completeScene'); }); 
+      }
+      else{
+       goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('clearedScene'); }); 
+      }
+
+      goal.scene.done = true;
+      this.clearedSFX = game.sound.add('clearedSound')
+      this.clearedSFX.play()
+      this.bgm.stop();
+    }
+      goal.scene.noteGroup.runChildUpdate = false;
+      goal.scene.playerGroup.runChildUpdate = false;
+      goal.scene.enemyGroup.runChildUpdate = false;
+      goal.scene.goalGroup.runChildUpdate = false;
+
+    }
+
+});
   if(this.letters== this.goalletters)
   {
     this.goal.fadein = true;

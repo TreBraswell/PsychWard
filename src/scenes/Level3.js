@@ -21,8 +21,15 @@ class Level3 extends Phaser.Scene {
         this.load.image('lightpost', './assets/lightpost.png');
         this.load.image('bench', './assets/bench2.png');
         this.load.image('chair', './assets/bench.png');
+
+        this.load.audio('lvl3', './assets/lvl3.wav')
+
       }
       create() {
+
+        this.bgm = game.sound.add('lvl3');
+      this.bgm.loop = true;
+      this.bgm.play();
         //debug stuff
         this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
@@ -52,6 +59,17 @@ class Level3 extends Phaser.Scene {
         //this.layer2 = this.map.createStaticLayer('Background', this.tileset, 0, 0);
         //  Un-comment this on to see the collision tiles
         // layer.debug = true;
+
+
+
+
+
+
+
+
+
+
+
     
        this.difficultyTimer = this.time.addEvent({
           delay: 1000,

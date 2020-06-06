@@ -43,7 +43,6 @@ class Letter extends Phaser.Physics.Arcade.Sprite {
                
                 this.playOnce = false;
             }
-            console.log("in collected")
 
         }
 else{

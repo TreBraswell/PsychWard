@@ -39,6 +39,10 @@ https://www.youtube.com/watch?v=tG35R8F2j8k
 
         this.load.image('dialogbox', './assets/grad.png');
         this.load.image('patient','./assets/patient.png')
+
+
+
+        this.load.audio('pickup','./assets/pickup.wav')
       }
       create() {
         this.playOnce= false;
@@ -61,7 +65,7 @@ https://www.youtube.com/watch?v=tG35R8F2j8k
 
     update() {
       if(this.cursors.space.isDown) {
-        this.scene.start("Level2Scene"); 
+        this.scene.start("Level3Scene"); 
 
     }
     if(this.cursors.right.isDown) {

@@ -20,7 +20,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         
     }
     update() {
-
+        game.playerCoord.x = this.x;
+        game.playerCoord.y = this.y;
         
     }
 

@@ -17,7 +17,7 @@ Few sounds were taken from online : jump sound https://freesound.org/people/Left
             
         }
     },
-    scene: [Menu, Instructions, CaseFile ,Intro, Intro2, Intro3, Level1,Level2,Level3,transition1s,transition2s,transition3s],
+    scene: [Menu, Instructions, CaseFile ,Intro, Intro2, Intro3, Level1,Level2,Level3,transition1s,transition2s,transition3s, Gameover, Cleared,Complete,Thankyou],
 };
 
 let game = new Phaser.Game(config);
@@ -54,6 +54,12 @@ game.persist = {
 
     isNew: false    // this is handled in the Play.js, so we need info carried over from Play to GameOver Scene
 
+}
+
+game.gameOver =
+{
+
+    currentLevel : null
 }
 
 
@@ -93,4 +99,13 @@ function update()
 {
     game.mousedown = game.input.activePointer.leftButton.isDown;
     console.log(game.mousedown);
+}
+
+
+
+game.cleared = 
+{
+    L1 : false,
+    L2 : false,
+    L3 : false,
 }

@@ -120,7 +120,13 @@ class Level3 extends Phaser.Scene {
       this.addScenery(1988,611,'chair');
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-      this.physics.add.collider(this.playerGroup,this.sceneryGroup, null, this.checkcollision);
+
+
+
+      this.left = false;
+      this.right = false;
+      this.up = false;
+      this.down = false;
       
   }
   addPlayer(){
@@ -158,7 +164,23 @@ class Level3 extends Phaser.Scene {
      // this.cameras.main.setZoom(.3);
     //checks if we are in debug
     this.physics.add.overlap( this.sceneryGroup,this.playerGroup,function(s, player){
-      //console.log(player.x+" "+player.y+s.x+" "+s.y)
+      console.log(this.right+this.left+this.up+this.down);
+      if(this.right)
+      {
+        this.player.x -=4
+      }
+      else if(this.left)
+      {
+        this.player.x +=4
+      }
+      if(this.up)
+      {
+        this.player.y+= 4
+      }
+      else if(this.down)
+      {
+        this.player.y-= 4
+      }
       
 
   });
@@ -208,6 +230,8 @@ class Level3 extends Phaser.Scene {
         else
         { 
         //  console.log(tile.index);
+        this.left = true;
+        this.right = false;
         this.player.x-= 2;
        }
 
@@ -220,6 +244,8 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
+          this.left = false;
+        this.right = true;
           //console.log(tile.index);
         this.player.x+= 2;
         }
@@ -233,6 +259,8 @@ class Level3 extends Phaser.Scene {
     }
     else
     {
+      this.up = true;
+      this.down = false;
       //console.log(tile.index);
        this.player.y-= 2;
     }
@@ -247,6 +275,8 @@ class Level3 extends Phaser.Scene {
         }
         else
         {
+          this.up = false;
+      this.down = true;
         //  console.log(tile.index);
         this.player.y+= 2;
         } 
@@ -265,9 +295,7 @@ class Level3 extends Phaser.Scene {
 
 
 
-checkcollision(fire,player){
-  console.log("test");
-}
+
 
   timerBump()
 {

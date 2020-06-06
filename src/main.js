@@ -17,7 +17,7 @@ Few sounds were taken from online : jump sound https://freesound.org/people/Left
             
         }
     },
-    scene: [Menu, Instructions, CaseFile ,Intro, Intro2, Intro3, Level1,Level2,Level3,transition1s],
+    scene: [Menu, Instructions, CaseFile ,Intro, Intro2, Intro3, Level1,Level2,Level3,transition1s,transition2s,transition3s],
 };
 
 let game = new Phaser.Game(config);

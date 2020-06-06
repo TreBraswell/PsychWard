@@ -77,6 +77,7 @@ class Level3 extends Phaser.Scene {
       this.enemyGroup = this.add.group({
         runChildUpdate: true    // make sure update runs on group children
     });
+    
       this.addPlayer();
      // this.addEnemy();
       this.addGoal();
@@ -112,16 +113,18 @@ class Level3 extends Phaser.Scene {
       this.addScenery(862,1020,'bench',1,1000,10,10);
       this.addScenery(1079,1020,'bench',2,1000,10,10);
       this.addScenery(1158,887,'bench',3,1000,10,10);
-
+    
       //chairs
       this.addScenery(1417,152,'chair');
       this.addScenery(1988,611,'chair');
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-      this.physics.add.collider(this.player,this.sceneryGroup);
+      this.physics.add.collider(this.playerGroup,this.sceneryGroup, null, this.checkcollision);
+      
   }
   addPlayer(){
-    this.player = new Player(this,873, 2773, 'player',this.input.keyboard.createCursorKeys());
+    this.player = new Player(this,380, 480, 'player',this.input.keyboard.createCursorKeys());
+    
     this.playerGroup.add(this.player);
   }
   addEnemy(){
@@ -142,6 +145,7 @@ class Level3 extends Phaser.Scene {
   addScenery(x,y,plat,grow,speed,sizex,sizey)
   {
     let back = new Scenery(this,x,y,plat,grow,speed,sizex,sizey);
+    back.enableBody =true;
     this.sceneryGroup.add(back);
   }
   addGoal(){
@@ -149,8 +153,14 @@ class Level3 extends Phaser.Scene {
     this.goalGroup.add(this.goal);
   }
     update() {
+
      // this.cameras.main.setZoom(.3);
     //checks if we are in debug
+    this.physics.add.overlap( this.sceneryGroup,this.playerGroup,function(s, player){
+      //console.log(player.x+" "+player.y+s.x+" "+s.y)
+      
+
+  });
     if(config.physics.arcade.debug)
     {
      if(this.follow.isDown ||this.following)
@@ -254,7 +264,9 @@ class Level3 extends Phaser.Scene {
 
 
 
-
+checkcollision(fire,player){
+  console.log("test");
+}
 
   timerBump()
 {

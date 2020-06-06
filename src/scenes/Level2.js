@@ -150,18 +150,16 @@ class Level2 extends Phaser.Scene {
       this.addGoal();
       //setting collision
       //first value=x, second value=y, third value=distance, fourth value=whether it goes horizontal or not, fifth value=speed
-     this.addEnemy(877,2354,100,false,10);
-     this.addEnemy(1213,2354,100,false,10);
-     this.addEnemy(1007,2546,100,true,10);
-     this.addEnemy(1007,2195,100,true,10);
-     this.addEnemy(1155,1860,100,false,10);
-     this.addEnemy(908,1680,100,false,10);
-     this.addEnemy(1792,1800,100,false,10);
-     this.addEnemy(1960,1655,100,true,10);
-     this.addEnemy(1153,1116,100,false,10);
-     this.addEnemy(756,902,100,false,10);
-     this.addEnemy(1079,342,100,false,10);
-     this.addEnemy(849,265,100,true,10);
+     this.addEnemy(876,2369,180,false,5);
+     this.addEnemy(1150,2362,180,false,5);
+     this.addEnemy(1022,2546,137,true,3);
+     this.addEnemy(1007,2218,200,true,4);
+     this.addEnemy(795,1674,100,false,4);
+     this.addEnemy(1923,1725,135,true,5);
+     this.addEnemy(1725,1036,175,false,5);
+     this.addEnemy(1143,1135,146,false,4);
+     this.addEnemy(889,381,213,true,5);
+     this.addEnemy(672,236,146,false,5);
       //
 
       this.physics.add.collider(this.player, this.layer2);

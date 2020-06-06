@@ -22,13 +22,13 @@ class Level1 extends Phaser.Scene {
       this.load.image('G', './assets/g.png');
       this.load.image('O', './assets/o.png');
       this.load.image('R', './assets/r.png');
-      //  this.load.image('A', './assets/A.png');
+      //  this.load.image('A', './assets/smalla.png');
       this.load.image('P', './assets/p.png');
       this.load.image('H', './assets/h.png');
-      //this.load.image('O', './assets/A.png');
+      //this.load.image('O', './assets/o.png');
       this.load.image('B', './assets/b.png');
       this.load.image('I', './assets/i.png');
-      //this.load.image('A', './assets/A.png');
+      //this.load.image('A', './assets/smalla.png');
     }
     create() {
     
@@ -104,7 +104,8 @@ class Level1 extends Phaser.Scene {
   });
   this.layer2.setCollisionByProperty({ collide: true });
     this.addPlayer();
-    this.addEnemy();
+    this.addEnemy(1363, 942);
+    this.addEnemy(436, 1023);
     this.addGoal();
     this.diffchar = 50;
     this.intialdiff  = 25;

@@ -142,7 +142,7 @@ var pos = group[i].position;
 
       if (group[i].position.z > 10) {
        
-       //this.Remove();
+       this.Remove();
         this.scene.start("casefileScene");
       }
       }

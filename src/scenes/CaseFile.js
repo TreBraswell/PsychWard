@@ -120,10 +120,10 @@ class CaseFile extends Phaser.Scene {
          //casefile 3
          this.casec1 = this.add.bitmapText(92, 100, 'basic_font', 'objects altering in size'); this.casec1.alpha=0;
          this.casec2 = this.add.bitmapText(86, 147, 'basic_font', 'migraines and dizziness');this.casec2.alpha=0;
-         this.casec3 = this.add.bitmapText(92, 185, 'basic_font', 'objects apearing closer\n or farther');this.casec3.alpha=0;
-         this.casec4 = this.add.bitmapText(92, 235, 'basic_font', 'too many changes, distortions\n for the eyes to handle');this.casec4.alpha=0;
-         this.casec5 = this.add.bitmapText(478, 238, 'basic_font', '"To me, an orange can seem as tall as a building"');this.casec5.alpha=0;
-         this.casec6 = this.add.bitmapText(478, 310, 'basic_font', '"Everything seems to be changing oddly everywhere"');this.casec6.alpha=0;
+         this.casec3 = this.add.bitmapText(92, 187, 'basic_font', 'objects apearing closer\n or farther');this.casec3.alpha=0;
+         this.casec4 = this.add.bitmapText(92, 248, 'basic_font', 'too many changes for\n the eyes to handle');this.casec4.alpha=0;
+         this.casec5 = this.add.bitmapText(457, 211, 'basic_font', '"to me, a chair can\n seem as tall as a house"');this.casec5.alpha=0;
+         this.casec6 = this.add.bitmapText(460, 287, 'basic_font', '"everything seems to be\n changing everywhere"');this.casec6.alpha=0;
 
     
   }

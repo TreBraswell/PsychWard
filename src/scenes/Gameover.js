@@ -44,11 +44,11 @@ class Gameover extends Phaser.Scene {
                 },
                 duration: 600
             });
-            if(game.gameOver.currentLevel = 1)
+            if(game.gameOver.currentLevel == 1)
             {
                 this.time.delayedCall(600, () => { this.scene.start('Level1Scene'); }); 
             }
-            else if(game.gameOver.currentLevel = 2)
+            else if(game.gameOver.currentLevel == 2)
             {
 
                 this.time.delayedCall(600, () => { this.scene.start('Level2Scene'); });  

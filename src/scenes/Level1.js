@@ -10,6 +10,9 @@ class Level1 extends Phaser.Scene {
       this.load.audio('clearedSound','./assets/cleared.wav')
     }
     create() {
+      this.canHit = true;
+      this.hp = 3
+      this.gameOver = false;
 
       this.pickup = game.sound.add('pickup');
         
@@ -149,6 +152,13 @@ class Level1 extends Phaser.Scene {
     this.addLetter('I', 1445,1068,this.i);
     this.addLetter('A', 1070,1982,this.a3);
 
+    this.heart1 = this.add.image(10, 400, 'heart').setOrigin(0,0);
+      this.heart2 = this.add.image(50, 400, 'heart').setOrigin(0,0);
+      this.heart3 = this.add.image(90, 400, 'heart').setOrigin(0,0);
+
+
+    this.dOnce = true;
+
 }
 addPlayer(){
   this.player = new Player(this,95, 2723, 'player',this.input.keyboard.createCursorKeys());
@@ -180,7 +190,25 @@ addGoal(){
   this.goalGroup.add(this.goal);
 }
   update() {
-    
+
+    if(this.gameOver)
+    {
+        if(this.dOnce)
+        {
+          this.gm = game.sound.add("gameoversfx")
+          this.gm.play()
+          this.dOnce = false
+          this.bgm.stop()
+        }
+        game.gameOver.currentLevel = 1;
+      this.letterGroup.runChildUpdate = false;
+      this.playerGroup.runChildUpdate = false;
+      this.enemyGroup.runChildUpdate = false;
+      this.goalGroup.runChildUpdate = false;
+      this.time.delayedCall(600, () => { this.scene.start('gameoverScene'); }); 
+      console.log('in gameover')
+    }
+    else{
     if(config.physics.arcade.debug)
     {
      
@@ -263,11 +291,14 @@ addGoal(){
     this.a3.y = game.playerCoord.y - 200
     */
 
+    this.heart1.setScrollFactor(0);
+    this.heart2.setScrollFactor(0);
+    this.heart3.setScrollFactor(0);
 
 
 
    
-    if(this.cursors.left.isDown) {
+    if(this.cursors.left.isDown && !this.gameOver) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x -this.tilediff, this.player.y, true);
      //console.log(tile.index);
       if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
@@ -277,7 +308,7 @@ addGoal(){
       else
       { 
         this.player.play('left');
-        this.player.x-= 2;
+        this.player.x-= 5;
       }
 
   } else if(this.cursors.right.isDown) {
@@ -290,7 +321,7 @@ addGoal(){
       else
       {
 
-      this.player.x+= 2;
+      this.player.x+= 5;
       }
 
 } if(this.cursors.up.isDown) {
@@ -302,7 +333,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
   }
   else
   {
-     this.player.y-= 2;
+     this.player.y-= 5;
   }
       
   }
@@ -316,7 +347,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       else
       {
 
-      this.player.y+= 2;
+      this.player.y+= 5;
       } 
   }
     //this.bcText.x= this.player.x; 
@@ -351,6 +382,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       game.cleared.L2 = true;
       if(game.cleared.L1 && game.cleared.L2 && game.cleared.L3 )
       {
+        
         goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('completeScene'); }); 
       }
       else{
@@ -362,7 +394,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       this.clearedSFX.play()
       this.bgm.stop();
     }
-      goal.scene.noteGroup.runChildUpdate = false;
+      goal.scene.letterGroup.runChildUpdate = false;
       goal.scene.playerGroup.runChildUpdate = false;
       goal.scene.enemyGroup.runChildUpdate = false;
       goal.scene.goalGroup.runChildUpdate = false;
@@ -370,6 +402,38 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
     }
 
 });
+
+this.physics.add.overlap( this.enemyGroup,this.playerGroup,function(enemy, player){
+  if(enemy.scene.canHit)
+  {
+
+    this.hit = game.sound.add("hit")
+    this.hit.play()
+    enemy.scene.time.delayedCall(1000, () => {  enemy.scene.canHit = true }); 
+    if(enemy.scene.hp ==3)
+    {
+      enemy.scene.heart3.destroy()
+      enemy.scene.hp--;
+    }
+    else if(enemy.scene.hp ==2)
+    {
+      enemy.scene.heart2.destroy()
+      enemy.scene.hp--;
+    }
+    else if(enemy.scene.hp ==1)
+    {
+      enemy.scene.heart1.destroy()
+      enemy.scene.hp--;
+      enemy.scene.gameOver = true;
+      player.destroy()
+    }
+    
+  }
+  enemy.scene.canHit = false
+
+});
+
+
   if(this.letters== this.goalletters)
   {
     this.goal.fadein = true;
@@ -427,6 +491,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       // do something with element
   })
     
+}
 }
 timerBump()
 {

@@ -60,6 +60,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         {
             this.anims.play('r', true);
         }
+
         
     }
 

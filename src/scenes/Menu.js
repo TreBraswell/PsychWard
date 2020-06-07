@@ -33,6 +33,8 @@ class Menu extends Phaser.Scene {
         this.load.image('left', './assets/psychleft.png');
         this.load.image('right', './assets/psychright.png');
         this.load.image('up', './assets/psychup.png');
+
+        this.load.image('heart','./assets/heart.png')
   
   
         this.load.image('A', './assets/A.png');
@@ -56,6 +58,9 @@ class Menu extends Phaser.Scene {
         this.load.json('level2-8Dialog', './assets/level2-8Dialog.json');
         this.load.json('level2-9Dialog', './assets/level2-9Dialog.json');
         this.load.bitmapFont('basic_font', './assets/final_0.png', './assets/final.fnt')
+
+        this.load.audio('hit', './assets/hit.wav')
+        this.load.audio('gameoversfx', './assets/gm.wav')
 
 
 
@@ -115,7 +120,7 @@ class Menu extends Phaser.Scene {
 
     update() {
       if(this.cursors.space.isDown) {
-        this.scene.start("Level3Scene"); 
+        this.scene.start("Level2Scene"); 
 
     }
     if(this.cursors.right.isDown) {

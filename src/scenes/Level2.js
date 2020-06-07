@@ -46,8 +46,6 @@ class Level2 extends Phaser.Scene {
       this.isTalking = false;
       this.firstType = true;
 
-      this.collectedCounter = 0;
-
 
 
       this.noteGroup = null
@@ -82,8 +80,16 @@ class Level2 extends Phaser.Scene {
         
       }
       create() {
+        this.collectedCounter = 9;
+        this.canHit = true;
+        this.hp = 3
+        this.gameOver = false;
+  
 
-        this.pick = game.sound.add('pick');
+
+
+
+        this.pickup = game.sound.add('pickup');
 
         this.bgm = game.sound.add('lvl2');
         this.bgm.loop = true;
@@ -248,6 +254,12 @@ class Level2 extends Phaser.Scene {
 
       
 
+      this.heart1 = this.add.image(10, 400, 'heart').setOrigin(0,0);
+      this.heart2 = this.add.image(50, 400, 'heart').setOrigin(0,0);
+      this.heart3 = this.add.image(90, 400, 'heart').setOrigin(0,0);
+
+
+    this.dOnce = true;
 
 
 ///////////////// dialog stuff
@@ -325,7 +337,9 @@ class Level2 extends Phaser.Scene {
       this.DBOX_Y = game.playerCoord.y -250
 
 
-
+      this.heart1.setScrollFactor(0);
+      this.heart2.setScrollFactor(0);
+      this.heart3.setScrollFactor(0);
 
 
       this.p.setScrollFactor(0);
@@ -340,9 +354,19 @@ class Level2 extends Phaser.Scene {
 
       if(this.gameOver)
       {
+
+        if(this.dOnce)
+        {
+          this.gm = game.sound.add("gameoversfx")
+          this.gm.play()
+          this.dOnce = false
+          this.bgm.stop()
+        }
+        game.gameOver.currentLevel = 2;
         this.time.delayedCall(3000, () => { this.scene.start('gameoverScene'); });
 
       }
+      else{
 
       if(!this.isTalking)
       
@@ -357,7 +381,7 @@ class Level2 extends Phaser.Scene {
         }
         else
         { 
-        this.player.x-= 2;
+        this.player.x-= 5;
        }
 
     } else if(this.cursors.right.isDown) {
@@ -369,7 +393,7 @@ class Level2 extends Phaser.Scene {
         }
         else
         {
-        this.player.x+= 2;
+        this.player.x+= 5;
         }
 
 } if(this.cursors.up.isDown) {
@@ -381,7 +405,7 @@ class Level2 extends Phaser.Scene {
     }
     else
     {
-       this.player.y-= 2;
+       this.player.y-= 5;
     }
         
     }
@@ -394,7 +418,7 @@ class Level2 extends Phaser.Scene {
         }
         else
         {
-        this.player.y+= 2;
+        this.player.y+= 5;
         } 
     }
 
@@ -405,12 +429,14 @@ class Level2 extends Phaser.Scene {
       if(!note.collected)
       {
       note.scene.isTalking = true;
+      note.scene.collectedCounter--;
+      note.alpha = 0
     }
       note.collected = true
-      game.wordIndex.collected = true;
-      note.alpha = 0
-      note.scene.collectedCounter--;
-      note.scene.pickup.play()
+
+
+
+      //note.scene.pickup.play()
 
   });
 
@@ -435,7 +461,8 @@ class Level2 extends Phaser.Scene {
       this.clearedSFX = game.sound.add('clearedSound')
       this.clearedSFX.play()
 
-      this.bgm.stop();
+      goal.scene.bgm.stop();
+      player.destroy()
 
     }
       goal.scene.noteGroup.runChildUpdate = false;
@@ -446,6 +473,38 @@ class Level2 extends Phaser.Scene {
     }
 
 });
+
+this.physics.add.overlap( this.enemyGroup,this.playerGroup,function(enemy, player){
+  if(enemy.scene.canHit)
+  {
+
+    this.hit = game.sound.add("hit")
+    this.hit.play()
+    enemy.scene.time.delayedCall(1000, () => {  enemy.scene.canHit = true }); 
+    if(enemy.scene.hp ==3)
+    {
+      enemy.scene.heart3.destroy()
+      enemy.scene.hp--;
+    }
+    else if(enemy.scene.hp ==2)
+    {
+      enemy.scene.heart2.destroy()
+      enemy.scene.hp--;
+    }
+    else if(enemy.scene.hp ==1)
+    {
+      enemy.scene.heart1.destroy()
+      enemy.scene.hp--;
+      enemy.scene.gameOver = true;
+      player.destroy()
+    }
+    
+  }
+  enemy.scene.canHit = false
+
+});
+
+
       
   }
 
@@ -465,6 +524,7 @@ class Level2 extends Phaser.Scene {
     this.typeText()
     this.firstType = false;
     this.typing.play();
+    console.log("in first")
   }
 
     
@@ -482,7 +542,7 @@ class Level2 extends Phaser.Scene {
 
 
 
-
+}
   }
 }
 

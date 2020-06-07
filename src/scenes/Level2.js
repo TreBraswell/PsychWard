@@ -82,7 +82,9 @@ class Level2 extends Phaser.Scene {
         
       }
       create() {
-
+        this.goalletters = 10;//number of letters if they are equal to letter ie letters collected the door will fade in and then progress to the next level
+        this.letters = 0;
+        
         this.pick = game.sound.add('pick');
 
         this.bgm = game.sound.add('lvl2');
@@ -245,7 +247,15 @@ class Level2 extends Phaser.Scene {
 
       this.TEXT_X = 	this.cameras.main.scrollX
       this.TEXT_Y = this.cameras.main.scrollY
-
+      this.gameover = false;
+      this.fadeout = this.tweens.add({
+        targets: this,
+        alpha: {
+            from: 1,
+            to: 0
+        },
+        duration: 1000
+    });
       
 
 
@@ -281,9 +291,24 @@ class Level2 extends Phaser.Scene {
   }
   addGoal(){
     this.goal = new Goal(this,1715,46,'lvl2door');
+    this.goal.alpha = 0;
     this.goalGroup.add(this.goal);
   }
     update() {
+      if(this.physics.overlap( this.enemyGroup,this.playerGroup)||this.gameover)
+      {
+        if(!this.fadeout.isPlaying()&&this.gameover==false)
+        {
+          this.fadeout.play();
+          this.gameover = true;
+        }
+        if(!this.fadeout.isPlaying()&&this.gameover==false)
+        {
+          this.scene.start("GameoverScene");
+        }
+      }
+      else
+      {
       if(config.physics.arcade.debug)
       {
        
@@ -484,6 +509,7 @@ class Level2 extends Phaser.Scene {
 
 
   }
+}
 }
 
 typeText() {

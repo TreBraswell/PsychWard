@@ -104,7 +104,6 @@ class Level1 extends Phaser.Scene {
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     //this.bcText = this.add.text(580, 10, "press space to go to menu", menuConfig).setOrigin(0,0);
-    this.test = this.add.sprite(0 ,0 , 'G');
     //first spell out the phobia now, then make it invisible, and then when player collects, change alpha back to 1
     this.a1 = this.add.sprite( 130, 100, 'A')
     this.a1.alpha = 0;
@@ -159,6 +158,15 @@ class Level1 extends Phaser.Scene {
 
     this.dOnce = true;
 
+    this.gameover = false;
+    this.fadeout = this.tweens.add({
+      targets: this,
+      alpha: {
+          from: 1,
+          to: 0
+      },
+      duration: 1000
+  });
 }
 addPlayer(){
   this.player = new Player(this,95, 2723, 'player',this.input.keyboard.createCursorKeys());
@@ -187,6 +195,7 @@ addEnemy(x, y){
 }
 addGoal(){
   this.goal = new Goal(this,945,46,'door');
+  this.goal.alpha = 0;
   this.goalGroup.add(this.goal);
 }
   update() {
@@ -382,8 +391,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       game.cleared.L2 = true;
       if(game.cleared.L1 && game.cleared.L2 && game.cleared.L3 )
       {
-        
-        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('completeScene'); }); 
+        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('transition1eScene'); }); 
       }
       else{
        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('clearedScene'); }); 
@@ -490,7 +498,7 @@ this.physics.add.overlap( this.enemyGroup,this.playerGroup,function(enemy, playe
       }
       // do something with element
   })
-    
+//}
 }
 }
 timerBump()

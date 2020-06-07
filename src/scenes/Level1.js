@@ -188,7 +188,7 @@ addGoal(){
   this.goalGroup.add(this.goal);
 }
   update() {
-    if(this.physics.overlap( this.enemyGroup,this.playerGroup)||this.gameover)
+    /*if(this.physics.overlap( this.enemyGroup,this.playerGroup)||this.gameover)
     {
       if(!this.fadeout.isPlaying()&&this.gameover==false)
       {
@@ -201,7 +201,7 @@ addGoal(){
       }
     }
     else
-    {
+    {*/
     if(config.physics.arcade.debug)
     {
      
@@ -447,7 +447,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       }
       // do something with element
   })
-}
+//}
 }
 timerBump()
 {

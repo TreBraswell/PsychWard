@@ -84,7 +84,7 @@ class Level2 extends Phaser.Scene {
       create() {
         this.goalletters = 10;//number of letters if they are equal to letter ie letters collected the door will fade in and then progress to the next level
         this.letters = 0;
-        
+
         this.pick = game.sound.add('pick');
 
         this.bgm = game.sound.add('lvl2');
@@ -295,7 +295,7 @@ class Level2 extends Phaser.Scene {
     this.goalGroup.add(this.goal);
   }
     update() {
-      if(this.physics.overlap( this.enemyGroup,this.playerGroup)||this.gameover)
+     /* if(this.physics.overlap( this.enemyGroup,this.playerGroup)||this.gameover)
       {
         if(!this.fadeout.isPlaying()&&this.gameover==false)
         {
@@ -308,7 +308,7 @@ class Level2 extends Phaser.Scene {
         }
       }
       else
-      {
+      {*/
       if(config.physics.arcade.debug)
       {
        
@@ -450,7 +450,7 @@ class Level2 extends Phaser.Scene {
       game.cleared.L2 = true;
       if(game.cleared.L1 && game.cleared.L2 && game.cleared.L3 )
       {
-        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('completeScene'); }); 
+        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('transition1eScene'); }); 
       }
       else{
        goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('clearedScene'); }); 
@@ -509,7 +509,7 @@ class Level2 extends Phaser.Scene {
 
 
   }
-}
+//}
 }
 
 typeText() {

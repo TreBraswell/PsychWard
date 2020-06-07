@@ -110,13 +110,13 @@ class CaseFile extends Phaser.Scene {
          this.casea7 = this.add.bitmapText(478, 300, 'basic_font', 'occurence of panic attacks');this.casea7.alpha=0;
          //casefile 2
  
-         this.caseb1 = this.add.bitmapText(104, 113, 'basic_font', 'dazzled, in awe of fire'); this.caseb1.alpha=0;
-         this.caseb2 = this.add.bitmapText(104, 152, 'basic_font', 'feels the need to carry matches or lighters');this.caseb2.alpha=0;
-         this.caseb3 = this.add.bitmapText(104, 187, 'basic_font', 'leaves burnt holes on house rugs');this.caseb3.alpha=0;
-         this.caseb4 = this.add.bitmapText(104, 235, 'basic_font', 'needs sense of relief from tension or anxiety');this.caseb4.alpha=0;
-         this.caseb5 = this.add.bitmapText(135, 304, 'basic_font', 'needs to see physical fire everywhere');this.caseb5.alpha=0;
-         this.caseb6 = this.add.bitmapText(517, 62, 'basic_font', 'as a child would burn ants with magnfying glass,then smallbirds');this.caseb6.alpha=0;
-         this.caseb7 = this.add.bitmapText(517, 140, 'basic_font', 'fire was a way when no one else was');this.caseb7.alpha=0;
+         this.caseb1 = this.add.bitmapText(92, 113, 'basic_font', 'dazzled, in awe of fire'); this.caseb1.alpha=0;
+         this.caseb2 = this.add.bitmapText(92, 152, 'basic_font', 'feels need to carry\n matches or lighters');this.caseb2.alpha=0;
+         this.caseb3 = this.add.bitmapText(92, 187, 'basic_font', 'leaves burnt holes on\n house rugs');this.caseb3.alpha=0;
+         this.caseb4 = this.add.bitmapText(92, 235, 'basic_font', 'needs sense of relief from\n tension or anxiety');this.caseb4.alpha=0;
+         this.caseb5 = this.add.bitmapText(92, 304, 'basic_font', 'needs to see physical fire\n everywhere');this.caseb5.alpha=0;
+         this.caseb6 = this.add.bitmapText(517, 62, 'basic_font', 'as a child would burn\n ants with magnfying glass,\n then smallbirds');this.caseb6.alpha=0;
+         this.caseb7 = this.add.bitmapText(517, 140, 'basic_font', '"there for me when\n no one else was"');this.caseb7.alpha=0;
          //casefile 3
          this.casec1 = this.add.bitmapText(104, 113, 'basic_font', 'See things altering in size'); this.casec1.alpha=0;
          this.casec2 = this.add.bitmapText(104, 152, 'basic_font', 'when variable to concentrate on an object gains migraines and dizziness');this.casec2.alpha=0;

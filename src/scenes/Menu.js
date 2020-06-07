@@ -71,7 +71,7 @@ class Menu extends Phaser.Scene {
 
         this.load.image('dialogbox', './assets/grad.png');
         this.load.image('patient','./assets/patient.png')
-
+        this.load.spritesheet('movements', './assets/testsprites.png', { frameWidth: 141, frameHeight: 141 });
 
         this.load.audio('clearedSound','./assets/cleared.wav')
         this.load.audio('lvl3', './assets/lvl3.wav')
@@ -92,7 +92,7 @@ class Menu extends Phaser.Scene {
         this.load.image('cabin', './assets/cabin.png');
         this.load.image('lightpost', './assets/lightpost.png');
         this.load.image('bench', './assets/bench2.png');
-        this.load.image('chair', './assets/bench.png');
+        this.load.image('chair', './assets/ben.png');
       }
       create() {
         this.playOnce= false;

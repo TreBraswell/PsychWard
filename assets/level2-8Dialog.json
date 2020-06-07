@@ -1,9 +1,15 @@
 [
 	[
+		
+        
+        {	
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "but i believe in you son"
+            
+		},
 		{
-			"speaker" : "Patient 2's Mother",
-			"dialog" : "dialog 8",
-			"newSpeaker" : "true"
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "i beleive in you more than fire"
 		}
 	]
 ]

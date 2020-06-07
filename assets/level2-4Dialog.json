@@ -1,9 +1,14 @@
 [
 	[
 		{
-			"speaker" : "Patient 2's Mother",
-			"dialog" : "dialog 4",
-			"newSpeaker" : "true"
-		}
+			"speaker" : "patient's sister",
+			"dialog" : "my brother always annoyed me when I was a kid. but i alwaysed loved him"
+		},
+		
+        {	
+			"speaker" : "patient's sister",
+            "dialog" : "but sometimes i dont know. things are so different know."
+            
+        }
 	]
 ]

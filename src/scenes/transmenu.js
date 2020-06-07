@@ -144,7 +144,7 @@ var pos = group[i].position;
 
       if (group[i].position.z > 5) {
         this.Remove();
-        this.scene.start("CaseFileScene");
+        this.scene.start("casefileScene");
       }
       }
     

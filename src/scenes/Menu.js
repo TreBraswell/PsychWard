@@ -147,7 +147,7 @@ class Menu extends Phaser.Scene {
 
 }
 if(this.cursors.up.isDown) {
-  this.scene.start("transition1sScene"); 
+  this.scene.start("transition1eScene"); 
 
 }
       

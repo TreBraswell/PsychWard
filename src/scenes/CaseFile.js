@@ -101,13 +101,13 @@ class CaseFile extends Phaser.Scene {
         this.case3Screen.alpha = 0
         this.click = game.sound.add('flip');
          //casefile 1
-         this.casea1 = this.add.bitmapText(104, 86, 'basic_font', 'dislikes open spaces\nsuch as parking lots');this.casea1.alpha=0;
-         this.casea2 = this.add.bitmapText(104, 152, 'basic_font', 'panic,trapped,helpless,\nembarresed');this.casea2.alpha=0;
-         this.casea3 = this.add.bitmapText(104, 187, 'basic_font', "doesn't feel safe alone \nor in a crowd");this.casea3.alpha=0;
-         this.casea4 = this.add.bitmapText(104, 235, 'basic_font', '"it"  pushes me to mal \n(connection?)');this.casea4.alpha=0;
-         this.casea5 = this.add.bitmapText(112, 336, 'basic_font', '"like something is\n always telling me to mal, to\n take my existence out of every place or situation"');this.casea5.alpha=0;
-         this.casea6 = this.add.bitmapText(511, 275, 'basic_font', 'something in their\n way of moving forward');this.casea6.alpha=0;
-         this.casea7 = this.add.bitmapText(501, 378, 'basic_font', 'occurence of panic attacks');this.casea7.alpha=0;
+         this.casea1 = this.add.bitmapText(94, 116, 'basic_font', 'dislikes open spaces');this.casea1.alpha=0;
+         this.casea2 = this.add.bitmapText(94, 152, 'basic_font', 'panic,trapped,helpless');this.casea2.alpha=0;
+         this.casea3 = this.add.bitmapText(94, 193, 'basic_font', "doesn't feel safe alone \nor in a crowd");this.casea3.alpha=0;
+         this.casea4 = this.add.bitmapText(94, 255, 'basic_font', '"it"  pushes me to move');this.casea4.alpha=0;
+         this.casea5 = this.add.bitmapText(112, 299, 'basic_font', '"something is telling\n me to move, to take\n myself out of every\n place or situation"');this.casea5.alpha=0;
+         this.casea6 = this.add.bitmapText(473, 268, 'basic_font', 'something in their way\n of moving forward');this.casea6.alpha=0;
+         this.casea7 = this.add.bitmapText(478, 300, 'basic_font', 'occurence of panic attacks');this.casea7.alpha=0;
          //casefile 2
  
          this.caseb1 = this.add.bitmapText(104, 113, 'basic_font', 'dazzled, in awe of fire'); this.caseb1.alpha=0;

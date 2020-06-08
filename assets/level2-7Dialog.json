@@ -4,6 +4,18 @@
 			"speaker" : "Patient 2's Dad",
 			"dialog" : "dialog 7",
 			"newSpeaker" : "true"
+		},
+		
+        {	
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "i remember when we used to play ball"
+            
+        },
+        
+        {	
+			"speaker" : "Patient 2's Dad",
+            "dialog" : "now all he loves is fire"
+            
 		}
 	]
 ]

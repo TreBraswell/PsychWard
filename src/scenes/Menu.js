@@ -38,7 +38,7 @@ class Menu extends Phaser.Scene {
   
         this.load.image('credits', './assets/credits.png')
         this.load.image('thankyou', './assets/thankyou.png')
-        
+
         this.load.audio('clearedSound','./assets/cleared.wav')
   
         this.load.image('A', './assets/A.png');
@@ -179,11 +179,11 @@ class Menu extends Phaser.Scene {
 
   }
   if(this.cursors.left.isDown) {
-    this.scene.start("Level1Scene"); 
+    this.scene.start("Level2Scene"); 
 
 }
 if(this.cursors.up.isDown) {
-  this.scene.start("transition2sScene"); 
+  this.scene.start("Level1Scene"); 
 
 }
       

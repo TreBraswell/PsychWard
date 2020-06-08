@@ -87,25 +87,32 @@ class Level3 extends Phaser.Scene {
       this.addGoal();
       // 0 = does nothing, 1 = expand horiz, 2 = expand vert, 3 = expand both ways
       //campfires
-      this.addScenery(327,593,'campfire',0);
-      this.addScenery(966,1016,'campfire',0);
-      this.addScenery(2047,1670,'campfire',0);
-      this.addScenery(99,2658,'campfire',0);
+      this.addScenery(327,593,'campfire',3,500,5,5);
+      this.addScenery(838,2513,'campfire',3,500,5,5);
+      this.addScenery(1810,348,'campfire',3,500,5,5);
+      this.addScenery(99,2658,'campfire',3, 500,5,5);
+      this.addScenery(979,1010,'campfire',0);
+
       //bushes
-      this.addScenery(72,1113,'bush',0);
-      this.addScenery(256,1274,'bush',0);
-      this.addScenery(100,1465,'bush',0);
-      this.addScenery(1276,1212,'bush',0);
-      this.addScenery(1276,1156,'bush',0);
+      this.addScenery(72,1023,'bush',1,1000,5,5);
+      this.addScenery(256,1274,'bush',2,1000,5,5);
+      this.addScenery(100,1465,'bush',1,1000,5,5);
+      this.addScenery(895,1266,'bush',0);
+      this.addScenery(996,1266,'bush',0);
+      this.addScenery(71,2168,'bush',0);
+      this.addScenery(1959,2169,'bush',0);
+      this.addScenery(979,431,'bush',2,500,5,5);
+      this.addScenery(1387,525,'bush',1,500,5,5);
+
       //lightposts
-      this.addScenery(551,753,'lightpost',0);
-      this.addScenery(551,1318,'lightpost',0);
-      this.addScenery(1429,753,'lightpost',0);
-      this.addScenery(1429,1318,'lightpost',0);
-      this.addScenery(2057,36,'lightpost',0);
-      this.addScenery(1982,2223,'lightpost',0);
-      this.addScenery(194,2376,'lightpost',0);
-      this.addScenery(552,2705,'lightpost',0);
+      this.addScenery(551,753,'lightpost',2,1000,5,5);
+      this.addScenery(551,1318,'lightpost',2,1000,5,5);
+      this.addScenery(1429,753,'lightpost',2,1000,5,5);
+      this.addScenery(1429,1318,'lightpost',2,1000,5,5);
+      this.addScenery(2057,62,'lightpost',2,1000,5,5);
+      this.addScenery(1991,2223,'lightpost',2,1000,5,5);
+      this.addScenery(194,2376,'lightpost',2,1000,5,5);
+      this.addScenery(552,2669,'lightpost',2,1000,5,5);
       //cabin
       this.addScenery(1923,1694,'cabin',0);
       this.addScenery(570,2323,'cabin',0);
@@ -114,13 +121,12 @@ class Level3 extends Phaser.Scene {
       //bench
       this.addScenery(979,941,'bench',0);
       this.addScenery(979,1070,'bench',0);
-      this.addScenery(862,1020,'bench',1,1000,10,10);
-      this.addScenery(1079,1020,'bench',2,1000,10,10);
-      this.addScenery(1158,887,'bench',3,1000,10,10);
+      this.addScenery(842,1020,'bench',2,1000,10,10);
+      this.addScenery(1118,1020,'bench',2,1000,10,10);
 
       //chairs
-      this.addScenery(1417,152,'chair');
-      this.addScenery(1988,611,'chair');
+      this.addScenery(1417,152,'chair',2,1000,10,10);
+      this.addScenery(1988,611,'chair',2,1000,10,10);
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     

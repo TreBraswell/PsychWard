@@ -488,6 +488,10 @@ this.physics.add.overlap( this.enemyGroup,this.playerGroup,function(enemy, playe
       {
         element.y++;
       }
+      if((this.player.x+50>=element.x&&element.x>=this.player.x-50)||(this.player.y+50>=element.y&&element.y>=this.player.y-50))
+      {
+        element.alpha = 1;
+      }
       // do something with element
   })
 //}

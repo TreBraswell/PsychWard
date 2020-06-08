@@ -141,9 +141,9 @@ create ()
 // Your 3d point to check
 var pos = group[i].position;
 
-      if (group[i].position.z > 5) {
+      if (group[i].position.z > 10) {
         this.Remove();
-        this.scene.start("CaseFileScene");
+        this.scene.start("casefileScene");
       }
       }
     

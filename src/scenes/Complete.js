@@ -4,8 +4,7 @@ class Complete extends Phaser.Scene {
     }
     preload() {
 
-        this.load.image('credits', './assets/credits.png')
-        this.load.image('thankyou', './assets/thankyou.png')
+ 
 
   
     }
@@ -15,7 +14,7 @@ class Complete extends Phaser.Scene {
     {
        
 
-            this.credits = this.add.tileSprite(0, 0, 1000, 1000, 'credit').setOrigin(0,0)
+            this.credits = this.add.tileSprite(0, 0, 1000, 1000, 'credits').setOrigin(0,0)
             this.fadein = this.tweens.add({
                 targets: this.credits,
                 alpha: {

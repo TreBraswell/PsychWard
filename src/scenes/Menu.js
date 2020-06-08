@@ -36,6 +36,10 @@ class Menu extends Phaser.Scene {
 
         this.load.image('heart','./assets/heart.png')
   
+        this.load.image('credits', './assets/credits.png')
+        this.load.image('thankyou', './assets/thankyou.png')
+
+        this.load.audio('clearedSound','./assets/cleared.wav')
   
         this.load.image('A', './assets/A.png');
         this.load.image('G', './assets/g.png');
@@ -48,6 +52,38 @@ class Menu extends Phaser.Scene {
         this.load.image('B', './assets/b.png');
         this.load.image('I', './assets/i.png');
         //this.load.image('A', './assets/smalla.png');
+
+       // this.load.image('P', './assets/p.png')
+        this.load.image('Y', './assets/y.png')
+       //this.load.image('R', './assets/r.png')
+        //this.load.image('O', './assets/o.png')
+        this.load.image('M', './assets/m.png')
+       // this.load.image('A', './assets/a.png')
+        this.load.image('N', './assets/n.png')
+        //this.load.image('I', './assets/i.png')
+        //this.load.image('A', './assets/a.png')
+
+
+        this.load.image('D', './assets/D.png');
+        this.load.image('Y', './assets/y.png');
+        this.load.image('S', './assets/s.png');
+        //this.load.image('M', './assets/r.png');
+        this.load.image('E', './assets/e.png');
+        this.load.image('T', './assets/t.png');
+        //this.load.image('R', './assets/h.png');
+        //this.load.image('O', './assets/o.png');
+        this.load.image('P', './assets/p.png');
+        this.load.image('S', './assets/s.png');
+        //this.load.image('I', './assets/i.png');
+        //this.load.image('A', './assets/smalla.png');
+
+
+        this.load.audio('clearedSound','./assets/cleared.wav')
+
+        this.load.audio('lvl2', './assets/lvl2.wav')
+
+
+
         this.load.json('level2-1Dialog', './assets/level2-1Dialog.json');
         this.load.json('level2-2Dialog', './assets/level2-2Dialog.json');
         this.load.json('level2-3Dialog', './assets/level2-3Dialog.json');

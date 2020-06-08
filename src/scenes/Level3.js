@@ -9,6 +9,9 @@ class Level3 extends Phaser.Scene {
 
       }
       create() {
+        this.pickup = game.sound.add('pickup');
+
+        this.collectedCounter = 12
 
         this.bgm = game.sound.add('lvl3');
       this.bgm.loop = true;
@@ -66,7 +69,7 @@ class Level3 extends Phaser.Scene {
           runChildUpdate: true    // make sure update runs on group children
       });
         //groups
-        this.noteGroup = this.add.group({
+        this.letterGroup = this.add.group({
           runChildUpdate: true    // make sure update runs on group children
       });
       this.goalGroup = this.add.group({
@@ -88,23 +91,28 @@ class Level3 extends Phaser.Scene {
       this.addScenery(838,2513,'campfire',3,500,5,5);
       this.addScenery(1810,348,'campfire',3,500,5,5);
       this.addScenery(99,2658,'campfire',3, 500,5,5);
+      this.addScenery(979,1010,'campfire',0);
+
       //bushes
-      this.addScenery(72,1113,'bush',1,1000,5,5);
+      this.addScenery(72,1023,'bush',1,1000,5,5);
       this.addScenery(256,1274,'bush',2,1000,5,5);
       this.addScenery(100,1465,'bush',1,1000,5,5);
       this.addScenery(895,1266,'bush',0);
       this.addScenery(996,1266,'bush',0);
       this.addScenery(71,2168,'bush',0);
       this.addScenery(1959,2169,'bush',0);
+      this.addScenery(979,431,'bush',2,500,5,5);
+      this.addScenery(1387,525,'bush',1,500,5,5);
+
       //lightposts
       this.addScenery(551,753,'lightpost',2,1000,5,5);
       this.addScenery(551,1318,'lightpost',2,1000,5,5);
       this.addScenery(1429,753,'lightpost',2,1000,5,5);
       this.addScenery(1429,1318,'lightpost',2,1000,5,5);
       this.addScenery(2057,62,'lightpost',2,1000,5,5);
-      this.addScenery(1982,2223,'lightpost',2,1000,5,5);
+      this.addScenery(1991,2223,'lightpost',2,1000,5,5);
       this.addScenery(194,2376,'lightpost',2,1000,5,5);
-      this.addScenery(552,2705,'lightpost',2,1000,5,5);
+      this.addScenery(552,2669,'lightpost',2,1000,5,5);
       //cabin
       this.addScenery(1923,1694,'cabin',0);
       this.addScenery(570,2323,'cabin',0);
@@ -113,17 +121,80 @@ class Level3 extends Phaser.Scene {
       //bench
       this.addScenery(979,941,'bench',0);
       this.addScenery(979,1070,'bench',0);
-      this.addScenery(862,1020,'bench',1,1000,10,10);
-      this.addScenery(1079,1020,'bench',2,1000,10,10);
-      this.addScenery(1158,887,'bench',3,1000,10,10);
+      this.addScenery(842,1020,'bench',2,1000,10,10);
+      this.addScenery(1118,1020,'bench',2,1000,10,10);
 
       //chairs
-      this.addScenery(1417,152,'chair');
-      this.addScenery(1988,611,'chair');
+      this.addScenery(1417,152,'chair',2,1000,10,10);
+      this.addScenery(1988,611,'chair',2,1000,10,10);
       this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
       this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
     
       this.temp =false;
+
+
+
+
+
+      this.d = this.add.sprite( 130, 100, 'D')
+      this.d.alpha = 0;
+  
+  
+      this.y = this.add.sprite(180, 100, 'Y')
+      this.y.alpha = 0;
+  
+      this.s1 = this.add.sprite(230, 100, 'S')
+      this.s1.alpha = 0;
+
+      this.m = this.add.sprite(280, 100, 'M')
+      this.m.alpha = 0;
+  
+      this.e = this.add.sprite(330, 100, 'E')
+      this.e.alpha = 0;
+  
+      this.t = this.add.sprite(380, 100, 'T')
+      this.t.alpha = 0;
+  
+      this.r = this.add.sprite(430, 100, 'R')
+      this.r.alpha = 0;
+  
+      this.o = this.add.sprite(480, 100, 'O')
+      this.o.alpha = 0;
+  
+      this.p = this.add.sprite(530, 100, 'P')
+      this.p.alpha = 0;
+
+      this.s2 = this.add.sprite(580, 100, 'S')
+      this.s2.alpha = 0;
+  
+  
+      this.i = this.add.sprite(630, 100, 'I')
+      this.i.alpha = 0;
+  
+      this.a = this.add.sprite(680, 100, 'A')
+      this.a.alpha = 0;
+  
+  
+      this.addLetter('D', 178,2702,this.d);
+      this.addLetter('Y', 1748,2693,this.y);
+      this.addLetter('S', 616,2072,this.s1);
+      this.addLetter('M', 1639,1946,this.m);
+      this.addLetter('E', 692,606,this.e);
+      this.addLetter('T', 1004,1130,this.t);
+      this.addLetter('R', 383,1413,this.r);
+      this.addLetter('O', 841,142,this.o);
+      this.addLetter('P', 1123,1453,this.p);
+      this.addLetter('S', 100,1453,this.s2);
+      this.addLetter('I', 1445,1068,this.i);
+      this.addLetter('A', 1070,1982,this.a);
+
+
+
+
+
+
+
+      
 
 
       
@@ -158,7 +229,27 @@ class Level3 extends Phaser.Scene {
     this.goal = new Goal(this,1573,1095,'lvl3door');
     this.goalGroup.add(this.goal);
   }
+  addLetter(string, x, y, i){
+
+    let letter = new Letter(this,x, y, string,i);
+    this.letterGroup.add(letter);
+  }
     update() {
+
+
+
+      this.d.setScrollFactor(0);
+      this.y.setScrollFactor(0);
+      this.s1.setScrollFactor(0);
+      this.m.setScrollFactor(0);
+      this.e.setScrollFactor(0);
+      this.t.setScrollFactor(0);
+      this.r.setScrollFactor(0);
+      this.o.setScrollFactor(0);
+      this.p.setScrollFactor(0);
+      this.s2.setScrollFactor(0);
+      this.i.setScrollFactor(0);
+      this.a.setScrollFactor(0);
 
      // this.cameras.main.setZoom(.3);
     //checks if we are in debug
@@ -209,7 +300,7 @@ class Level3 extends Phaser.Scene {
         else
         { 
 
-          this.player.x-= 2;
+          this.player.x-= 5;
           if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
           {
             this.player.x+=10;
@@ -227,7 +318,7 @@ class Level3 extends Phaser.Scene {
         else
         {
 
-           this.player.x+= 2;
+           this.player.x+= 5;
            if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
            {
              this.player.x-=10;
@@ -245,7 +336,7 @@ class Level3 extends Phaser.Scene {
     else
     {
 
-       this.player.y-= 2;
+       this.player.y-= 5;
        if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
        {
          this.player.y+=10;
@@ -264,7 +355,7 @@ class Level3 extends Phaser.Scene {
         else
         {
           var tempbefore = this.player.y;
-        this.player.y+= 2;
+        this.player.y+= 5;
           this.temp = false;
         if(this.physics.overlap( this.sceneryGroup,this.playerGroup))
         {
@@ -304,7 +395,48 @@ class Level3 extends Phaser.Scene {
           });
            }
 
-      
+           this.physics.add.overlap( this.goalGroup,this.playerGroup,function(goal, player){
+
+            if(goal.scene.collectedCounter <= 0)
+            {
+              if(!goal.scene.done)
+              {
+        
+              game.cleared.L3 = true;
+              if(game.cleared.L1 && game.cleared.L2 && game.cleared.L3 )
+              {
+                goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('completeScene'); }); 
+              }
+              else{
+               goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('clearedScene'); }); 
+              }
+        
+              goal.scene.done = true;
+              this.clearedSFX = game.sound.add('clearedSound')
+              this.clearedSFX.play()
+              goal.scene.bgm.stop();
+              player.destroy();
+            }
+              goal.scene.letterGroup.runChildUpdate = false;
+              goal.scene.playerGroup.runChildUpdate = false;
+              goal.scene.enemyGroup.runChildUpdate = false;
+              goal.scene.goalGroup.runChildUpdate = false;
+        
+            }
+        
+        });
+        this.physics.add.overlap( this.letterGroup,this.playerGroup,function(letter, player){
+          if(!letter.collected)
+          {
+            letter.scene.pickup.play()
+            letter.collected = true
+            letter.alpha = 0
+            letter.scene.collectedCounter--;
+          }
+    
+    
+      });
+    
 
 
  

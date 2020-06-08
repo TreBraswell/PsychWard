@@ -188,7 +188,9 @@ class Level3 extends Phaser.Scene {
       this.addLetter('I', 1445,1068,this.i);
       this.addLetter('A', 1070,1982,this.a);
 
-
+      this.heart1 = this.add.image(10, 400, 'heart').setOrigin(0,0);
+      this.heart2 = this.add.image(50, 400, 'heart').setOrigin(0,0);
+      this.heart3 = this.add.image(90, 400, 'heart').setOrigin(0,0);
 
 
 
@@ -235,7 +237,9 @@ class Level3 extends Phaser.Scene {
     this.letterGroup.add(letter);
   }
     update() {
-
+      this.heart1.setScrollFactor(0);
+      this.heart2.setScrollFactor(0);
+      this.heart3.setScrollFactor(0);
 
 
       this.d.setScrollFactor(0);

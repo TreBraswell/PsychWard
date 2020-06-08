@@ -30,11 +30,8 @@ class Instructions extends Phaser.Scene {
   
 
     update() {
-      if(this.cursors.space.isDown) {
-        this.scene.start("Level1Scene"); 
 
-    }
-    if(this.cursors.right.isDown && !this.transition) {
+    if(this.cursors.space.isDown && !this.transition) {
         if(!this.playOnce)
         {
             this.click.play()

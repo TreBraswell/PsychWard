@@ -6,7 +6,7 @@ class Menu extends Phaser.Scene {
           this.playOnce = false
       }
       preload() {
-        this.load.image('titleScreen', './assets/main2.png');
+        this.load.image('titleScreen', './assets/thenewnew.png');
         this.load.image('psych', './assets/psych.png');
         //level 1
         this.load.tilemapTiledJSON('map', './assets/psychward..json');
@@ -140,6 +140,7 @@ class Menu extends Phaser.Scene {
         this.click = game.sound.add('flip');
 
         this.title = this.add.tileSprite(0, 0, 1000, 1000, 'titleScreen').setOrigin(0,0)
+        this.title.setScale(1.03);
         this.fadein = this.tweens.add({
           targets: this.title,
           alpha: {

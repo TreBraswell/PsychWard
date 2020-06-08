@@ -120,7 +120,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('pickup','./assets/pickup.wav')
         this.load.image('notes', './assets/papers.png');
         this.load.image('firedown', './assets/fireball.png');
-        this.load.audio('typing', './assets/Typing.mp3')
+        this.load.audio('typing', './assets/typing.mp3')
         
 
  

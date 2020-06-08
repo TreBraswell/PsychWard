@@ -7,7 +7,6 @@ class Level1 extends Phaser.Scene {
     preload() {
  
       //note to future self use a spritesheet to make up down left right
-      this.load.audio('clearedSound','./assets/cleared.wav')
     }
     create() {
       this.canHit = true;
@@ -18,7 +17,7 @@ class Level1 extends Phaser.Scene {
         
     
 
-      this.done = true
+      this.done = false
       this.collectedCounter = 11
     
 
@@ -51,7 +50,7 @@ class Level1 extends Phaser.Scene {
       this.cursors =  this.input.keyboard.createCursorKeys();
       this.difftimer = false; 
       this.keySPACE= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-      this.bgm = game.sound.add('backsound');
+      this.bgm = game.sound.add('backsound', .2);
       this.bgm.loop = true;
       this.bgm.play();
 
@@ -109,33 +108,33 @@ class Level1 extends Phaser.Scene {
     this.a1.alpha = 0;
 
 
-    this.g = this.add.sprite(130, 100, 'G')
+    this.g = this.add.sprite(180, 100, 'G')
     this.g.alpha = 0;
 
-    this.o1 = this.add.sprite(180, 100, 'O')
+    this.o1 = this.add.sprite(230, 100, 'O')
     this.o1.alpha = 0;
-    this.r = this.add.sprite(230, 100, 'R')
+    this.r = this.add.sprite(280, 100, 'R')
     this.r.alpha = 0;
 
-    this.a2 = this.add.sprite(280, 100, 'A')
+    this.a2 = this.add.sprite(330, 100, 'A')
     this.a2.alpha = 0;
 
-    this.p = this.add.sprite(330, 100, 'P')
+    this.p = this.add.sprite(380, 100, 'P')
     this.p.alpha = 0;
 
-    this.h = this.add.sprite(380, 100, 'H')
+    this.h = this.add.sprite(430, 100, 'H')
     this.h.alpha = 0;
 
-    this.o2 = this.add.sprite(430, 100, 'O')
+    this.o2 = this.add.sprite(480, 100, 'O')
     this.o2.alpha = 0;
 
-    this.b = this.add.sprite(480, 100, 'B')
+    this.b = this.add.sprite(530, 100, 'B')
     this.b.alpha = 0;
 
-    this.i = this.add.sprite(530, 100, 'I')
+    this.i = this.add.sprite(580, 100, 'I')
     this.i.alpha = 0;
 
-    this.a3 = this.add.sprite(580, 100, 'A')
+    this.a3 = this.add.sprite(630, 100, 'A')
     this.a3.alpha = 0;
 
 
@@ -194,7 +193,7 @@ addEnemy(x, y){
   this.enemies++;
 }
 addGoal(){
-  this.goal = new Goal(this,945,46,'door');
+  this.goal = new Goal(this,1050,117,'door');
   this.goal.alpha = 0;
   this.goalGroup.add(this.goal);
 }
@@ -210,10 +209,6 @@ addGoal(){
           this.bgm.stop()
         }
         game.gameOver.currentLevel = 1;
-      this.letterGroup.runChildUpdate = false;
-      this.playerGroup.runChildUpdate = false;
-      this.enemyGroup.runChildUpdate = false;
-      this.goalGroup.runChildUpdate = false;
       this.time.delayedCall(600, () => { this.scene.start('gameoverScene'); }); 
       console.log('in gameover')
     }
@@ -371,11 +366,11 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       if(!letter.collected)
       {
         letter.scene.pickup.play()
+        letter.collected = true
+        letter.alpha = 0
+        letter.scene.collectedCounter--;
+        console.log(letter.scene.collectedCounter)
       }
-      letter.collected = true
-      game.wordIndex.collected = true;
-      letter.alpha = 0
-      letter.scene.collectedCounter--;
 
 
   });
@@ -388,7 +383,7 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       if(!goal.scene.done)
       {
 
-      game.cleared.L2 = true;
+      game.cleared.L1 = true;
       if(game.cleared.L1 && game.cleared.L2 && game.cleared.L3 )
       {
         goal.scene.time.delayedCall(600, () => { goal.scene.scene.start('transition1eScene'); }); 
@@ -400,12 +395,9 @@ if(tile.index == 4 || tile.index == 7 ||tile.index == 2||tile.index == 8)
       goal.scene.done = true;
       this.clearedSFX = game.sound.add('clearedSound')
       this.clearedSFX.play()
-      this.bgm.stop();
+      goal.scene.bgm.stop();
+      player.destroy()
     }
-      goal.scene.letterGroup.runChildUpdate = false;
-      goal.scene.playerGroup.runChildUpdate = false;
-      goal.scene.enemyGroup.runChildUpdate = false;
-      goal.scene.goalGroup.runChildUpdate = false;
 
     }
 

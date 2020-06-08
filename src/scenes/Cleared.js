@@ -48,7 +48,7 @@ class Cleared extends Phaser.Scene {
                 },
                 duration: 600
             });
-            this.scene.start("caseFileScene"); 
+            this.scene.start("casefileScene"); 
         }
     }
 

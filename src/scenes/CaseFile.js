@@ -3,11 +3,6 @@ class CaseFile extends Phaser.Scene {
   
     constructor() {
       super("casefileScene");
-
-      this.case1Selected = false
-      this.case2Selected = false
-      this.case3Selected = false
-      this.caseSelected = false
     
 
           
@@ -21,6 +16,11 @@ class CaseFile extends Phaser.Scene {
 
 
       create() {
+
+        this.case1Selected = false
+        this.case2Selected = false
+        this.case3Selected = false
+        this.caseSelected = false
         this.zoomin = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.zoomout = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.follow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);

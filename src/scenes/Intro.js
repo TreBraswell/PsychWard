@@ -2,42 +2,43 @@ class Intro extends Phaser.Scene {
     constructor() {
         super("intro1Scene");
 
-        // dialog constants
-        this.DBOX_X = 0;			    // dialog box x-position
-        this.DBOX_Y = 400;			    // dialog box y-position
-        this.DBOX_FONT = 'basic_font';	;	// dialog box font key
-
-        this.TEXT_X = 50;			// text w/in dialog box x-position
-        this.TEXT_Y = 360;			// text w/in dialog box y-position
-        this.TEXT_SIZE = 24;		// text font size (in pixels)
-        this.TEXT_MAX_WIDTH = 715;	// max width of text within box
-
-        this.NEXT_TEXT = '[SPACE]';	// text to display for next prompt
-        this.NEXT_X = 775;			// next text prompt x-position
-        this.NEXT_Y = 574;			// next text prompt y-position
-
-        this.LETTER_TIMER = 10;		// # ms each letter takes to "type" onscreen
-
-        // dialog variables
-        this.dialogConvo = 0;			// current "conversation"
-        this.dialogLine = 0;			// current line of conversation
-        this.dialogSpeaker = null;		// current speaker
-        this.dialogLastSpeaker = null;	// last speaker
-        this.dialogTyping = false;		// flag to lock player input while text is "typing"
-        this.dialogText = null;			// the actual dialog text
-        this.nextText = null;			// player prompt text to continue typing
-
-        // character variables
-        this.psychiatrist = null;
-        this.patient= null;
-
-        this.tweenDuration = 500;
-
-        this.OFFSCREEN_X = -100;        // x,y values to place characters offscreen
-        this.OFFSCREEN_Y = 350;
+     
     }
 
     create() {
+           // dialog constants
+           this.DBOX_X = 0;			    // dialog box x-position
+           this.DBOX_Y = 400;			    // dialog box y-position
+           this.DBOX_FONT = 'basic_font';	;	// dialog box font key
+   
+           this.TEXT_X = 50;			// text w/in dialog box x-position
+           this.TEXT_Y = 360;			// text w/in dialog box y-position
+           this.TEXT_SIZE = 24;		// text font size (in pixels)
+           this.TEXT_MAX_WIDTH = 715;	// max width of text within box
+   
+           this.NEXT_TEXT = '[SPACE]';	// text to display for next prompt
+           this.NEXT_X = 775;			// next text prompt x-position
+           this.NEXT_Y = 574;			// next text prompt y-position
+   
+           this.LETTER_TIMER = 10;		// # ms each letter takes to "type" onscreen
+   
+           // dialog variables
+           this.dialogConvo = 0;			// current "conversation"
+           this.dialogLine = 0;			// current line of conversation
+           this.dialogSpeaker = null;		// current speaker
+           this.dialogLastSpeaker = null;	// last speaker
+           this.dialogTyping = false;		// flag to lock player input while text is "typing"
+           this.dialogText = null;			// the actual dialog text
+           this.nextText = null;			// player prompt text to continue typing
+   
+           // character variables
+           this.psychiatrist = null;
+           this.patient= null;
+   
+           this.tweenDuration = 500;
+   
+           this.OFFSCREEN_X = -100;        // x,y values to place characters offscreen
+           this.OFFSCREEN_Y = 350;
         // parse dialog from JSON file
         this.dialog = this.cache.json.get('introDialog');
         //console.log(this.dialog);

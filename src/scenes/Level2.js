@@ -63,19 +63,7 @@ class Level2 extends Phaser.Scene {
 
 
 
-        this.load.image('P', './assets/p.png')
-        this.load.image('Y', './assets/y.png')
-        this.load.image('R', './assets/r.png')
-        this.load.image('O', './assets/o.png')
-        this.load.image('N', './assets/n.png')
-        this.load.image('E', './assets/e.png')
-        this.load.image('T', './assets/t.png')
-        this.load.image('I', './assets/i.png')
-        this.load.image('C', './assets/c.png')
-
-        this.load.audio('clearedSound','./assets/cleared.wav')
-
-        this.load.audio('lvl2', './assets/lvl2.wav')
+      
 
         
       }
@@ -182,20 +170,20 @@ class Level2 extends Phaser.Scene {
       this.o = this.add.sprite(280,100, 'O')
       this.o.alpha = 0;
   
-      this.n = this.add.sprite(330,100, 'N')
+      this.m = this.add.sprite(330,100, 'M')
+      this.m.alpha = 0;
+  
+      this.a1 = this.add.sprite(380,100, 'A')
+      this.a1.alpha = 0;
+  
+      this.n = this.add.sprite(430,100, 'N')
       this.n.alpha = 0;
-  
-      this.e = this.add.sprite(380,100, 'E')
-      this.e.alpha = 0;
-  
-      this.t = this.add.sprite(430,100, 'T')
-      this.t.alpha = 0;
   
       this.i = this.add.sprite(480,100, 'I')
       this.i.alpha = 0;
   
-      this.c = this.add.sprite(530,100, 'C')
-      this.c.alpha = 0;
+      this.a2 = this.add.sprite(530,100, 'A')
+      this.a2.alpha = 0;
   
 
 
@@ -225,11 +213,11 @@ class Level2 extends Phaser.Scene {
       this.addNote(268, 2400,'O', dialog2,this.y);
       this.addNote(1768, 2408,'O', dialog3,this.r);
       this.addNote(312, 1668,'O', dialog4,this.o);
-      this.addNote(1413, 1842,'O', dialog5,this.n);
-      this.addNote(1916, 955,'O', dialog6,this.e);
-      this.addNote(264, 735,'O', dialog7,this.t);
+      this.addNote(1413, 1842,'O', dialog5,this.m);
+      this.addNote(1916, 955,'O', dialog6,this.a1);
+      this.addNote(264, 735,'O', dialog7,this.n);
       this.addNote(286, 178,'O', dialog8,this.i);
-      this.addNote(1005, 2400,'O', dialog9,this.c);
+      this.addNote(1005, 2400,'O', dialog9,this.a2);
 
       this.addGoal();
       //setting collision
@@ -371,11 +359,11 @@ class Level2 extends Phaser.Scene {
       this.y.setScrollFactor(0);
       this.r.setScrollFactor(0);
       this.o.setScrollFactor(0);
+      this.m.setScrollFactor(0);
+      this.a1.setScrollFactor(0);
       this.n.setScrollFactor(0);
-      this.e.setScrollFactor(0);
-      this.t.setScrollFactor(0);
       this.i.setScrollFactor(0);
-      this.c.setScrollFactor(0);
+      this.a2.setScrollFactor(0);
 
       if(this.gameOver)
       {
@@ -467,6 +455,7 @@ class Level2 extends Phaser.Scene {
 
 
   this.physics.add.overlap( this.goalGroup,this.playerGroup,function(goal, player){
+    console.log(goal.scene.collectedCounter)
 
     if(goal.scene.collectedCounter <= 0)
     {

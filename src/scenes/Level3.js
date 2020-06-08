@@ -87,7 +87,7 @@ class Level3 extends Phaser.Scene {
       this.addGoal();
       // 0 = does nothing, 1 = expand horiz, 2 = expand vert, 3 = expand both ways
       //campfires
-      this.addScenery(327,593,'campfire',3,500,5,5);
+      this.addScenery(208,602,'campfire',3,500,5,5);
       this.addScenery(838,2513,'campfire',3,500,5,5);
       this.addScenery(1810,348,'campfire',3,500,5,5);
       this.addScenery(99,2658,'campfire',3, 500,5,5);
@@ -202,7 +202,7 @@ class Level3 extends Phaser.Scene {
       
   }
   addPlayer(){
-    this.player = new Player(this,380, 480, 'player',this.input.keyboard.createCursorKeys());
+    this.player = new Player(this, 873, 2765, 'player',this.input.keyboard.createCursorKeys());
     
     this.playerGroup.add(this.player);
   }

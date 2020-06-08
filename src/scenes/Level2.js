@@ -387,7 +387,7 @@ class Level2 extends Phaser.Scene {
 
       if(this.cursors.left.isDown) {
         var tile = this.layer2.getTileAtWorldXY(this.player.x -this.tilediff, this.player.y, true);
-        console.log(tile.index);
+       // console.log(tile.index);
         if(tile == null ||tile.index == -1||tile.index == 11||tile.index==4||tile.index==2||tile.index == 5||tile.index == 7 )
         {
 
@@ -399,7 +399,7 @@ class Level2 extends Phaser.Scene {
 
     } else if(this.cursors.right.isDown) {
       var tile = this.layer2.getTileAtWorldXY(this.player.x +this.tilediff, this.player.y, true);
-      console.log(tile.index);
+      //console.log(tile.index);
       if(tile == null ||tile.index == -1||tile.index == 11||tile.index==4||tile.index==2||tile.index == 5||tile.index == 7 )
         {
 

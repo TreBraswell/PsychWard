@@ -91,13 +91,13 @@ class CaseFile extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        this.case1Screen = this.add.tileSprite(0, 0, 1000, 1000, 'case1').setOrigin(0,0)
+        this.case1Screen = this.add.tileSprite(-5, -5, 1000, 1000, 'case1').setOrigin(0,0)
         this.case1Screen.alpha = 0
 
-        this.case2Screen = this.add.tileSprite(0, 0, 1000, 1000, 'case2').setOrigin(0,0)
+        this.case2Screen = this.add.tileSprite(-27, 25, 1000, 1000, 'case2').setOrigin(0,0)
         this.case2Screen.alpha = 0
 
-        this.case3Screen = this.add.tileSprite(0, 0, 1000, 1000, 'case3').setOrigin(0,0)
+        this.case3Screen = this.add.tileSprite(-5, -5, 1000, 1000, 'case3').setOrigin(0,0)
         this.case3Screen.alpha = 0
         this.click = game.sound.add('flip');
          //casefile 1

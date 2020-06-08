@@ -102,7 +102,7 @@ class Menu extends Phaser.Scene {
 
         this.load.audio('flip', './assets/menu_click.wav');
 
-        this.load.image('files', './assets/filess.png');
+        this.load.image('files', './assets/files1.png');
         this.load.image('case1','./assets/agoraphobia.png')
         this.load.image('case2','./assets/pyronetic.png')
         this.load.image('case3','./assets/dysmetropsia.png')
